@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Barcode:</b>
+  <%= @product.barcode %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Mark:</b>
+  <%= @product.mark %>
+</p>
+
+<p>
+  <b>Fragance:</b>
+  <%= @product.fragance %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @product.price %>
+</p>
+
+<p>
+  <b>Count:</b>
+  <%= @product.count %>
+</p>
+
+<p>
+  <b>Uni:</b>
+  <%= @product.uni %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

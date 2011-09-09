@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Month:</b>
+  <%= @monthly.month %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @monthly.year %>
+</p>
+
+<p>
+  <b>Sold:</b>
+  <%= @monthly.sold %>
+</p>
+
+<p>
+  <b>Bought:</b>
+  <%= @monthly.bought %>
+</p>
+
+<p>
+  <b>To pay:</b>
+  <%= @monthly.to_pay %>
+</p>
+
+<p>
+  <b>Paid:</b>
+  <%= @monthly.paid %>
+</p>
+
+
+<%= link_to 'Edit', edit_monthly_path(@monthly) %> |
+<%= link_to 'Back', monthlies_path %>

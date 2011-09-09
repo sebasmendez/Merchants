@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  last_name: MyString
+  document: MyString
+  adress: MyString
+  email: MyString
+  location: MyString
+  phone: 1
+  cellphone: MyString
+  client_kind: MyString
+  bill_kind: MyString
+  amount: 9.99
+  spend: 9.99
+
+two:
+  name: MyString
+  last_name: MyString
+  document: MyString
+  adress: MyString
+  email: MyString
+  location: MyString
+  phone: 1
+  cellphone: MyString
+  client_kind: MyString
+  bill_kind: MyString
+  amount: 9.99
+  spend: 9.99

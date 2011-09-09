@@ -1,0 +1,45 @@
+<h1>Listing clients</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Last name</th>
+    <th>Document</th>
+    <th>Adress</th>
+    <th>Email</th>
+    <th>Location</th>
+    <th>Phone</th>
+    <th>Cellphone</th>
+    <th>Client kind</th>
+    <th>Bill kind</th>
+    <th>Amount</th>
+    <th>Spend</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clients.each do |client| %>
+  <tr>
+    <td><%= client.name %></td>
+    <td><%= client.last_name %></td>
+    <td><%= client.document %></td>
+    <td><%= client.adress %></td>
+    <td><%= client.email %></td>
+    <td><%= client.location %></td>
+    <td><%= client.phone %></td>
+    <td><%= client.cellphone %></td>
+    <td><%= client.client_kind %></td>
+    <td><%= client.bill_kind %></td>
+    <td><%= client.amount %></td>
+    <td><%= client.spend %></td>
+    <td><%= link_to 'Show', client %></td>
+    <td><%= link_to 'Edit', edit_client_path(client) %></td>
+    <td><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Client', new_client_path %>

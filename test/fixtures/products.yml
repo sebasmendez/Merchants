@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  barcode: 1
+  name: MyString
+  mark: MyString
+  fragance: MyString
+  price: 9.99
+  count: 9.99
+  uni: MyString
+
+two:
+  barcode: 1
+  name: MyString
+  mark: MyString
+  fragance: MyString
+  price: 9.99
+  count: 9.99
+  uni: MyString

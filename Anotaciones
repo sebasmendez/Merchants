@@ -1,0 +1,37 @@
+==  CreateProducts: migrating =================================================
+-- create_table(:products)
+NOTICE:  CREATE TABLE creará una secuencia implícita «products_id_seq» para la columna serial «products.id»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «products_pkey» para la tabla «products»
+   -> 0.1464s
+==  CreateProducts: migrated (0.1466s) ========================================
+
+==  CreateClients: migrating ==================================================
+-- create_table(:clients)
+NOTICE:  CREATE TABLE creará una secuencia implícita «clients_id_seq» para la columna serial «clients.id»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «clients_pkey» para la tabla «clients»
+   -> 0.1367s
+==  CreateClients: migrated (0.1368s) =========================================
+
+==  CreateBills: migrating ====================================================
+-- create_table(:bills)
+NOTICE:  CREATE TABLE creará una secuencia implícita «bills_id_seq» para la columna serial «bills.id»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «bills_pkey» para la tabla «bills»
+   -> 0.1609s
+==  CreateBills: migrated (0.1610s) ===========================================
+
+==  CreateMonthlies: migrating ================================================
+-- create_table(:monthlies)
+NOTICE:  CREATE TABLE creará una secuencia implícita «monthlies_id_seq» para la columna serial «monthlies.id»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «monthlies_pkey» para la tabla «monthlies»
+   -> 0.1903s
+==  CreateMonthlies: migrated (0.1905s) =======================================
+
+Uni =>  kind of the product, can be ml,l,kg,g
+
+Client kind:
+-Personal
+-Monotributista
+-Comerciante
+
+A tener en cuenta
+

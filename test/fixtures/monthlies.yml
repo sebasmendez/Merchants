@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  month: 1
+  year: 1
+  sold: 9.99
+  bought: 9.99
+  to_pay: 9.99
+  paid: false
+
+two:
+  month: 1
+  year: 1
+  sold: 9.99
+  bought: 9.99
+  to_pay: 9.99
+  paid: false
