@@ -5,4 +5,6 @@ class Client < ActiveRecord::Base
   }
   validates :document, :uniqueness => { :message => 'must be unique'}, 
     :numericality => { :message => 'must be number'}
+  
+  has_many :bills
 end

@@ -13,54 +13,60 @@
 ActiveRecord::Schema.define(:version => 20110909021312) do
 
   create_table "bills", :force => true do |t|
-    t.integer  "barcode"
+    t.integer  "barcode",                                   :null => false
     t.date     "date"
-    t.decimal  "amount"
-    t.string   "bill_kind"
+    t.decimal  "amount",     :precision => 15, :scale => 2
+    t.string   "bill_kind",                                 :null => false
     t.integer  "client_id"
-    t.text     "items"
+    t.text     "items",                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true
+
   create_table "clients", :force => true do |t|
-    t.string   "name",        :null => false
-    t.string   "last_name",   :null => false
-    t.string   "document",    :null => false
+    t.string   "name",                                       :null => false
+    t.string   "last_name",                                  :null => false
+    t.string   "document",                                   :null => false
     t.string   "adress"
     t.string   "email"
     t.string   "location"
     t.integer  "phone"
     t.string   "cellphone"
-    t.string   "client_kind", :null => false
+    t.string   "client_kind",                                :null => false
     t.string   "bill_kind"
-    t.decimal  "amount"
-    t.decimal  "spend"
+    t.decimal  "amount",      :precision => 15, :scale => 2
+    t.decimal  "spend",       :precision => 15, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "clients", ["document"], :name => "index_clients_on_document", :unique => true
+
   create_table "monthlies", :force => true do |t|
     t.integer  "month"
     t.integer  "year"
-    t.decimal  "sold"
-    t.decimal  "bought"
-    t.decimal  "to_pay"
-    t.boolean  "paid"
+    t.decimal  "sold",       :precision => 15, :scale => 2
+    t.decimal  "bought",     :precision => 15, :scale => 2
+    t.decimal  "to_pay",     :precision => 15, :scale => 2
+    t.boolean  "paid",                                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "products", :force => true do |t|
     t.integer  "barcode"
-    t.string   "name",       :null => false
+    t.string   "name",                                      :null => false
     t.string   "mark"
     t.string   "fragance"
-    t.decimal  "price",      :null => false
-    t.decimal  "count",      :null => false
+    t.decimal  "price",      :precision => 15, :scale => 2, :null => false
+    t.decimal  "count",      :precision => 15, :scale => 2, :null => false
     t.string   "uni"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "products", ["barcode"], :name => "index_products_on_barcode", :unique => true
 
 end

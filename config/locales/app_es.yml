@@ -1,0 +1,23 @@
+'es':
+  label:
+    back: 'Volver'
+    cancel: 'Cancelar'
+    close: 'Cerrar'
+    edit: 'Editar'
+    new: 'Nuevo'
+    search: 'Buscar'
+    show: 'Ver'
+    delete: 'Eliminar'
+    editing: 'Editando'
+  bill:
+        bill: "Factura"
+        bills: "Facturas"
+        barcode: "Codigo de barra"
+        date: "Día"
+        amount: "Monto"
+        client: "Cliente"
+        bill_kind: "Tipo de factura"
+  another:
+    bill: "Nueva Factura"
+    client: "Nuevo Cliente"
+    

@@ -12,28 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :barcode %><br />
-    <%= f.text_field :barcode %>
+    <%= f.label :barcode %> <%= next_barcode %> <%= f.hidden_field :barcode, :value => next_barcode %>
   </div>
   <div class="field">
     <%= f.label :date %><br />
     <%= f.date_select :date %>
   </div>
+ 
   <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :bill_kind %><br />
-    <%= f.text_field :bill_kind %>
-  </div>
-  <div class="field">
-    <%= f.label :client_id %><br />
-    <%= f.text_field :client_id %>
+    <%= f.label :client_id %>
+    <%= f.select :client_id, Client.all.map {
+  |r| [r.document, r.id]}, :include_blank => true %>
+    <%= f.label :bill_kind %>
+    <%= f.select :bill_kind, bill_for_select %>
   </div>
   <div class="field">
     <%= f.label :items %><br />
     <%= f.text_area :items %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
   </div>
   <div class="actions">
     <%= f.submit %>

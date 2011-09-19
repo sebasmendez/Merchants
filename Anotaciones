@@ -35,3 +35,4 @@ Client kind:
 
 A tener en cuenta
 
+barcode = bill.barcode.last +1
