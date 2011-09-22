@@ -23,7 +23,8 @@
 </p>
 <p>
   <b><%= t('bill.amount') %> :</b>
-  <%= @bill.amount %>
+  $<%= @bill.amount %>
 </p>
 
+<%= link_to t('label.destroy'), @bill, :confirm => t('label.sure'), :method => :delete %> |
 <%= link_to t('label.back'), bills_path %>

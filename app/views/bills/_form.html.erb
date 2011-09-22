@@ -12,7 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :barcode %> <%= next_barcode %> <%= f.hidden_field :barcode, :value => next_barcode %>
+    <%= f.label :barcode %>
+    <%= @bill.barcode %>
+    <%= f.hidden_field :barcode %>
   </div>
   <div class="field">
     <%= f.label :date %><br />
@@ -32,7 +34,7 @@
   </div>
   <div class="field">
     <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
+    $<%= f.text_field :amount %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -32,11 +32,6 @@ class BillsController < ApplicationController
     end
   end
 
-  # GET /bills/1/edit
-  def edit
-    @bill = Bill.find(params[:id])
-  end
-
   # POST /bills
   # POST /bills.xml
   def create
@@ -48,22 +43,6 @@ class BillsController < ApplicationController
         format.xml  { render :xml => @bill, :status => :created, :location => @bill }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /bills/1
-  # PUT /bills/1.xml
-  def update
-    @bill = Bill.find(params[:id])
-
-    respond_to do |format|
-      if @bill.update_attributes(params[:bill])
-        format.html { redirect_to(@bill, :notice => 'Bill was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
       end
     end

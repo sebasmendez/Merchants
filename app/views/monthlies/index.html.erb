@@ -1,33 +1,28 @@
-<h1>Listing monthlies</h1>
+<h1><%= t('monthly.months') %></h1>
 
 <table>
   <tr>
-    <th>Month</th>
-    <th>Year</th>
-    <th>Sold</th>
-    <th>Bought</th>
-    <th>To pay</th>
-    <th>Paid</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th><%# = t('monthly.num_month')%> </th>
+    <th><%= t('monthly.month') %></th>
+    <th><%= t('monthly.year') %></th>
+    <th><%= t('monthly.sold') %></th>
+    <th><%= t('monthly.bought') %></th>
+    <th><%= t('monthly.to_pay') %></th>
+    <th><%= t('monthly.paid') %></th>
   </tr>
 
 <% @monthlies.each do |monthly| %>
   <tr>
+    <td><%# = link_to monthly.num_month, monthly %></td>
     <td><%= monthly.month %></td>
     <td><%= monthly.year %></td>
-    <td><%= monthly.sold %></td>
-    <td><%= monthly.bought %></td>
-    <td><%= monthly.to_pay %></td>
+    <td>$<%= monthly.sold %></td>
+    <td>$<%= monthly.bought %></td>
+    <td>$<%= monthly.to_pay %></td>
     <td><%= monthly.paid %></td>
-    <td><%= link_to 'Show', monthly %></td>
-    <td><%= link_to 'Edit', edit_monthly_path(monthly) %></td>
-    <td><%= link_to 'Destroy', monthly, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Monthly', new_monthly_path %>

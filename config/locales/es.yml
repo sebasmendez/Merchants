@@ -221,22 +221,5 @@ es:
       full_messages:
         format: "%{attribute} %{message}"
 
-    attributes:
-      
-      bill:
-        bill: "Factura"
-        bills: "Facturas"
-        barcode: "Codigo de barra"
-        date: "Día"
-        amount: "Monto"
-        client: "Cliente"
-        bill_kind: "Tipo de factura"
-        
-      monthly:
-        monthlies: "Mensualidad"
-      client:
-        clients: "Clientes"
-      product:
-        products: "Productos"
         
   

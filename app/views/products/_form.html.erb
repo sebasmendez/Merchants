@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :barcode %><br />
-    <%= f.text_field :barcode %>
+    <%= f.label :barcode %> <%= @product.barcode %>
+    <%= f.hidden_field :barcode%>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :price %><br />
-    <%= f.text_field :price %>
+    $<%= f.text_field :price %>
   </div>
   <div class="field">
     <%= f.label :count %><br />
@@ -37,9 +37,9 @@
   </div>
   <div class="field">
     <%= f.label :uni %><br />
-    <%= f.text_field :uni %>
+    <%= f.select :uni, prod_uni %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t('product.save') %>
   </div>
 <% end %>

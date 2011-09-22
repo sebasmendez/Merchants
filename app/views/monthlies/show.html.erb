@@ -1,35 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Month:</b>
+  <b><%= t('monthly.month') %></b>
   <%= @monthly.month %>
 </p>
 
 <p>
-  <b>Year:</b>
+  <b><%= t('monthly.year') %></b>
   <%= @monthly.year %>
 </p>
 
 <p>
-  <b>Sold:</b>
-  <%= @monthly.sold %>
+  <b><%= t('monthly.sold') %></b>
+  $<%= @monthly.sold %>
 </p>
 
 <p>
-  <b>Bought:</b>
-  <%= @monthly.bought %>
+  <b><%= t('monthly.bought') %></b>
+ $<%= @monthly.bought %>
 </p>
 
 <p>
-  <b>To pay:</b>
-  <%= @monthly.to_pay %>
+  <b><%= t('monthly.to_pay') %></b>
+  $<%= @monthly.to_pay %>
 </p>
 
 <p>
-  <b>Paid:</b>
+  <b><%= t('monthly.paid') %></b>
   <%= @monthly.paid %>
 </p>
 
 
-<%= link_to 'Edit', edit_monthly_path(@monthly) %> |
-<%= link_to 'Back', monthlies_path %>
+<%= link_to t('label.back'), monthlies_path %>

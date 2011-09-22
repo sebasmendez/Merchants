@@ -1,4 +1,41 @@
 'es':
+  activerecord:
+    attributes:
+      bill:
+        bill: "Factura"
+        bills: "Facturas"
+        barcode: "Codigo de barra"
+        date: "Día"
+        amount: "Monto"
+        client: "Cliente"
+        bill_kind: "Tipo de factura"  
+      monthly:
+        monthlies: "Mensualidad"
+      client:
+        client: 'Cliente'
+        clients: 'Clientes'
+        new: 'Nuevo Cliente'
+        name: 'Nombre'
+        last_name: 'Apellido'
+        document: 'Documento'
+        phone: 'Teléfono'
+        cellphone: 'Celular'
+        adress: 'Dirección'
+        location: 'Departamento'
+        client_kind: 'Tipo Cliente'
+        bill_kind: 'Factura'
+        amount: 'Monto'
+        spend: 'Gastado'
+      product:
+        products: "Productos"
+        product: 'Producto'
+        barcode: 'Código de barra'
+        mark: 'Marca'
+        name: 'Nombre'
+        fragance: 'Fragancia'
+        price: 'Precio'
+        count: 'Cantidad'
+        uni: 'Unidad'
   label:
     back: 'Volver'
     cancel: 'Cancelar'
@@ -7,8 +44,9 @@
     new: 'Nuevo'
     search: 'Buscar'
     show: 'Ver'
-    delete: 'Eliminar'
+    destroy: 'Eliminar'
     editing: 'Editando'
+    sure: 'Seguro??'
   bill:
         bill: "Factura"
         bills: "Facturas"
@@ -20,4 +58,41 @@
   another:
     bill: "Nueva Factura"
     client: "Nuevo Cliente"
+  client:
+    client: 'Cliente'
+    clients: 'Clientes'
+    new: 'Nuevo Cliente'
+    name: 'Nombre'
+    last_name: 'Apellido'
+    document: 'Documento'
+    phone: 'Teléfono'
+    cellphone: 'Celular'
+    adress: 'Dirección'
+    location: 'Departamento'
+    client_kind: 'Tipo Cliente'
+    bill_kind: 'Factura'
+    amount: 'Monto'
+    spend: 'Gastado'
+  product:
+        new: 'Nuevo Producto'
+        products: "Productos"
+        product: 'Producto'
+        barcode: 'Código de barra'
+        mark: 'Marca'
+        name: 'Nombre'
+        fragance: 'Fragancia'
+        price: 'Precio'
+        count: 'Cantidad'
+        uni: 'Unidad'
+        save: 'Guardar Producto'
+  monthly:
+        monthlies: "Mensualidad"
+        months: "Mensualidades"
+        month: 'Mes'
+        year: 'Año'
+        sold: 'Vendido'
+        bought: 'Comprado'
+        to_pay: 'A pagar'
+        paid: 'Pagado?'
+        
     

@@ -33,6 +33,11 @@ Client kind:
 -Monotributista
 -Comerciante
 
-A tener en cuenta
+cambiar
+document a integer
+mount / year a integer
 
-barcode = bill.barcode.last +1
+agregar 
+stock a products
+num_month a month
+

@@ -1,6 +1,6 @@
-<h1>Editing product</h1>
+<h1><%= t('label.edit') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<%= link_to t('label.show'), @product %> |
+<%= link_to t('label.back'), products_path %>

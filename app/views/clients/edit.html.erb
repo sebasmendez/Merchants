@@ -1,6 +1,6 @@
-<h1>Editing client</h1>
+<h1><%= t('label.edit') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @client %> |
-<%= link_to 'Back', clients_path %>
+<%= link_to t('label.show'), @client %> |
+<%= link_to t('label.back'), clients_path %>
