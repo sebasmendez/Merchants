@@ -1,10 +1,8 @@
 class Product < ActiveRecord::Base
   #validates
-  validates :barcode, :name, :price, :count, :presence => {
-    :message => 'must be present'
-  }
-  validates :barcode, :uniqueness => {:message => 'must be unique'}
-  validates :barcode, :price, :count, :numericality => {:message => 'must be number'}
+  validates :barcode, :name, :price, :count, :presence => true
+  validates :barcode, :uniqueness => true
+  validates :barcode, :price, :count, :numericality => true
   
   #helpers
   
@@ -12,5 +10,8 @@ class Product < ActiveRecord::Base
     super(attributes, options)
     self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0) + 1
   end
+  
+  #default_scope :order => 'title'
+
   
 end

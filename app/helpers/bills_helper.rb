@@ -4,7 +4,6 @@ module BillsHelper
 #  end
   
   def bill_for_select
-   a = ['A','B','C','D']
-   return a
-  end
+   ['A','B','C','D']
+   end
 end

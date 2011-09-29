@@ -1,4 +1,6 @@
 Merchants::Application.routes.draw do
+  get "store/index"
+
   resources :monthlies, :bills, :clients, :products
 
   # The priority is based upon order of creation:
@@ -50,7 +52,7 @@ Merchants::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'bills#new'
+  root :to => 'bills#index', :as => 'bills'
 
   # See how all your routes lay out with "rake routes"
 
