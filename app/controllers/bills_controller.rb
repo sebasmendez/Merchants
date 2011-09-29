@@ -1,8 +1,9 @@
 class BillsController < ApplicationController
+
   # GET /bills
   # GET /bills.xml
   def index
-    @bills = Bill.all
+    @bills = Bill.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -60,4 +61,23 @@ class BillsController < ApplicationController
     end
   end
   
+
+  def update
+    @bill = Bill.find(params[:id])
+
+    respond_to do |format|
+      if @bill.update_attributes(params[:bill])
+        format.html { redirect_to(@bill, :notice => 'Bill was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+ 
+  def edit
+
+   @bill = Bill.find(params[:id])
+ end
 end

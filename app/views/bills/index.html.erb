@@ -25,3 +25,6 @@
 <br />
 
 <%= link_to t('another.bill'), new_bill_path %>
+<%= will_paginate @bills,
+  :previous_label => '&laquo; Anterior',
+  :next_label => 'Siguiente &raquo;'  %>
