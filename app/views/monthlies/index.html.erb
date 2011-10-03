@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th><%# = t('monthly.num_month')%> </th>
     <th><%= t('monthly.month') %></th>
     <th><%= t('monthly.year') %></th>
     <th><%= t('monthly.sold') %></th>
@@ -13,13 +12,12 @@
 
 <% @monthlies.each do |monthly| %>
   <tr>
-    <td><%# = link_to monthly.num_month, monthly %></td>
     <td><%= monthly.month %></td>
     <td><%= monthly.year %></td>
     <td>$<%= monthly.sold %></td>
     <td>$<%= monthly.bought %></td>
     <td>$<%= monthly.to_pay %></td>
-    <td><%= monthly.paid %></td>
+    <td><%=  monthly.paid %></td>
   </tr>
 <% end %>
 </table>

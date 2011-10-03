@@ -23,20 +23,10 @@ class Bill < ActiveRecord::Base
   
   def plus_amount_to_monthly
     
-    @month = (Monthly.order('id DESC').first) || 0
-    (Monthly.create(month: Time.now.month, year: Time.now.year)) if @month == 0
-    @monthly = Monthly.find_by_id(@month.id)
     @bill = Bill.order('id DESC').first
-    
-    if Time.now.month == @month.month
-        if Time.now.year == @month.year
-         @month.sold ||= 0
-         @month.sold += @bill.amount
-         @monthly.update_attributes(sold: @month.sold)
-        else
-         Monthly.create(month: Time.now.month, year: Time.now.year)
-         plus_amount_to_monthly #recursion
-        end
-    end
+    @monthly = Monthly.find_or_create_by_month_and_year(@bill.date.month, @bill.date.year)
+    @monthly.sold ||= 0
+    @monthly.sold += @bill.amount
+    @monthly.update_attributes(sold: @monthly.sold)
   end
 end

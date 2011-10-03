@@ -2,7 +2,7 @@ class MonthliesController < ApplicationController
   # GET /monthlies
   # GET /monthlies.xml
   def index
-    @monthlies = Monthly.all
+    @monthlies = Monthly.order('year & month DESC')
 
     respond_to do |format|
       format.html # index.html.erb
