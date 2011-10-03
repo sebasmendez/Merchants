@@ -1,15 +1,35 @@
+# enconding: UTF-8
+
 class MonthliesController < ApplicationController
+  
+  proc { |controller| controller.requst.xhr? ? false : 'application'}
+  
   # GET /monthlies
   # GET /monthlies.xml
   def index
-    @monthlies = Monthly.order('year & month DESC')
+    @monthlies = Monthly.order('month & year DESC')
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @monthlies }
     end
   end
-
+  
+def paid
+    @monthly = Monthly.find(params[:id])
+    @monthly.update_attribute :paid, true
+    
+    
+     if request.xhr?
+      render :partial => 'monthly', :locals => {:monthly => @monthly}
+    else
+      respond_to do |format|
+        format.html { redirect_to(monthlies_url) }
+        format.xml  { head :ok }
+      end
+     end
+  end
+  
   # GET /monthlies/1
   # GET /monthlies/1.xml
   def show

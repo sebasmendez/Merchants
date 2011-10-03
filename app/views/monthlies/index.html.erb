@@ -17,7 +17,7 @@
     <td>$<%= monthly.sold %></td>
     <td>$<%= monthly.bought %></td>
     <td>$<%= monthly.to_pay %></td>
-    <td><%=  monthly.paid %></td>
+    <td><%= monthly.paid ? 'Paid' : link_to('Paid?', paid_monthly_path(monthly), :remote => true, :class => 'paid', 'data-type' => 'html' ) %></td>
   </tr>
 <% end %>
 </table>

@@ -1,7 +1,10 @@
 Merchants::Application.routes.draw do
   #get "store/index"
 
-  resources :monthlies, :bills, :clients, :products
+  resources  :bills, :clients, :products
+  resources :monthlies do
+    get :paid, on: :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
