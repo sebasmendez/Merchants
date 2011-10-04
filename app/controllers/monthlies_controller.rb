@@ -97,7 +97,7 @@ def paid
     @monthly.destroy
 
     respond_to do |format|
-      format.html { redirect_to(monthlies_url) }
+      format.html { redirect_to(monthlies_url, notice: 'Delete great ^^') }
       format.xml  { head :ok }
     end
   end

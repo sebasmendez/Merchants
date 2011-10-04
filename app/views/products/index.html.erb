@@ -1,13 +1,13 @@
-<h1><%= t('product.products') %></h1>
+<h1><%= Product.human_attribute_name(:products) %></h1>
 
 <table>
   <tr>
-    <th><%= t('product.name') %></th>
-    <th><%= t('product.mark') %></th>
-    <th><%= t('product.fragance') %></th>
-    <th><%= t('product.price') %></th>
-    <th><%= t('product.count') %></th>
-    <th><%= t('product.uni') %></th>
+    <th><%= Product.human_attribute_name(:name) %></th>
+    <th><%= Product.human_attribute_name(:mark) %></th>
+    <th><%= Product.human_attribute_name(:fragance) %></th>
+    <th><%= Product.human_attribute_name(:price) %></th>
+    <th><%= Product.human_attribute_name(:count) %></th>
+    <th><%= Product.human_attribute_name(:uni) %></th>
   </tr>
 
 <% @products.each do |product| %>
@@ -24,6 +24,6 @@
 
 <br />
 
-<%= link_to t('product.new'), new_product_path %>
+<%= link_to t('new.product'), new_product_path %> <br />
 
 <%= will_paginate @products %>

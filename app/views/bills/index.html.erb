@@ -1,13 +1,13 @@
-<h1><%= t('bill.bills')  %> </h1>
+<h1><%= Bill.human_attribute_name(:bills)  %> </h1>
 
 <table>
   <tr>
-    <th><%= t('bill.barcode') %></th>
-    <th><%= t('bill.date') %></th>
-    <th><%= t('bill.client') %></th>
-    <th><%= t('bill.bill') %></th>
-    <th><%= t('bill.items') %></th>
-    <th><%= t('bill.amount') %></th>
+    <th><%= Bill.human_attribute_name(:barcode) %></th>
+    <th><%= Bill.human_attribute_name(:date) %></th>
+    <th><%= Bill.human_attribute_name(:client) %></th>
+    <th><%= Bill.human_attribute_name(:bill) %></th>
+    <th><%= Bill.human_attribute_name(:items) %></th>
+    <th><%= Bill.human_attribute_name(:amount) %></th>
   </tr>
 
 <% @bills.each do |bill| %>
@@ -24,5 +24,5 @@
 
 <br />
 
-<%= link_to t('another.bill'), new_bill_path %>
+<%= link_to t('new.bill'), new_bill_path %> <br />
 <%= will_paginate @bills %>

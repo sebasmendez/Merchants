@@ -39,7 +39,7 @@
     bill:
         bill: "Factura"
         bills: "Facturas"
-        barcode: "Codigo de barra"
+        barcode: "Nº"
         date: "Día"
         amount: "Monto"
         client: "Cliente"
@@ -49,13 +49,20 @@
       bill:
         bill: "Factura"
         bills: "Facturas"
-        barcode: "Codigo de barra"
+        barcode: "Nº"
         date: "Día"
         amount: "Monto"
         client: "Cliente"
         bill_kind: "Tipo de factura"  
       monthly:
         monthlies: "Mensualidad"
+        months: "Mensualidades"
+        month: 'Mes'
+        year: 'Año'
+        sold: 'Vendido'
+        bought: 'Comprado'
+        to_pay: 'A pagar'
+        paid: 'Pagado?'
       client:
         client: 'Cliente'
         clients: 'Clientes'
@@ -93,10 +100,13 @@
     editing: 'Editando'
     sure: 'Seguro??'
   
-  another:
+  new:
     bill: "Nueva Factura"
     client: "Nuevo Cliente"
-  
+    product: "Nuevo Producto"
+  monthly:
+    paid: "Pagado"
+    unpaid: "Pagado??"
   will_paginate:
     previous_label: '&laquo; Anterior'
     next_label: 'Siguiente &raquo'

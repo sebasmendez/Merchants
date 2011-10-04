@@ -1,13 +1,13 @@
-<h1><%= t('monthly.months') %></h1>
+<h1><%= Monthly.human_attribute_name(:months) %></h1>
 
 <table>
   <tr>
-    <th><%= t('monthly.month') %></th>
-    <th><%= t('monthly.year') %></th>
-    <th><%= t('monthly.sold') %></th>
-    <th><%= t('monthly.bought') %></th>
-    <th><%= t('monthly.to_pay') %></th>
-    <th><%= t('monthly.paid') %></th>
+    <th><%= Monthly.human_attribute_name(:month) %></th>
+    <th><%= Monthly.human_attribute_name(:year) %></th>
+    <th><%= Monthly.human_attribute_name(:sold) %></th>
+    <th><%= Monthly.human_attribute_name(:bought) %></th>
+    <th><%= Monthly.human_attribute_name(:to_pay) %></th>
+    <th><%= Monthly.human_attribute_name(:paid) %></th>
   </tr>
 
 <%= render @monthlies %>

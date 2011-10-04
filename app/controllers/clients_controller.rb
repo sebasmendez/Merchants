@@ -76,7 +76,7 @@ class ClientsController < ApplicationController
     @client.destroy
 
     respond_to do |format|
-      format.html { redirect_to(clients_url) }
+      format.html { redirect_to(clients_url, notice: 'Delete great ^^') }
       format.xml  { head :ok }
     end
   end
