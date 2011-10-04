@@ -14,7 +14,7 @@
   <tr>
     <td><%= link_to bill.barcode, bill %></td>
     <td><%= l bill.date %></td>
-    <td><%= bill.client_id %></td>
+    <td><%= bill.client ? bill.client : '--' %></td>
     <td><%= bill.bill_kind %></td>
     <td>CANT ITEMs</td>
     <td>$<%= bill.amount %></td>

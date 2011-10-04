@@ -7,4 +7,10 @@ class Client < ActiveRecord::Base
     :numericality => { :message => 'must be number'}
   
   has_many :bills
+  
+  def to_s
+    self.name + ' ' + self.last_name
+  end
+  
+  
 end

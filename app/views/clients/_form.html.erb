@@ -13,51 +13,51 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, autofocus: true%>
   </div>
   <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name%>
   </div>
   <div class="field">
     <%= f.label :document %><br />
-    <%= f.text_field :document %>
+    <%= f.text_field :document, placeholder: 'In numbers' %>
   </div>
   <div class="field">
     <%= f.label :adress %><br />
-    <%= f.text_field :adress %>
+    <%= f.text_field :adress, placeholder: 'Evergreen 999' %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= f.email_field :email, placeholder: 'example@mail.com' %>
   </div>
   <div class="field">
     <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.text_field :location, placeholder: 'Where live' %>
   </div>
   <div class="field">
     <%= f.label :phone %><br />
-    <%= f.number_field :phone %>
+    <%= f.number_field :phone, placeholder: 'Only Numbers' %>
   </div>
   <div class="field">
     <%= f.label :cellphone %><br />
-    <%= f.text_field :cellphone %>
+    <%= f.text_field :cellphone, placeholder: '055-5555555' %>
   </div>
   <div class="field">
     <%= f.label :client_kind %><br />
-    <%= f.text_field :client_kind %>
+    <%= f.select :client_kind, select_client_kind %>
   </div>
   <div class="field">
     <%= f.label :bill_kind %><br />
-    <%= f.text_field :bill_kind %>
+    <%= f.select :bill_kind, bill_for_select %>
   </div>
   <div class="field">
     <%= f.label :amount %><br />
-    $<%= f.number_field :amount %>
+    $<%= f.number_field :amount, placeholder: '0.00' %>
   </div>
   <div class="field">
     <%= f.label :spend %><br />
-    $<%= f.number_field :spend %>
+    $<%= f.number_field :spend, placeholder: '0.00' %>
   </div>
   <div class="actions">
     <%= f.submit %>

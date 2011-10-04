@@ -1,12 +1,12 @@
 class Bill < ActiveRecord::Base
-   after_save :plus_amount_to_monthly
+   after_save :plus_amount_to_monthly, :plus_to_client_spend
   
   #validates
   
   validates :barcode, :uniqueness => true
   validates :barcode, :date, :amount, :items, :presence => true
   
-  validates :amount, :barcode, :numericality => {:greater_than_or_equal_to => 0 }
+  validates :amount, :barcode, :numericality => {:greater_than => 0 }
   validates_date :date, :on => :create, :on_or_before => :today
   
   #relations
@@ -29,4 +29,14 @@ class Bill < ActiveRecord::Base
     @monthly.sold += @bill.amount
     @monthly.update_attributes(sold: @monthly.sold)
   end
+  
+  def plus_to_client_spend
+    @bill = Bill.order('id DESC').first
+    if @bill.client_id
+    @client = Client.find(@bill.client_id) 
+    @client.spend += @bill.amount
+    @client.update_attributes(spend: @client.spend)
+    end
+  end
+  
 end
