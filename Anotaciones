@@ -7,9 +7,6 @@ Client kind:
 -Comerciante
 
 cambiar
-document a integer
-mount / year a integer
-amount, spend (client) default => 0.0
 
 agregar 
 stock a products

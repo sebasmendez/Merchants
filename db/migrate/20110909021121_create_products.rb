@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration
   def self.up
     create_table :products do |t|
-      t.integer :barcode
+      t.integer :barcode, null: false
       t.string :name, :null => false
       t.string :mark
       t.string :fragance

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,18 +27,18 @@ ActiveRecord::Schema.define(:version => 20110909021312) do
   add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true
 
   create_table "clients", :force => true do |t|
-    t.string   "name",                                       :null => false
-    t.string   "last_name",                                  :null => false
-    t.string   "document",                                   :null => false
+    t.string   "name",                                                        :null => false
+    t.string   "last_name",                                                   :null => false
+    t.integer  "document",                                                    :null => false
     t.string   "adress"
     t.string   "email"
     t.string   "location"
     t.integer  "phone"
     t.string   "cellphone"
-    t.string   "client_kind",                                :null => false
+    t.string   "client_kind",                                                 :null => false
     t.string   "bill_kind"
-    t.decimal  "amount",      :precision => 15, :scale => 2
-    t.decimal  "spend",       :precision => 15, :scale => 2
+    t.decimal  "amount",      :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "spend",       :precision => 15, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,16 +48,16 @@ ActiveRecord::Schema.define(:version => 20110909021312) do
   create_table "monthlies", :force => true do |t|
     t.integer  "month"
     t.integer  "year"
-    t.decimal  "sold",       :precision => 15, :scale => 2
-    t.decimal  "bought",     :precision => 15, :scale => 2
-    t.decimal  "to_pay",     :precision => 15, :scale => 2
+    t.decimal  "sold",       :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "bought",     :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "to_pay",     :precision => 15, :scale => 2, :default => 0.0
     t.boolean  "paid",                                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "products", :force => true do |t|
-    t.integer  "barcode"
+    t.integer  "barcode",                                   :null => false
     t.string   "name",                                      :null => false
     t.string   "mark"
     t.string   "fragance"
