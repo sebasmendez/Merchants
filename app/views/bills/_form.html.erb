@@ -17,12 +17,11 @@
     <%= f.hidden_field :barcode %>
   </div>
   <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.label :date %>  <%= f.hidden_field :date, value: Date.today %><%= l Date.today %>
   </div>
  
   <div class="field">
-    <%= f.label :client_id %>
+    <%= f.label :client %>
     <%= f.select :client_id, Client.all.map {
   |r| [r.document, r.id]}, :include_blank => true %>
     <%= f.label :bill_kind %>

@@ -1,4 +1,49 @@
 'es':
+  models:
+    client:
+      client: 'Cliente'
+      clients: 'Clientes'
+      new: 'Nuevo Cliente'
+      name: 'Nombre'
+      last_name: 'Apellido'
+      document: 'Documento'
+      phone: 'Teléfono'
+      cellphone: 'Celular'
+      adress: 'Dirección'
+      location: 'Departamento'
+      client_kind: 'Tipo Cliente'
+      bill_kind: 'Factura'
+      amount: 'Monto'
+      spend: 'Gastado'
+    product:
+        new: 'Nuevo Producto'
+        products: "Productos"
+        product: 'Producto'
+        barcode: 'Código de barra'
+        mark: 'Marca'
+        name: 'Nombre'
+        fragance: 'Fragancia'
+        price: 'Precio'
+        count: 'Cantidad'
+        uni: 'Unidad'
+        save: 'Guardar Producto'
+    monthly:
+        monthlies: "Mensualidad"
+        months: "Mensualidades"
+        month: 'Mes'
+        year: 'Año'
+        sold: 'Vendido'
+        bought: 'Comprado'
+        to_pay: 'A pagar'
+        paid: 'Pagado?'
+    bill:
+        bill: "Factura"
+        bills: "Facturas"
+        barcode: "Codigo de barra"
+        date: "Día"
+        amount: "Monto"
+        client: "Cliente"
+        bill_kind: "Tipo de factura"
   activerecord:
     attributes:
       bill:
@@ -47,52 +92,12 @@
     destroy: 'Eliminar'
     editing: 'Editando'
     sure: 'Seguro??'
-  bill:
-        bill: "Factura"
-        bills: "Facturas"
-        barcode: "Codigo de barra"
-        date: "Día"
-        amount: "Monto"
-        client: "Cliente"
-        bill_kind: "Tipo de factura"
+  
   another:
     bill: "Nueva Factura"
     client: "Nuevo Cliente"
-  client:
-    client: 'Cliente'
-    clients: 'Clientes'
-    new: 'Nuevo Cliente'
-    name: 'Nombre'
-    last_name: 'Apellido'
-    document: 'Documento'
-    phone: 'Teléfono'
-    cellphone: 'Celular'
-    adress: 'Dirección'
-    location: 'Departamento'
-    client_kind: 'Tipo Cliente'
-    bill_kind: 'Factura'
-    amount: 'Monto'
-    spend: 'Gastado'
-  product:
-        new: 'Nuevo Producto'
-        products: "Productos"
-        product: 'Producto'
-        barcode: 'Código de barra'
-        mark: 'Marca'
-        name: 'Nombre'
-        fragance: 'Fragancia'
-        price: 'Precio'
-        count: 'Cantidad'
-        uni: 'Unidad'
-        save: 'Guardar Producto'
-  monthly:
-        monthlies: "Mensualidad"
-        months: "Mensualidades"
-        month: 'Mes'
-        year: 'Año'
-        sold: 'Vendido'
-        bought: 'Comprado'
-        to_pay: 'A pagar'
-        paid: 'Pagado?'
-        
+  
+  will_paginate:
+    previous_label: '&laquo; Anterior'
+    next_label: 'Siguiente &raquo'
     

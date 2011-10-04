@@ -1,11 +1,11 @@
-<h1><%= t('client.clients') %> </h1>
+<h1><%= Client.human_attribute_name(:clients) %> </h1>
 
 <table>
   <tr>
-    <th><%= t('client.name') %> </th>
-    <th><%= t('client.last_name') %></th>
-    <th><%= t('client.document') %></th>
-    <th><%= t('client.amount') %></th>
+    <th><%= Client.human_attribute_name(:name) %> </th>
+    <th><%= Client.human_attribute_name(:last_name) %></th>
+    <th><%= Client.human_attribute_name(:document) %></th>
+    <th><%= Client.human_attribute_name(:amount) %></th>
   </tr>
 
 <% @clients.each do |client| %>
@@ -20,4 +20,5 @@
 
 <br />
 
-<%= link_to t('client.new'), new_client_path %>
+<%= link_to t('client.new'), new_client_path %> <br />
+<%= will_paginate @clients %>

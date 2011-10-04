@@ -7,7 +7,7 @@ class Bill < ActiveRecord::Base
   validates :barcode, :date, :amount, :items, :presence => true
   
   validates :amount, :barcode, :numericality => {:greater_than => 0 }
-  validates_date :date, :on => :create, :on_or_before => :today
+  validates_date :date, :on => :create, :on => :today
   
   #relations
   
