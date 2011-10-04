@@ -3,7 +3,7 @@ class BillsController < ApplicationController
   # GET /bills
   # GET /bills.xml
   def index
-    @bills = Bill.paginate(page: params[:page], per_page: 10)
+    @bills = Bill.order('date DESC').paginate(page: params[:page], per_page: 15)
 
     respond_to do |format|
       format.html # index.html.erb

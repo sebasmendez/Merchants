@@ -7,7 +7,7 @@ class MonthliesController < ApplicationController
   # GET /monthlies
   # GET /monthlies.xml
   def index
-    @monthlies = Monthly.order('year DESC, month DESC')
+    @monthlies = Monthly.order('year DESC, month DESC').paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb

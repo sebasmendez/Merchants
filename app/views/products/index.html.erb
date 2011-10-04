@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th><%= t('product.barcode') %></th>
     <th><%= t('product.name') %></th>
     <th><%= t('product.mark') %></th>
     <th><%= t('product.fragance') %></th>
@@ -13,8 +12,7 @@
 
 <% @products.each do |product| %>
   <tr>
-    <td><%= link_to product.barcode, product %></td>
-    <td><%= product.name %></td>
+    <td><%= link_to product.name, product %></td>
     <td><%= product.mark %></td>
     <td><%= product.fragance %></td>
     <td>$<%= product.price %></td>
