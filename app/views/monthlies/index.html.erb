@@ -10,16 +10,7 @@
     <th><%= t('monthly.paid') %></th>
   </tr>
 
-<% @monthlies.each do |monthly| %>
-  <tr>
-    <td><%= monthly.month %></td>
-    <td><%= monthly.year %></td>
-    <td>$<%= monthly.sold %></td>
-    <td>$<%= monthly.bought %></td>
-    <td>$<%= monthly.to_pay %></td>
-    <td><%= monthly.paid ? 'Paid' : link_to('Paid?', paid_monthly_path(monthly), :remote => true, :class => 'paid', 'data-type' => 'html' ) %></td>
-  </tr>
-<% end %>
+<%= render @monthlies %>
 </table>
 
 <br />

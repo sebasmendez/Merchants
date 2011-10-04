@@ -21,7 +21,8 @@ def paid
     
     
      if request.xhr?
-      render :partial => 'monthly', :locals => {:monthly => @monthly}
+      render :partial => 'monthly', :locals => {
+        :monthly => @monthly}
     else
       respond_to do |format|
         format.html { redirect_to(monthlies_url) }
