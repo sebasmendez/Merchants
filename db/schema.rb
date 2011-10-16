@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909021312) do
+ActiveRecord::Schema.define(:version => 20111016201029) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(:version => 20110909021312) do
   end
 
   add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clients", :force => true do |t|
     t.string   "name",                                                        :null => false
@@ -45,6 +50,15 @@ ActiveRecord::Schema.define(:version => 20110909021312) do
 
   add_index "clients", ["document"], :name => "index_clients_on_document", :unique => true
 
+  create_table "line_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity",   :default => 1
+    t.integer  "order_id"
+  end
+
   create_table "monthlies", :force => true do |t|
     t.integer  "month"
     t.integer  "year"
@@ -52,6 +66,13 @@ ActiveRecord::Schema.define(:version => 20110909021312) do
     t.decimal  "bought",     :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "to_pay",     :precision => 15, :scale => 2, :default => 0.0
     t.boolean  "paid",                                      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "document"
+    t.string   "bill_kind"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

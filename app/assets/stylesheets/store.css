@@ -1,0 +1,12 @@
+.top_menu {
+    text-align: center;
+    font: 120% bold;
+}
+
+.cart {
+    float: right;
+}
+
+.store {
+    float: left;
+}

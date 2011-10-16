@@ -1,5 +1,10 @@
 Merchants::Application.routes.draw do
-  #get "store/index"
+  resources :orders
+
+  resources :line_items
+  resources :carts
+
+  get "store/index"
 
   resources  :bills, :clients, :products
   resources :monthlies do
@@ -55,7 +60,8 @@ Merchants::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'products#index'
+  #root :to => 'products#index'
+  root :to => 'store#index', as: 'store'
 
   # See how all your routes lay out with "rake routes"
 

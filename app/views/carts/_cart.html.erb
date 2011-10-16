@@ -1,0 +1,23 @@
+<div class="cart">
+  <h1>Cart</h1>
+  <table>
+  
+<tr>
+  <th><%= Product.human_attribute_name(:name) %></th> 
+  <th> <%= Product.human_attribute_name(:price) %></th>
+</tr>
+
+<% @cart.line_items.each do |item|  %>
+
+<tr>
+<td><%= item.product.name %></td>
+<td><%= number_to_currency(item.total_price)  %></td>
+
+<% end %>
+</tr>
+
+<tr> <td>Total Price:</td><td><%= number_to_currency(@cart.total_price) %></td></tr>
+</table>
+<%= button_to t('cart.buy'), new_order_path, method: :get %>
+<%= button_to t('cart.emply'), @cart, method: :delete, confirm: 'Sure?' %>
+</div>

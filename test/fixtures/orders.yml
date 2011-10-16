@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  document: 1
+  bill_kind: MyString
+
+two:
+  document: 1
+  bill_kind: MyString

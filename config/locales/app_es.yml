@@ -110,4 +110,8 @@
   will_paginate:
     previous_label: '&laquo; Anterior'
     next_label: 'Siguiente &raquo'
-    
+  product:
+    save: 'Guardar'
+  cart:
+    emply: 'Vaciar'
+    buy: 'Comprar'

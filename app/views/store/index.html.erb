@@ -1,14 +1,4 @@
-<h1>Store#index</h1>
+<div class="store"><%= render ('store') %></div>
 
-<% if notice %>
-<p id="notice" ><%= notice %></p>
-<% end %>
-<h1>Coso</h1>
-<% @products.each do |product| %>
-
-<h3><%= product.name %></h3>
-<div class="price_line" >
-<span class="price" ><%= product.price %></span>
-</div>
-<% end %>
+ <div class="cart"><%= render @cart if @cart.total_price != 0 %></div>
 
