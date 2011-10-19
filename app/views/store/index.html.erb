@@ -4,11 +4,26 @@
 <p id="notice" ><%= notice %></p>
 <% end %>
 <h1>Coso</h1>
+
+<table>
+<tr>
+<th><%= Product.human_attribute_name(:)%></th>
+<th><%= Product.human_attribute_name(:)%></th>
+<th><%= Product.human_attribute_name(:)%></th>
+<th><%= Product.human_attribute_name(:)%></th>
+<th><%= Product.human_attribute_name(:)%></th>
+<th><%= Product.human_attribute_name(:)%></th>
+</tr>
 <% @products.each do |product| %>
 
 <h3><%= product.name %></h3>
 <div class="price_line" >
-<span class="price" ><%= product.price %></span>
+<%= product.mark %>
+<%= product.fragance %>
+<%= product.count %>
+<%= product.uni %>
+<span class="price" ><%= number_to_currency(product.price) %></span>
 </div>
 <% end %>
 
+</table>
