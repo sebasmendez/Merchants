@@ -22,7 +22,7 @@
   <td><%= product.uni %></td>
   <td><%= number_to_currency(product.price) %></td>
   <td> cantidad  </td>
-  <td><%= button_to 'add', line_items_path(product_id: product), remote: true  %></td>
+  <td><%= button_to 'add', line_items_path(product_id: product), id: 'add_button', remote: true  %></td>
 </tr>
 <% end %>
     

@@ -2,7 +2,7 @@ class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.json
   def index
-    @line_items = LineItem.order('name ASC')
+    @line_items = LineItem.order('name ASC').paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,7 +47,6 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_path }
-        #@line_item.cart
         format.js
         format.json { render json: @line_item, status: :created, location: @line_item }
       else
@@ -84,5 +83,10 @@ class LineItemsController < ApplicationController
       format.json { head :ok }
     end
   end
-    
+#    def quanty
+#      @cart = current_cart
+#      page.call 
+#      product = @cart.line_items.product
+#      @line_item = @cart
+#    end
 end

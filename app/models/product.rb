@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
   before_destroy :not_referenced
   #validates
   has_many :line_items
-  has_many :orders
+  has_many :orders, through: :line_items
   
   validates :barcode, :name, :price, :count, :presence => true
   validates :barcode, :uniqueness => true
