@@ -1,4 +1,30 @@
-<div class="store"><%= render ('store') %></div>
+<h1>Store#index</h1>
 
- <div class="cart"><%= render @cart if @cart.total_price != 0 %></div>
+<% if notice %>
+<p id="notice" ><%= notice %></p>
+<% end %>
+<h1>Coso</h1>
 
+<table>
+<tr>
+<th><%= Product.human_attribute_name(:name)%></th>
+<th><%= Product.human_attribute_name(:mark)%></th>
+<th><%= Product.human_attribute_name(:fragance)%></th>
+<th><%= Product.human_attribute_name(:count)%></th>
+<th><%= Product.human_attribute_name(:uni)%></th>
+<th><%= Product.human_attribute_name(:price)%></th>
+</tr>
+<% @products.each do |product| %>
+<tr>
+<td><h3><%= product.name %></h3></td>
+<div class="price_line" >
+<td><%= product.mark %></td>
+<td><%= product.fragance %></td>
+<td><%= product.count %></td>
+<td><%= product.uni %></td>
+<td><span class="price" ><%= number_to_currency(product.price) %></span></td>
+</div>
+</tr>
+<% end %>
+
+</table>
