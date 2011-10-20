@@ -1,16 +1,29 @@
 <h1><%= t 'store.store'%></h1>
 
 <table>
+
+<tr>
+<th><%= Product.human_attribute_name(:name)%></th>
+<th><%= Product.human_attribute_name(:mark)%></th>
+<th><%= Product.human_attribute_name(:fragance)%></th>
+<th><%= Product.human_attribute_name(:count)%></th>
+<th><%= Product.human_attribute_name(:uni)%></th>
+<th><%= Product.human_attribute_name(:price)%></th>
+<th> <%= t 'cart.quantity' %></th>
+</tr>
   
 <% @products.each do |product| %>
 
-    <tr>
-    <td><%= product.name %></td>
-    <td><%= number_to_currency(product.price) %></td>
-    <td><%= button_to "Add to Car", line_items_path(product_id: product), 
-    remote: true %></td>
-    </tr>
-
+<tr>
+  <td><h3><%= product.name %></h3></td>
+  <td><%= product.mark %></td>
+  <td><%= product.fragance %></td>
+  <td><%= product.count %></td>
+  <td><%= product.uni %></td>
+  <td><%= number_to_currency(product.price) %></td>
+  <td> cantidad  </td>
+  <td><%= button_to 'add', line_items_path(product_id: product), remote: true  %></td>
+</tr>
 <% end %>
     
 </table>

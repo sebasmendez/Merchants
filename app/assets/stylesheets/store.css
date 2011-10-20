@@ -10,3 +10,11 @@
 .store {
     float: left;
 }
+
+.order_cart {
+    float: right;
+}
+
+.order_form {
+    float: left;
+}
