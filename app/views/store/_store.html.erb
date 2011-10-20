@@ -8,7 +8,8 @@
     <td><%= product.name %></td>
     <td><%= number_to_currency(product.price) %></td>
     <td><%= button_to "Add to Car", line_items_path(product_id: product), 
-    remote: true %></td>
+    remote: true id: 'add_button.#{product.id]', 
+    onclick: 'document.getelementbyid('add_button.#{product.id]').disabled = true'  %></td>
     </tr>
 
 <% end %>
