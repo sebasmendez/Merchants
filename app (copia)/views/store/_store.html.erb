@@ -14,7 +14,6 @@
   
 <% @products.each do |product| %>
 
-<<<<<<< HEAD
 <tr>
   <td><h3><%= product.name %></h3></td>
   <td><%= product.mark %></td>
@@ -25,16 +24,6 @@
   <td> cantidad  </td>
   <td><%= button_to 'add', line_items_path(product_id: product), remote: true  %></td>
 </tr>
-=======
-    <tr>
-    <td><%= product.name %></td>
-    <td><%= number_to_currency(product.price) %></td>
-    <td><%= button_to "Add to Car", line_items_path(product_id: product), 
-    remote: true id: 'add_button.#{product.id]', 
-    onclick: 'document.getelementbyid('add_button.#{product.id]').disabled = true'  %></td>
-    </tr>
-
->>>>>>> 27a587990b29a98de39c89e89a3e69e121e5ad24
 <% end %>
     
 </table>

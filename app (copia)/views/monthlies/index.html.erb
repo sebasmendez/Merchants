@@ -1,0 +1,17 @@
+<h1><%= Monthly.human_attribute_name(:months) %></h1>
+
+<table>
+  <tr>
+    <th><%= Monthly.human_attribute_name(:month) %></th>
+    <th><%= Monthly.human_attribute_name(:year) %></th>
+    <th><%= Monthly.human_attribute_name(:sold) %></th>
+    <th><%= Monthly.human_attribute_name(:bought) %></th>
+    <th><%= Monthly.human_attribute_name(:to_pay) %></th>
+    <th><%= Monthly.human_attribute_name(:paid) %></th>
+  </tr>
+
+<%= render @monthlies %>
+</table>
+
+<br />
+<%= will_paginate @monthlies %>
