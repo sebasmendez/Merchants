@@ -7,23 +7,24 @@
 
 <table>
 <tr>
-<th><%= Product.human_attribute_name(:)%></th>
-<th><%= Product.human_attribute_name(:)%></th>
-<th><%= Product.human_attribute_name(:)%></th>
-<th><%= Product.human_attribute_name(:)%></th>
-<th><%= Product.human_attribute_name(:)%></th>
-<th><%= Product.human_attribute_name(:)%></th>
+<th><%= Product.human_attribute_name(:name)%></th>
+<th><%= Product.human_attribute_name(:mark)%></th>
+<th><%= Product.human_attribute_name(:fragance)%></th>
+<th><%= Product.human_attribute_name(:count)%></th>
+<th><%= Product.human_attribute_name(:uni)%></th>
+<th><%= Product.human_attribute_name(:price)%></th>
 </tr>
 <% @products.each do |product| %>
-
-<h3><%= product.name %></h3>
+<tr>
+<td><h3><%= product.name %></h3></td>
 <div class="price_line" >
-<%= product.mark %>
-<%= product.fragance %>
-<%= product.count %>
-<%= product.uni %>
-<span class="price" ><%= number_to_currency(product.price) %></span>
+<td><%= product.mark %></td>
+<td><%= product.fragance %></td>
+<td><%= product.count %></td>
+<td><%= product.uni %></td>
+<td><span class="price" ><%= number_to_currency(product.price) %></span></td>
 </div>
+</tr>
 <% end %>
 
 </table>
