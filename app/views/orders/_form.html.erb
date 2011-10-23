@@ -12,13 +12,41 @@
   <% end %>
 <div class="order_form">
   <div class="field">
-    <%= f.label :document %><br />
-    <%= f.number_field :document %>
+    <%= f.label :document %>  |  <%= f.label :bill_kind %>
   </div>
   <div class="field">
-    <%= f.label :bill_kind %><br />
-    <%= f.text_field :bill_kind %>
+    <%= f.number_field :document, size: 2 %><%= f.text_field :bill_kind, size: 1 %>
   </div>
+  Items:
+  <div>    
+     <table>
+        <tr>
+          <th><%= Product.human_attribute_name(:name)%></th>
+          <th><%= Product.human_attribute_name(:mark)%></th>
+          <th><%= Product.human_attribute_name(:fragance)%></th>
+          <th><%= Product.human_attribute_name(:count)%></th>
+          <th><%= Product.human_attribute_name(:uni)%></th>
+          <th><%= Product.human_attribute_name(:price)%></th>
+          <th><%= t 'cart.quantity' %></th>
+        </tr>
+
+      <%= f.fields_for :line_items do |li_f| %>
+        <tr>
+          <td><h3><%= li_f.object.product.name %></h3></td>
+          <td><%= li_f.object.product.mark %></td>
+          <td><%= li_f.object.product.fragance %></td>
+          <td><%= li_f.object.product.count %></td>
+          <td><%= li_f.object.product.uni %></td>
+          <td><%= number_to_currency(li_f.object.product.price) %></td>
+          <td><%= li_f.number_field :quantity, size: 1 %></td> 
+          <%= li_f.hidden_field :product_id %>
+          <%= li_f.hidden_field :id, value: nil %>
+          </tr>
+      <% end %>
+  </table>
+    
+  </div>
+  <br />
   <div class="actions">
     <%= f.submit %>
   </div>

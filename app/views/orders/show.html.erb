@@ -9,7 +9,10 @@
   <b>Bill kind:</b>
   <%= @order.bill_kind %>
 </p>
-
-
+<% @order.line_items.each do |li| %>
+  <%= li.product.name %>
+  <%= li.product.mark %>
+  <%= li.quantity %>
+<% end %>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

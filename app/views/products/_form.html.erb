@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :barcode %> <%= @product.barcode %>
-    <%= f.hidden_field :barcode%>
+    <%= f.label :barcode %> <%#= @product.barcode %>
+    <%= f.text_field :barcode%>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -39,6 +39,10 @@
     <%= f.label :uni %><br />
     <%= f.select :uni, prod_uni %>
   </div>
+<div class="field">
+  <%= f.label :stock %>
+  <%= f.number_field :stock %>
+</div>
   <div class="actions">
     <%= f.submit t('product.save') %>
   </div>

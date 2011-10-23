@@ -9,21 +9,8 @@
 <th><%= Product.human_attribute_name(:count)%></th>
 <th><%= Product.human_attribute_name(:uni)%></th>
 <th><%= Product.human_attribute_name(:price)%></th>
-<th> <%= t 'cart.quantity' %></th>
 </tr>
   
-<% @products.each do |product| %>
-
-<tr>
-  <td><h3><%= product.name %></h3></td>
-  <td><%= product.mark %></td>
-  <td><%= product.fragance %></td>
-  <td><%= product.count %></td>
-  <td><%= product.uni %></td>
-  <td><%= number_to_currency(product.price) %></td>
-  <td> cantidad  </td>
-  <td><%= button_to 'add', line_items_path(product_id: product), id: 'add_button', remote: true  %></td>
-</tr>
-<% end %>
+<%= render ('store/products') %>
     
 </table>

@@ -1,12 +1,6 @@
 Merchants::Application.routes.draw do
-  resources :orders
-
-  resources :line_items
-  resources :carts
-
+  resources :orders, :line_items, :carts,:bills, :clients, :products
   get "store/index"
-
-  resources  :bills, :clients, :products
   resources :monthlies do
     get :paid, on: :member
   end

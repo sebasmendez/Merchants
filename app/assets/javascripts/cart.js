@@ -1,12 +1,17 @@
-$('a.add').live('ajax:success', function(xhr, data) {
- $(this).parent().html(data);
-});
+jQuery(function(){
 
-$('#product_quantity').click(function(xhr,data){
-    $(this).replaceWith(function() {
-        $(this).prompt('Quantity');} );
-});
+    $('a.add').live('ajax:success', function(xhr, data) {
+     $(this).parent().html(data);
+    });
 
-$('#add_button').click(function(){
-   $(this).disabled = true
+    $('#product_quantity').click(function(xhr,data){
+        $(this).replaceWith(function() {
+            $(this).prompt('Quantity');} );
+    });
+
+//    $('.add_button').click(function(){
+//       $(this).attr('disabled', true);
+//       console.log('click');
+//    });
+
 });
