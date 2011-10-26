@@ -12,10 +12,10 @@
   <% end %>
 <div class="order_form">
   <div class="field">
-    <%= f.label :document %>  |  <%= f.label :bill_kind %>
+    <%= Client.human_attribute_name(:document) %>  |  <%= Bill.human_attribute_name(:bill_kind) %>
   </div>
   <div class="field">
-    <%= f.number_field :document, size: 2 %><%= f.text_field :bill_kind, size: 1 %>
+    <%= f.number_field :document, size: 3 %>  <%= f.text_field :bill_kind, size: 1 %>
   </div>
   Items:
   <div>    
@@ -27,7 +27,7 @@
           <th><%= Product.human_attribute_name(:count)%></th>
           <th><%= Product.human_attribute_name(:uni)%></th>
           <th><%= Product.human_attribute_name(:price)%></th>
-          <th><%= t 'cart.quantity' %></th>
+          <th><%= Cart.human_attribute_name(:quantity) %></th>
         </tr>
 
       <%= f.fields_for :line_items do |li_f| %>

@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Document:</b> <%= link_to @order.document, client_path(@order.document) %> <%# ARREGLAR  %>
+  <b><%= Client.human_attribute_name(:document) %>:</b> <%= link_to @order.document, client_path(@order.document) %> <%# ARREGLAR  %>
 </p>
 
 <p>
-  Bill kind: <%= @order.bill_kind %>
+  <%= Bill.human_attribute_name(:bill_kind) %>: <%= @order.bill_kind %>
 </p>
 <table>
   <tr>
@@ -26,5 +26,5 @@
   
 </table>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to t('label.edit'), edit_order_path(@order) %> |
+<%= link_to t('label.back'), orders_path %>

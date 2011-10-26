@@ -81,14 +81,10 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
+      format.js
       format.html { redirect_to store_path }
       format.json { head :ok }
     end
   end
-#    def quanty
-#      @cart = current_cart
-#      page.call 
-#      product = @cart.line_items.product
-#      @line_item = @cart
-#    end
+  
 end

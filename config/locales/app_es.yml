@@ -46,6 +46,8 @@
         bill_kind: "Tipo de factura"
   activerecord:
     attributes:
+      cart:
+        quantity: 'Cantidad'
       bill:
         bill: "Factura"
         bills: "Facturas"
@@ -115,3 +117,6 @@
   cart:
     emply: 'Vaciar'
     buy: 'Comprar'
+  titles:
+    order: 'Ordenes'
+    cart: 'Carrito'
