@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :barcode %> <%#= @product.barcode %>
+    <%= f.label :barcode %> 
     <%= f.text_field :barcode%>
   </div>
   <div class="field">
@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :price %><br />
-    $<%= f.text_field :price %>
+    <%= f.text_field number_to_currency(:price) %>
   </div>
   <div class="field">
     <%= f.label :count %><br />

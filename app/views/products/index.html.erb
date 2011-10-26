@@ -19,7 +19,7 @@
     <td><%= number_to_currency(product.price) %></td>
     <td><%= product.count %></td>
     <td><%= product.uni %></td>
-    <td><%#= link_to product.stock, addstock_product_path(product), remote: true %></td>
+    <td><%= product.stock %></td>
   </tr>
 <% end %>
 </table>

@@ -1,18 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Document:</b>
-  <%= @order.document %>
+  <b>Document:</b> <%= link_to @order.document, client_path(@order.document) %> <%# ARREGLAR  %>
 </p>
 
 <p>
-  <b>Bill kind:</b>
-  <%= @order.bill_kind %>
+  Bill kind: <%= @order.bill_kind %>
 </p>
+<table>
+  <tr>
+  <th><%= Product.human_attribute_name(:name) %> </th>
+  <th><%= Product.human_attribute_name(:mark) %> </th>
+  <th><%= Product.human_attribute_name(:price) %> </th>
+  <th><%= Cart.human_attribute_name(:quantity) %> </th>
+  </tr>
 <% @order.line_items.each do |li| %>
-  <%= li.product.name %>
-  <%= li.product.mark %>
-  <%= li.quantity %>
-<% end %>
+  <tr>
+  <td><%= li.product.name %></td>
+  <td><%= li.product.mark %></td>
+  <td><%= number_to_currency(li.product.price) %></td>
+  <td> x <%= li.quantity %></td>
+  <% end %>
+  </tr>
+  <tr><td colspan="4">Total: <%= number_to_currency(@order.price) %></td></tr>
+  
+</table>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

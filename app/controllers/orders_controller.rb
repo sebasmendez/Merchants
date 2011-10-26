@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @order }
@@ -46,15 +46,13 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    #redirect_to bill_path
     @order = Order.new(params[:order])
-    #@order.add_line_items_from_cart(current_cart)
-
+    
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to store_url, notice: 'Thanks for your order' }
+        format.html { redirect_to "/orders/#{@order.id}", notice: 'Order Save' }
         format.json { render json: @order, status: :created, location: @order }
       else
         @cart = current_cart

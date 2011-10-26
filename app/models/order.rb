@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   accepts_nested_attributes_for :line_items, :allow_destroy => true
+  before_save :total_price
 
   
   def add_line_items_from_cart(cart)
@@ -9,4 +10,9 @@ class Order < ActiveRecord::Base
       line_items << item
     end
   end
+  
+  def total_price
+    self.price = self.line_items.to_a.sum { |item| item.total_price}
+  end
+  
 end

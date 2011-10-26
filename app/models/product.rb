@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
-  before_destroy :not_referenced
+  #before_destroy :not_referenced
+  before_save :up_product
   #validates
   has_many :line_items
   has_many :orders, through: :line_items
@@ -18,7 +19,7 @@ class Product < ActiveRecord::Base
   default_scope :order => 'name'
 
   def not_referenced
-    if line_items.emply?
+    if line_items.empty?
       return true
     else
       error.add(:base, 'Line Item Present')
@@ -26,5 +27,10 @@ class Product < ActiveRecord::Base
     end
   end
   
+  def up_product
+    self.name = self.name.split.map(&:camelize).join(' ')
+    self.mark = self.mark.split.map(&:camelize).join(' ')
+    self.fragance = self.fragance.split.map(&:camelize).join(' ')
+  end
   
 end
