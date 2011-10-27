@@ -1,5 +1,11 @@
 <h1><%= Client.human_attribute_name(:clients) %> </h1>
 
+<%= form_tag clients_path, method: :get do |f_p|%>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar" %>
+  <% end %>
+
+
 <table>
   <tr>
     <th><%= Client.human_attribute_name(:name) %> </th>

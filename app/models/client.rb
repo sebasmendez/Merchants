@@ -19,4 +19,12 @@ class Client < ActiveRecord::Base
     self.last_name = self.last_name.split.map(&:camelize).join(' ')
   end
   
+  def self.search(search)
+     if search
+      where('LOWER(name) || LOWER(last_name) || document LIKE ?', "%#{search}%".downcase)
+    else
+      scoped
+    end
+  end
+  
 end
