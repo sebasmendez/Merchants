@@ -8,6 +8,7 @@ gem 'validates_timeliness'
 gem 'pg'
 gem 'will_paginate'
 gem 'jquery-rails'
+
 group :assets do
   gem 'sass'
   gem 'sass-rails'
@@ -15,6 +16,7 @@ group :assets do
   gem 'therubyracer', :require => false
   gem 'uglifier'
 end
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

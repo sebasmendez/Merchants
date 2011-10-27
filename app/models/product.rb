@@ -33,4 +33,12 @@ class Product < ActiveRecord::Base
     self.fragance = self.fragance.split.map(&:camelize).join(' ')
   end
   
+  def self.search(search)
+    if search
+      where('LOWER(name) || LOWER(mark) LIKE ?', "%#{search}%".downcase)
+    else
+      scoped
+    end
+  end
+  
 end
