@@ -2,7 +2,7 @@
 
 class MonthliesController < ApplicationController
   
-  proc { |controller| controller.requst.xhr? ? false : 'application'}
+  proc { |controller| controller.request.xhr? ? false : 'application'}
   
   # GET /monthlies
   # GET /monthlies.xml

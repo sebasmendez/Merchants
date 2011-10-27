@@ -1,9 +1,9 @@
-<h1>Listing orders</h1>
+<h1> <%= t('titles.order') %></h1>
 
 <table>
   <tr>
-    <th>Document</th>
-    <th>Bill kind</th>
+    <th><%= Client.human_attribute_name(:document) %></th>
+    <th><%= Client.human_attribute_name(:bill_kind) %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,15 +13,15 @@
   <tr>
     <td><%= order.document %></td>
     <td><%= order.bill_kind %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to t('label.show'), order %></td>
+    <td><%= link_to t('label.edit'), edit_order_path(order) %></td>
+    <td><%= link_to t('label.destroy'), order, confirm: t('label.sure'), method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Order', new_order_path %>
+<%= will_paginate @orders %>
 
 
