@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   accepts_nested_attributes_for :line_items, :allow_destroy => true
   before_save :total_price
-  after_save :plus_amount_to_monthly, :plus_to_client_spend
+  after_save :plus_amount_to_monthly, :plus_to_client_spend, :discount_stock
 
   
   def add_line_items_from_cart(cart)
@@ -33,5 +33,13 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def discount_stock
+    @order = Order.order('id DESC').first
+    @order.line_items.each do |li|
+      @product = Product.find_by_id(li.product.id)
+      @product.stock -= li.quantity
+      @product.update_attributes(stock: @product.stock)
+    end
+  end
   
 end
