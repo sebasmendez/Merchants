@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026154338) do
+ActiveRecord::Schema.define(:version => 20111112225030) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(:version => 20111026154338) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock",                                     :default => 0
+    t.decimal  "iva"
+    t.decimal  "pricedist"
   end
 
   add_index "products", ["barcode"], :name => "index_products_on_barcode", :unique => true

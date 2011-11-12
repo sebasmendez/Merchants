@@ -9,6 +9,8 @@ class Product < ActiveRecord::Base
   validates :barcode, :uniqueness => true
   validates :barcode, :price, :count, :numericality => true
   
+  attr_accessor :earn
+  
   #helpers
   
   def initialize (attributes = nil, options = {})

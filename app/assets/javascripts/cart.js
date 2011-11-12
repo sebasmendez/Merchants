@@ -9,11 +9,15 @@ jQuery(function(){
 //        });
 //
 //    $('.add_button').live('click',function() {
-//    $(this).html('quitar').attr('class', remove_button);
+//    $(this).html("<%= render partial: 'store/product' %>");
 //    });
 
 //        $('.add_button').click(function(){
 //        $(this).attr('disabled', true);
 //        });
+       $('#order_auto_client').autocomplete({
+           source: 'clients/autocompletar.js'
+       });
+
 
 });

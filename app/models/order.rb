@@ -1,14 +1,21 @@
 class Order < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
+  belongs_to :client
   accepts_nested_attributes_for :line_items, :allow_destroy => true
   before_save :total_price
   after_save :plus_amount_to_monthly, :plus_to_client_spend, :discount_stock
-
+  attr_accessor :auto_client
+  before_validation :assign_client
+  
+  def assign_client
+    if self.auto_client.present?
+      self.document = Client.find_by_document(self.auto_client)
+    end
+  end
   
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|
-      item.cart_id = nil
-      line_items << item
+      line_items.build(item.attributes.merge(id: nil))
     end
   end
   

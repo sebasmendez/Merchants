@@ -80,4 +80,14 @@ class ClientsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def autocompletar
+    @clients = Client.with_client(params[:term])
+    
+    respond_to do |format|
+      format.js { render text: @clients.map(&:to_s)}
+    end
+  end
+  
+  
 end

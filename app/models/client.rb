@@ -8,7 +8,8 @@ class Client < ActiveRecord::Base
     :numericality => { :message => 'must be number'}
   
   has_many :bills
-  
+  has_many :orders
+  scope :with_client, lambda { |document| where('document LIKE ?', "#{document}%") }
   #methods
   def to_s
     self.name + ' ' + self.last_name
