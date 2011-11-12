@@ -1,0 +1,17 @@
+<% @products.each do |product| %>
+
+<tr>
+  <td><h3><%= product.name %></h3></td>
+  <td><%= product.mark %></td>
+  <td><%= product.fragance %></td>
+  <td><%= product.count %></td>
+  <td><%= product.uni %></td>
+  <td><%= number_to_currency(product.price) %></td>
+  <td>
+     <% if product_exist_in_line_item(product.id) == true  %>
+       <%= button_to 'quitar', "/line_items/#{product.id}", method: :delete, class: 'remove_button', remote: true  %></td>
+     <% else %>
+       <%= button_to 'agregar', line_items_path(product_id: product), class: 'add_button', remote: true  %></td>
+     <% end %>
+</tr>
+<% end %>
