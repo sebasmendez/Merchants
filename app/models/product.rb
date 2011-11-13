@@ -43,4 +43,10 @@ class Product < ActiveRecord::Base
     end
   end
   
+#  def calc_price
+#    iva = self.iva.to_i * 100 + 1
+#    earn = self.earn.to_i * 100 + 1
+#    self.price = self.pricedist * iva * earn
+#  end
+  
 end
