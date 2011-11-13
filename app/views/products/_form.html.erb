@@ -28,10 +28,10 @@
     <%= f.text_field :fragance %>
   </div>
   <div class="field">
-    Precio <%= f.text_field :pricedist, size: 3 %>
-    Iva <%= f.text_field :iva, value: 21, size: 3 %>
-    Ganancia <%= f.text_field :earn, value: 30, size: 3 %>
-    P Final <%= f.text_field :price, size: 3 %>
+    Precio <%= f.text_field :pricedist, id: "pricedist", size: 3 %>
+    Iva <%= f.text_field :iva, id: "iva", value: 21, size: 3 %>
+    Ganancia <%= f.text_field :earn, id: "earn", value: 30, size: 3 %>
+    $<span id="price"></span> <%#= f.hidden_field :price, id: "price" %>
     <br />
   </div>
   <div class="field">

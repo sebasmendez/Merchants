@@ -15,9 +15,10 @@ jQuery(function(){
 //        $('.add_button').click(function(){
 //        $(this).attr('disabled', true);
 //        });
-       $('#order_auto_client').autocomplete({
-           source: 'clients/autocompletar.js'
-       });
+//       $('#order_auto_client').autocomplete({
+//           source: 'clients/autocompletar.js'
+//       });
 
+    
 
 });

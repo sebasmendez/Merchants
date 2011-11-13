@@ -5,9 +5,9 @@ class Product < ActiveRecord::Base
   has_many :line_items
   has_many :orders, through: :line_items
   
-  validates :barcode, :name, :price, :count, :presence => true
+  validates :barcode, :name, :count, :presence => true
   validates :barcode, :uniqueness => true
-  validates :barcode, :price, :count, :numericality => true
+  validates :barcode, :count, :numericality => true
   
   attr_accessor :earn
   
