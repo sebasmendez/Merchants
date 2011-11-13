@@ -1,8 +1,12 @@
 Merchants::Application.routes.draw do
-  resources :orders, :line_items, :carts,:bills, :clients, :products
+  resources :orders, :line_items, :carts,:bills, :products
   get "store/index"
   resources :monthlies do
     get :paid, on: :member
+  end
+  
+  resources :clients do
+    get :autocomplete, on: :collection
   end
 
   # The priority is based upon order of creation:

@@ -15,7 +15,7 @@
     <%= Client.human_attribute_name(:document) %>  |  <%= Bill.human_attribute_name(:bill_kind) %>
   </div>
   <div class="field">
-    <%= f.number_field :auto_client, value: @order.client.try(:document), id: 'order_auto_client', size: 3 %>  <%= f.text_field :bill_kind, size: 1 %>
+    <%= f.text_field :auto_client, value: @order.client.try(:document), id: 'order_auto_client', size: 3 %>  <%= f.text_field :bill_kind, size: 1 %>
   </div>
   Items:
   <div>    

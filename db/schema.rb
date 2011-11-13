@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111112225030) do
+ActiveRecord::Schema.define(:version => 20111113191744) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20111112225030) do
   create_table "clients", :force => true do |t|
     t.string   "name",                                                        :null => false
     t.string   "last_name",                                                   :null => false
-    t.integer  "document",                                                    :null => false
+    t.string   "document",                                                    :null => false
     t.string   "adress"
     t.string   "email"
     t.string   "location"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20111112225030) do
     t.integer  "stock",                                     :default => 0
     t.decimal  "iva"
     t.decimal  "pricedist"
+    t.string   "category"
   end
 
   add_index "products", ["barcode"], :name => "index_products_on_barcode", :unique => true

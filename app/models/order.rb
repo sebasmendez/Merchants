@@ -2,10 +2,15 @@ class Order < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   belongs_to :client
   accepts_nested_attributes_for :line_items, :allow_destroy => true
+  
+  
   before_save :total_price
-  after_save :plus_amount_to_monthly, :plus_to_client_spend, :discount_stock
-  attr_accessor :auto_client
   before_validation :assign_client
+  after_save :plus_amount_to_monthly, :plus_to_client_spend, :discount_stock
+  
+  
+  attr_accessor :auto_client
+  
   
   def assign_client
     if self.auto_client.present?

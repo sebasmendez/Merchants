@@ -14,12 +14,5 @@ module ProductsHelper
     end
   end
   
-  def iva_percent
-    [21, 10.5, 0]
-  end
-  
-  def earn_percent
-    
-  end
   
 end

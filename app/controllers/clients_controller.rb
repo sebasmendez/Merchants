@@ -81,7 +81,7 @@ class ClientsController < ApplicationController
     end
   end
   
-  def autocompletar
+  def autocomplete
     @clients = Client.with_client(params[:term])
     
     respond_to do |format|
