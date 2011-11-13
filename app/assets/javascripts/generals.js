@@ -4,8 +4,8 @@ jQuery(function(){
         
        
         $('#price').attr('value',$('#pricedist').val() * 
-            ( "1." + $('#iva').val()) * 
-            ( "1." + $('#earn').val()) );
+            (parseFloat($('#iva').val())/100 + 1) * 
+            (parseFloat($('#earn').val())/100 + 1) ); 
   
 
         });
