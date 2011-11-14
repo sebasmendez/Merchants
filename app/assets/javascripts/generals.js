@@ -15,15 +15,21 @@ jQuery(function(){
         $('#newstock').keyup(function(e) {
             var sum = 0;
             var key = e.which;
-          if(key == 49 || key == 50 || key == 51 || key == 52 ||key == 53 || key == 54 || 
-          key == 55 || key == 56 || key == 57 || key == 48){
+            var original = parseFloat($('#stock').val());
+          if(key >= 48 || key <= 57 ){
             if (isNaN($('#newstock').val() )){ }
             else{
-            sum += parseFloat( $('#newstock').val() );
+                if ($('#newstock').val() == "" ){
+                    sum = 0;
+                }else {
+                    sum += parseFloat( $('#newstock').val() ); }
             }
             if (isNaN($('#stock').val()) ){ }
             else {
             sum += parseFloat( $('#stock').val() )  ; 
+            }
+            if ($('#newstock').val() == ''){
+                $('#stock').attr('value', 0);
             }
           $('#stock').attr('value', sum);
           }
