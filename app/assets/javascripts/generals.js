@@ -11,6 +11,22 @@ jQuery(function(){
                  input[name="utf8"]').attr('disabled', true
                 );
 }       );
-
+//      Calcule the new stock
+        $('#newstock').keyup(function(e) {
+            var sum = 0;
+            var key = e.which;
+          if(key == 49 || key == 50 || key == 51 || key == 52 ||key == 53 || key == 54 || 
+          key == 55 || key == 56 || key == 57 || key == 48){
+            if (isNaN($('#newstock').val() )){ }
+            else{
+            sum += parseFloat( $('#newstock').val() );
+            }
+            if (isNaN($('#stock').val()) ){ }
+            else {
+            sum += parseFloat( $('#stock').val() )  ; 
+            }
+          $('#stock').attr('value', sum);
+          }
+        });
     
 });

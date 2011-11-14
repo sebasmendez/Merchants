@@ -6,6 +6,7 @@ body, p, ol, ul, td {
   line-height: 18px;
   color: #1F188A;
 }
+
 table, th{
    font-size: 14px;
    font-family: bold arial;
@@ -14,6 +15,7 @@ table, td,tr {
     font-size: 12px;
     border: 2px solid gray;
     text-align: center;
+    padding: 0px;
 }
 pre {
   background-color: #eee;

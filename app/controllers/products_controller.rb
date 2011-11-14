@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   proc {|c| c.request.xhr? ? false : 'application'}
   
   def index
-    @products = Product.search(params[:search]).order('name ASC').paginate(page: params[:page], per_page: 30)
+    @products = Product.search(params[:search]).order('name ASC').paginate(page: params[:page], per_page: 15)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -106,6 +106,7 @@
     bill: "Nueva Factura"
     client: "Nuevo Cliente"
     product: "Nuevo Producto"
+    stock: "Nuevo stock"
   monthly:
     paid: "Pagado"
     unpaid: "Pagado??"

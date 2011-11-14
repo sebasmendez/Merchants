@@ -26,25 +26,27 @@
   <div class="field">
     <%= f.label :fragance %><br />
     <%= f.text_field :fragance %>
-  </div>
+  </div><br />
   <div class="field">
     Precio <%= f.text_field :pricedist, id: "pricedist", size: 4 %>
     Iva <%= f.text_field :iva, id: "iva", size: 1, value: 21 %>
     Ganancia <%= f.text_field :earn, id: "earn", size: 1, value: 30 %>
     $<%= f.text_field :price, id: "price", size: 4 %>
     <br />
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :count %><br />
-    <%= f.text_field :count %>
-  </div>
-  <div class="field">
-    <%= f.label :uni %><br />
+    <%= f.label :count %>
+    <%= f.text_field :count, size: 3 %>
+
+    <%= f.label :uni %>
     <%= f.select :uni, prod_uni %>
-  </div>
+  </div><br />
 <div class="field">
   <%= f.label :stock %>
-  <%= f.number_field :stock %>
+  <%= f.number_field :stock, id: 'stock', size: 3 %>
+
+  <%= t('new.stock') %>
+  <%= f.number_field :newstock, id: 'newstock', size: 3 %>
 </div>
   <div class="actions">
     <%= f.submit t('product.save') %>

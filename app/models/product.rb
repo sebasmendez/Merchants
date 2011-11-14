@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   validates :barcode, :uniqueness => true
   validates :barcode, :count, :numericality => true
   
-  attr_accessor :earn
+  attr_accessor :earn, :newstock
   
   #helpers
   
