@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b><%= Client.human_attribute_name(:document) %>:</b> <%= link_to @order.document, client_path(@order.document) %> <%# ARREGLAR  %>
+<p><% if @order.client %>
+  <b><%= Client.human_attribute_name(:client) %>:</b> <%= link_to (@order.client.name.split.first + ' ' + @order.client.last_name.split.first), client_path(@order.client) %> <%# ARREGLAR  %>
 </p>
-
+<% end %>
 <p>
   <%= Bill.human_attribute_name(:bill_kind) %>: <%= @order.bill_kind %>
 </p>

@@ -5,6 +5,6 @@
  *= require_self
  *= require scaffold
  *= require store
-require jquery/jquery-custom
+ *= require jquery/jquery-custom
  
 */

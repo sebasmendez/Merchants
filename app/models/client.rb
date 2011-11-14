@@ -10,12 +10,13 @@ class Client < ActiveRecord::Base
   
   has_many :bills
   has_many :orders
+  
   scope :with_client, lambda { |search| where('LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?',
       "#{search}%".downcase, "#{search}%".downcase, "#{search}%")}
   
   #methods
   def to_s
-    self.name + ' ' + self.last_name
+    self.name + ' ' + self.last_name + ' ' + self.document
   end
   
   def up_name

@@ -14,7 +14,8 @@ class Order < ActiveRecord::Base
   
   def assign_client
     if self.auto_client.present?
-      self.document = Client.find_by_document(self.auto_client)
+      client = self.auto_client.split.last
+      self.client = Client.find_by_document(client)
     end
   end
   
@@ -38,8 +39,8 @@ class Order < ActiveRecord::Base
   
   def plus_to_client_spend
     @order = Order.order('id DESC').first
-    if @order.document
-    @client = Client.find_by_document(@order.document) 
+    if @order.client
+    @client = Client.find_by_id(@order.client) 
     @client.spend += @order.price
     @client.update_attributes(spend: @client.spend)
     end

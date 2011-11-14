@@ -84,11 +84,9 @@ class ClientsController < ApplicationController
   def autocomplete
     
     @clients = Client.with_client(params[:term]).limit(7)
-    #@clients = @clients.limit(7)
-    @clients = @clients.map{|u| { id: u.id, name: u.name, last_name: u.last_name} }
-    
+       
     respond_to do |format|
-      format.json { render json: @clients, layout: false }
+      format.js { render text: @clients.map(&:to_s) }
     end
   end
   

@@ -10,4 +10,3 @@
 //= require paid
 //= require cart
 //= require generals
-//= require_tree

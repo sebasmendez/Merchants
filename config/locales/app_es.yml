@@ -121,3 +121,5 @@
     order: 'Ordenes'
     cart: 'Carrito'
     store: 'Mercado'
+  others:
+    without_client: 'Sin Cliente'
