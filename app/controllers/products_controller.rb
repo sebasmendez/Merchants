@@ -84,9 +84,6 @@ class ProductsController < ApplicationController
     end
   end
   
-  def addstock
-    false
-  end
-  
+ 
   
 end

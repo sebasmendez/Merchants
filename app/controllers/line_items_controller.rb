@@ -76,7 +76,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1.json
   def destroy
     @cart = current_cart
-    
+    @line_item = @cart
     @line_item = LineItem.find_by_product_id(params[:id])
     @line_item.destroy
 
