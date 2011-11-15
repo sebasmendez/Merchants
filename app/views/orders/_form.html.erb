@@ -12,10 +12,11 @@
   <% end %>
 <div class="order_form">
   <div class="field">
-    <%= Client.human_attribute_name(:client) %>  |  <%= Bill.human_attribute_name(:bill_kind) %>
+    <%= Client.human_attribute_name(:client) %>  |  <%= Bill.human_attribute_name(:bill_kind) %> | A la cuenta?
   </div>
   <div class="field">
     <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>  <%= f.text_field :bill_kind, size: 1 %>
+      | <%= f.check_box :to_debt %>
   </div>
   Items:
   <div>    

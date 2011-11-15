@@ -9,5 +9,7 @@ module OrdersHelper
      return list
     end
   end
-  
+  def debt
+    [false, true]
+  end
 end
