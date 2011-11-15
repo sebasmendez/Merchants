@@ -6,10 +6,10 @@ class Order < ActiveRecord::Base
   
   before_save :total_price
   before_validation :assign_client
-  after_save :plus_amount_to_monthly, :plus_to_client_spend, :discount_stock, :sum_to_debt
+  after_save :plus_amount_to_monthly, :plus_price_to_client, :discount_stock
   
   
-  attr_accessor :auto_client, :to_debt
+  attr_accessor :auto_client
   
   
   def assign_client
@@ -37,12 +37,18 @@ class Order < ActiveRecord::Base
     @monthly.update_attributes(sold: @monthly.sold)
   end
   
-  def plus_to_client_spend
+  def plus_price_to_client
     @order = Order.order('id DESC').first
     if @order.client
-    @client = Client.find_by_id(@order.client) 
-    @client.spend += @order.price
-    @client.update_attributes(spend: @client.spend)
+      @client = Client.find(@order.client) 
+      @client.spend ||= 0
+      @client.spend += @order.price
+      @client.update_attributes(spend: @client.spend)
+      if @order.to_amount
+        @client.amount ||= 0
+        @client.amount -= @order.price
+        @client.update_attributes(amount: @client.amount)
+      end
     end
   end
   
@@ -55,14 +61,6 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def sum_to_debt
-    if :to_debt == true
-      @order = Order.order('id DESC').first
-      @client = Client.find(@order.client)
-      @client.amount ||= 0
-      @client.amount -= @order.price
-      @client.update_attributes(amount: @client.amount)
-    end
-  end
+
   
 end
