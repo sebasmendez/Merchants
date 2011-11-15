@@ -1,5 +1,8 @@
 'es':
   models:
+    order:
+      order: "Orden"
+      orders: "Ordenes"
     client:
       client: 'Cliente'
       clients: 'Clientes'
@@ -46,6 +49,9 @@
         bill_kind: "Tipo de factura"
   activerecord:
     attributes:
+      order:
+        order: "Orden"
+        orders: "Ordenes"
       cart:
         quantity: 'Cantidad'
       bill:
@@ -78,7 +84,7 @@
         location: 'Departamento'
         client_kind: 'Tipo Cliente'
         bill_kind: 'Factura'
-        amount: 'Monto'
+        amount: 'Cuenta'
         spend: 'Gastado'
       product:
         products: "Productos"
@@ -124,3 +130,4 @@
     store: 'Mercado'
   others:
     without_client: 'Sin Cliente'
+    to_amount: 'A la cuenta $'

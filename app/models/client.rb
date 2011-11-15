@@ -14,6 +14,8 @@ class Client < ActiveRecord::Base
   scope :with_client, lambda { |search| where('LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?',
       "#{search}%".downcase, "#{search}%".downcase, "#{search}%")}
   
+  attr_accessor :to_amount
+  
   #methods
   def to_s
     self.name + ' ' + self.last_name + ' ' + self.document

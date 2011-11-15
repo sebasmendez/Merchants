@@ -60,7 +60,7 @@ class Order < ActiveRecord::Base
       @order = Order.order('id DESC').first
       @client = Client.find(@order.client)
       @client.amount ||= 0
-      @client.amount += @order.price
+      @client.amount -= @order.price
       @client.update_attributes(amount: @client.amount)
     end
   end

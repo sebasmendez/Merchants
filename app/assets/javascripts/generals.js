@@ -16,7 +16,7 @@ jQuery(function(){
             var sum = 0;
             var key = e.which;
             var original = parseFloat($('#stock').val());
-          if(key >= 48 || key <= 57 ){
+          if((key >= 48 && key <= 57) || (key >= 96 && key <= 105) ){
             if (isNaN($('#newstock').val() )){ }
             else{
                 if ($('#newstock').val() == "" ){

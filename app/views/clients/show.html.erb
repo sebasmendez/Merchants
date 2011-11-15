@@ -1,63 +1,62 @@
-<p id="notice"><%= notice %></p>
 
 <p>
-  <b><%= t('client.name') %> </b>
+  <b><%= Client.human_attribute_name(:name) %> </b>
   <%= @client.name %>
 </p>
 
 <p>
-  <b><%= t('client.last_name') %> </b>
+  <b><%= Client.human_attribute_name(:last_name) %> </b>
   <%= @client.last_name %>
 </p>
 
 <p>
-  <b><%= t('client.document') %> </b>
+  <b><%= Client.human_attribute_name(:document) %> </b>
   <%= @client.document %>
 </p>
 
 <p>
-  <b><%= t('client.adress') %> </b>
+  <b><%= Client.human_attribute_name(:adress) %> </b>
   <%= @client.adress %>
 </p>
 
 <p>
-  <b><%= t('client.email') %> </b>
+  <b><%= Client.human_attribute_name(:email) %> </b>
   <%= @client.email %>
 </p>
 
 <p>
-  <b><%= t('client.location') %> </b>
+  <b><%= Client.human_attribute_name(:location) %> </b>
   <%= @client.location %>
 </p>
 
 <p>
-  <b><%= t('client.phone') %> </b>
+  <b><%= Client.human_attribute_name(:phone) %> </b>
   <%= @client.phone %>
 </p>
 
 <p>
-  <b><%= t('client.cellphone') %> </b>
+  <b><%= Client.human_attribute_name(:cellphone) %> </b>
   <%= @client.cellphone %>
 </p>
 
 <p>
-  <b><%= t('client.client_kind') %> </b>
+  <b><%= Client.human_attribute_name(:client_kind) %> </b>
   <%= @client.client_kind %>
 </p>
 
 <p>
-  <b><%= t('client.bill_kind') %> </b>
+  <b><%= Client.human_attribute_name(:bill_kind) %> </b>
   <%= @client.bill_kind %>
 </p>
 
 <p>
-  <b><%= t('client.amount') %> </b>
-  $<%= @client.amount %>
+  <b><%= Client.human_attribute_name(:amount) %> </b>
+  <%= number_to_currency(@client.amount) %>
 </p>
 
 <p>
-  <b><%= t('client.spend') %> </b>
-  $<%= @client.spend %>
+  <b><%= Client.human_attribute_name(:spend) %> </b>
+  <%= number_to_currency(@client.spend) %>
 </p>
 
 

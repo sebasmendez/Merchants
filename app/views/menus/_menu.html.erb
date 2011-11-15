@@ -1,9 +1,9 @@
 <div>
-  <%= link_to Bill.human_attribute_name(:bills), bills_path  %>
+  <%#= link_to Bill.human_attribute_name(:bills), bills_path  %>
   <%= link_to Client.human_attribute_name(:clients), clients_path  %>
   <%= link_to Product.human_attribute_name(:products), products_path  %>
   <%= link_to Monthly.human_attribute_name(:monthlies), monthlies_path  %>
-  <%= link_to 'Store', store_path %>
+  <%= link_to t('titles.store'), store_path %>
   <%= link_to Order.human_attribute_name(:orders), orders_path %>
   <%= flash[:notice] %>
 </div>

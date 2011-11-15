@@ -12,11 +12,14 @@
   <% end %>
 <div class="order_form">
   <div class="field">
-    <%= Client.human_attribute_name(:client) %>  |  <%= Bill.human_attribute_name(:bill_kind) %> | A la cuenta?
+    <%= Client.human_attribute_name(:client) %>  <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>
   </div>
   <div class="field">
-    <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>  <%= f.text_field :bill_kind, size: 1 %>
-      | <%= f.check_box :to_debt %>
+       <%# = Bill.human_attribute_name(:bill_kind) %>  <%#= f.text_field :bill_kind, size: 1 %>
+      
+  </div>
+  <div class="field">
+     A la cuenta?? <%= f.check_box :to_debt %>
   </div>
   Items:
   <div>    
