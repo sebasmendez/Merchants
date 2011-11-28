@@ -118,7 +118,6 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails
   jquery-rails
-  json
   pg
   rails (= 3.1.0)
   sass

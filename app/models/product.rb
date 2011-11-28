@@ -37,16 +37,11 @@ class Product < ActiveRecord::Base
   
   def self.search(search)
     if search
-      where('LOWER(name) || LOWER(mark) || barcode LIKE ?', "%#{search}%".downcase)
+      where('LOWER(name) || LOWER(mark) || barcode || LOWER(category) LIKE ?', "%#{search}%".downcase)
     else
       scoped
     end
   end
   
-#  def calc_price
-#    iva = self.iva.to_i * 100 + 1
-#    earn = self.earn.to_i * 100 + 1
-#    self.price = self.pricedist * iva * earn
-#  end
   
 end

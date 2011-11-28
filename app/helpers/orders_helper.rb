@@ -10,7 +10,4 @@ module OrdersHelper
     end
   end
 
-  def to_debt
-    ['SI', 'NO']
-  end
 end

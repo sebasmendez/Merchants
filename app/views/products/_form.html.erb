@@ -26,7 +26,12 @@
   <div class="field">
     <%= f.label :fragance %><br />
     <%= f.text_field :fragance %>
-  </div><br />
+  </div>
+  <div class="field">
+    <%= f.label :category %>
+    <%= f.select :category, category_select %>
+  </div>
+  <br />
   <div class="field">
     Precio <%= f.text_field :pricedist, id: "pricedist", size: 4 %>
     Iva <%= f.text_field :iva, id: "iva", size: 1, value: 21 %>

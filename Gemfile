@@ -8,7 +8,6 @@ gem 'validates_timeliness'
 gem 'pg'
 gem 'will_paginate'
 gem 'jquery-rails'
-gem 'json'
 
 group :assets do
   gem 'sass'

@@ -1,6 +1,6 @@
 <h1><%= t 'titles.store'%></h1>
 
-  <%= form_tag store_path, method: :get do |f_p|%>
+  <%= form_tag "/store", method: :get do %>
     <%= text_field_tag :search, params[:search], autofocus: true %>
     <%= submit_tag "Buscar"%>
   <% end %>
@@ -12,8 +12,8 @@
 <th><%= Product.human_attribute_name(:name)%></th>
 <th><%= Product.human_attribute_name(:mark)%></th>
 <th><%= Product.human_attribute_name(:fragance)%></th>
+<th><%= Product.human_attribute_name(:category)%></th>
 <th><%= Product.human_attribute_name(:count)%></th>
-<th><%= Product.human_attribute_name(:uni)%></th>
 <th><%= Product.human_attribute_name(:price)%></th>
 </tr>
   

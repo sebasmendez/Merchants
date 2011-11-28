@@ -92,10 +92,11 @@
         barcode: 'Código de barra'
         mark: 'Marca'
         name: 'Nombre'
-        fragance: 'Fragancia'
+        fragance: 'Caracteristica'
         price: 'Precio'
         count: 'Cantidad'
         uni: 'Unidad'
+        category: "Categoría"
   label:
     back: 'Volver'
     cancel: 'Cancelar'

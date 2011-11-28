@@ -28,8 +28,8 @@
           <th><%= Product.human_attribute_name(:name)%></th>
           <th><%= Product.human_attribute_name(:mark)%></th>
           <th><%= Product.human_attribute_name(:fragance)%></th>
+          <th><%= Product.human_attribute_name(:category)%></th>
           <th><%= Product.human_attribute_name(:count)%></th>
-          <th><%= Product.human_attribute_name(:uni)%></th>
           <th><%= Product.human_attribute_name(:price)%></th>
           <th><%= Cart.human_attribute_name(:quantity) %></th>
         </tr>
@@ -39,6 +39,7 @@
           <td><h3><%= li_f.object.product.name %></h3></td>
           <td><%= li_f.object.product.mark %></td>
           <td><%= li_f.object.product.fragance %></td>
+          <td><%= li_f.object.product.category %></td>
           <td><%= li_f.object.product.count %></td>
           <td><%= li_f.object.product.uni %></td>
           <td><%= number_to_currency(li_f.object.product.price) %></td>
@@ -47,8 +48,11 @@
           <%= li_f.hidden_field :id %>
           
           </tr>
-      <% end %>
+        <% end %>
+          
   </table>
+    <% @cart = current_cart %>
+Total parcial: <%= number_to_currency(@cart.total_price) %>
   </div>
   <br />
   <div class="actions">
