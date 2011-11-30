@@ -1,15 +1,18 @@
-<tr>
-  <td><h3><%= product.name %></h3></td>
+<tr class="producto">
+  <td><h3><%= link_to product.name,edit_product_path(product) if params[:controller] == 'products' %>
+  <%=  product.name if params[:controller] == 'store' %></h3></td>
   <td><%= product.mark %></td>
   <td><%= product.fragance %></td>
   <td><%= product.category %></td>
-  <td><%= product.count %></td>
-  <td><%= product.uni %></td>
+  <td><%= product.count %><%= product.uni %></td>
   <td><%= number_to_currency(product.price) %></td>
+  <td><%= product.stock %></td>
+  <% if params[:controller] == 'store' %>
   <td>
-    <% if product_exist_in_line_item(product) == false  %>
-    <%= button_to 'quitar', line_items_path(product_id: product), class: 'remove_button', remote: true  %></td>
+    <% if product_exist_in_line_item(product.id) == true %>
+      <%= button_to 'quitar', "/line_items/#{product.id}", method: :delete, id: 'remove_button', remote: true  %></td>
     <% else %>
-  <%= button_to 'agregar', line_items_path(product_id: product), class: 'add_button', remote: true  %></td>
+      <%= button_to 'agregar', line_items_path(product_id: product), id: 'add_button', remote: true  %></td>
+    <% end %>
   <% end %>
 </tr>

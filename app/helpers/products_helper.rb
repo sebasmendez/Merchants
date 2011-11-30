@@ -8,7 +8,7 @@ module ProductsHelper
     @cart = current_cart
     
     @cart.line_items.each do |item|
-      if product_id.to_i == item.product.id.to_i 
+      if product_id.to_i == item.product.id.to_i
         return true
       end
     end

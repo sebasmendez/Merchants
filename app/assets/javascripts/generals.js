@@ -6,9 +6,9 @@ jQuery(function(){
             (parseFloat($('#earn').val())/100 + 1) ); 
         });
         
-//    Delete the "snowman" from search and disable the button
+        //   Delete the "snowman" from search and disable the button
         $('form').submit(function() {
-            $(this).find('input[type="submit"],\n\
+           $(this).find('input[type="submit"],\n\
                 input[name="utf8"]').attr('disabled', true);
         });
            
@@ -24,6 +24,11 @@ jQuery(function(){
                 $('#stock').attr('value', stock); 
                 stock = original; }
                 
+        });
+        
+        // Render partial products
+        $('#add_button').live('click',function(){
+           $(this).parent('tr').html("<%=j render 'products' %>");
         });
     
 });

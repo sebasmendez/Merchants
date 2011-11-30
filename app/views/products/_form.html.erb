@@ -13,7 +13,8 @@
 
   <div class="field">
     <%= f.label :barcode %> 
-    <%= f.text_field :barcode%>
+    <%= f.text_field :barcode if params[:action] == 'new'%>
+    <%= f.text_field :barcode, disabled: true if params[:action] == 'edit' %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -42,8 +43,6 @@
   <div class="field">
     <%= f.label :count %>
     <%= f.text_field :count, size: 3 %>
-
-    <%= f.label :uni %>
     <%= f.select :uni, prod_uni %>
   </div><br />
 <div class="field">

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th><%= Client.human_attribute_name(:client) %></th>
-    <th><%= Client.human_attribute_name(:bill_kind) %></th>
+    <th>Día</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +13,7 @@
   <tr>
     <td><%= link_to (order.client ? order.client.name.split.first + ' ' + order.client.last_name.split.first : 
  t('others.without_client')), order%></td>
-    <td><%= order.bill_kind %></td>
-    <td><%= link_to t('label.show'), order %></td>
-    <td><%= link_to t('label.edit'), edit_order_path(order) %></td>
-    <td><%= link_to t('label.destroy'), order, confirm: t('label.sure'), method: :delete %></td>
+  <td> <%= l order.created_at, format: :little %> </td>
   </tr>
 <% end %>
 </table>

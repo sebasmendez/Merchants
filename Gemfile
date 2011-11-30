@@ -21,8 +21,13 @@ end
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# For Production
+gem 'capistrano'
+gem 'passenger'
+
+group :production do
+  gem 'mysql2'
+end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'

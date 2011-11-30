@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115204057) do
+ActiveRecord::Schema.define(:version => 20111130003749) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20111115204057) do
   end
 
   add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true
+
+  create_table "boxes", :force => true do |t|
+    t.integer  "day"
+    t.integer  "month"
+    t.integer  "year"
+    t.integer  "count",                                     :default => 0
+    t.decimal  "total",      :precision => 15, :scale => 2, :default => 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"

@@ -18,17 +18,7 @@
     <th><%= Product.human_attribute_name(:stock) %></th>
   </tr>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%= link_to product.name, product %></td>
-    <td><%= product.mark %></td>
-    <td><%= product.fragance %></td>
-    <td><%= product.category %></td>
-    <td><%= number_to_currency(product.price) %></td>
-    <td><%= product.count %> <%= product.uni %></td>
-    <td><%= product.stock %></td>
-  </tr>
-<% end %>
+  <%= render @products %>
 </table>
 
 <br />

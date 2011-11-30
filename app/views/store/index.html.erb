@@ -1,4 +1,4 @@
 <div class="store"><%= render ('store') %></div>
 
- <div class="cart"><%= render @cart if @cart.total_price != 0 %></div>
+ <div class="cart"><%= render @cart if @cart.total_price != 0 && @cart.line_items.count != 0 %></div>
 

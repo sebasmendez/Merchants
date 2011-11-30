@@ -1,4 +1,6 @@
 Merchants::Application.routes.draw do
+  resources :boxes
+
   resources :orders, :line_items, :carts,:bills, :products
   #get "store/index"
   match 'store' => 'store#index', :via => 'get' 

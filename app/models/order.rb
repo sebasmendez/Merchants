@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   
   before_save :total_price
   before_validation :assign_client
-  after_save :plus_amount_to_monthly, :plus_price_to_client, :discount_stock
+  after_save :plus_amount_to_monthly, :plus_price_to_client, :discount_stock, :daily_box
   
   
   attr_accessor :auto_client
@@ -61,6 +61,15 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def daily_box
+    @order = Order.order('id DESC').first
+    @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
+    @order.line_items.each do |li|
+      @daybox.count += li.quantity
+    end
+    @daybox.total += @order.price
+    @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
+  end
 
   
 end
