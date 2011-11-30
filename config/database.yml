@@ -43,9 +43,9 @@ test:
   password: merch
 
 production:
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   database: merchants_production
   pool: 5
-  username: merchants
-  password: merch
+  username: adrian
+  password: carmoncho
