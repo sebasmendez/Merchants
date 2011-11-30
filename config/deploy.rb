@@ -12,7 +12,7 @@ set :rails_env, :production
 #set :use_sudo, false
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-#set :branch, 'master'
+set :branch, 'master'
 role :web, "192.168.0.2"                          # Your HTTP server, Apache/etc
 role :app, "192.168.0.2"                          # This may be the same as your `Web` server
 role :db,  "192.168.0.2", :primary => true 
