@@ -10,8 +10,8 @@ gem 'will_paginate'
 gem 'jquery-rails'
 
 group :assets do
-  gem 'sass'
-  gem 'sass-rails'
+  #gem 'sass'
+  #gem 'sass-rails'
   gem 'coffee-rails'
   gem 'therubyracer', :require => false
   gem 'uglifier'
