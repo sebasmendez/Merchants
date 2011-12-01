@@ -1,6 +1,7 @@
-<h1>Editing order</h1>
+
+<h1><%= t ('label.editing') %></h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<br />
+<%= link_to t('label.show'), @order %> |
+<%= link_to t('label.back'), orders_path %>

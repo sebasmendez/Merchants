@@ -1,5 +1,6 @@
+require 'bundler/capistrano'
 
-default_run_options[:pty] = true
+#default_run_options[:pty] = true
 
 set :application, "Merchants"
 set :repository,  "git@github.com:Shelvak/Merchants.git"
@@ -8,7 +9,7 @@ set :scm, :git
 set :user, 'adrian'
 set :scm_passphrase, 'carmoncho'
 set :deploy_via, :remote_cache
-set :rails_env, :production
+#set :rails_env, :production
 #set :use_sudo, false
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 

@@ -2,7 +2,7 @@
 
 <%= form_tag clients_path, method: :get do |f_p|%>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Buscar" %>
+    <%= submit_tag t "label.search"  %>
   <% end %>
 <br />
 
@@ -19,7 +19,7 @@
     <td><%= client.name %></td>
     <td><%= client.last_name %></td>
     <td><%= link_to client.document, client %></td>
-    <td>$<%= client.amount %></td>
+    <td><%= number_to_currency(client.amount) %></td>
   </tr>
 <% end %>
 </table>

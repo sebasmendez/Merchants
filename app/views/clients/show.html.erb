@@ -15,8 +15,8 @@
 </p>
 
 <p>
-  <b><%= Client.human_attribute_name(:adress) %> </b>
-  <%= @client.adress %>
+  
+  <%= raw ("<b>" + Client.human_attribute_name(:adress) + "</b>" + @client.adress) if @client.adress.present? %>
 </p>
 
 <p>
@@ -25,18 +25,18 @@
 </p>
 
 <p>
-  <b><%= Client.human_attribute_name(:location) %> </b>
-  <%= @client.location %>
+  
+  <%= raw ("<b>" + Client.human_attribute_name(:location) + "</b>" + @client.location) if @client.location.present?%>
 </p>
 
 <p>
-  <b><%= Client.human_attribute_name(:phone) %> </b>
-  <%= @client.phone %>
+  
+  <%= raw ("<b>" + Client.human_attribute_name(:phone) + "</b>" + @client.phone) if @client.phone.present? %>
 </p>
 
 <p>
-  <b><%= Client.human_attribute_name(:cellphone) %> </b>
-  <%= @client.cellphone %>
+  
+  <%= raw ("<b>" + Client.human_attribute_name(:cellphone) + "</b>" + @client.cellphone) if @client.cellphone.present? %>
 </p>
 
 <p>

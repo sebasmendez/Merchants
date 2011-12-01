@@ -1,8 +1,8 @@
   <tr>
     <td><%= monthly.month %></td>
     <td><%= monthly.year %></td>
-    <td>$<%= monthly.sold %></td>
-    <td>$<%= monthly.bought %></td>
-    <td>$<%= monthly.to_pay %></td>
+    <td><%= number_to_currency(monthly.sold) %></td>
+    <td><%= number_to_currency(monthly.bought) %></td>
+    <td><%= number_to_currency(monthly.to_pay) %></td>
     <td><%= monthly.paid ? t('monthly.paid') : link_to(t('monthly.unpaid'), paid_monthly_path(monthly), :remote => true, :class => 'paid', 'data-type' => 'html' ) %></td>
   </tr>

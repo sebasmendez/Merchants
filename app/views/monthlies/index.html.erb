@@ -1,17 +1,23 @@
-<h1><%= Monthly.human_attribute_name(:months) %></h1>
 
+<%#= render 'monthlies/monthly' %>
 <table>
   <tr>
-    <th><%= Monthly.human_attribute_name(:month) %></th>
-    <th><%= Monthly.human_attribute_name(:year) %></th>
-    <th><%= Monthly.human_attribute_name(:sold) %></th>
-    <th><%= Monthly.human_attribute_name(:bought) %></th>
-    <th><%= Monthly.human_attribute_name(:to_pay) %></th>
-    <th><%= Monthly.human_attribute_name(:paid) %></th>
+    <td>Mes</td>
+    <td>año</td>
+    <td>vendido</td>
+    <td>comprado</td>
+    <td>apagar</td>
+    <td>Pagado??</td>
   </tr>
-
-<%= render @monthlies %>
+  <% @monthlies.each do |monthly| %>
+    <tr>
+    <td><%= monthly.month %></td>
+    <td><%= monthly.year %></td>
+    <td><%= number_to_currency(monthly.sold) %></td>
+    <td><%= number_to_currency(monthly.bought) %></td>
+    <td><%= number_to_currency(monthly.to_pay) %></td>
+    <td><%= monthly.paid ? t('monthly.paid') : link_to(t('monthly.unpaid'), paid_monthly_path(monthly), :remote => true, :class => 'paid', 'data-type' => 'html' ) %></td>
+  </tr>
+  
+<% end %>
 </table>
-
-<br />
-<%= will_paginate @monthlies %>
