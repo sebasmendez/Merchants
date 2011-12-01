@@ -37,11 +37,6 @@ class CartsController < ApplicationController
     end
   end
 
-  # GET /carts/1/edit
-  def edit
-    @cart = Cart.find(params[:id])
-  end
-
   # POST /carts
   # POST /carts.json
   def create

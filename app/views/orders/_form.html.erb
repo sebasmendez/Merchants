@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-<div class="order_form">
+<%#<div class="order_form">%>
   <div class="field">
     <%= Client.human_attribute_name(:client) %>  <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>
   </div>
@@ -40,8 +40,7 @@
           <td><%= li_f.object.product.mark %></td>
           <td><%= li_f.object.product.fragance %></td>
           <td><%= li_f.object.product.category %></td>
-          <td><%= li_f.object.product.count %></td>
-          <td><%= li_f.object.product.uni %></td>
+          <td><%= li_f.object.product.count %><%= li_f.object.product.uni %></td>
           <td><%= number_to_currency(li_f.object.product.price) %></td>
           <td><%= li_f.number_field :quantity, size: 1 %></td> 
           <%= li_f.hidden_field :product_id %>
@@ -58,5 +57,5 @@ Total parcial: <%= number_to_currency(@cart.total_price) %>
   <div class="actions">
     <%= f.submit %>
   </div>
-</div>
+<%#</div> %>
 <% end %>

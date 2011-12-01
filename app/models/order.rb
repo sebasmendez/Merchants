@@ -4,13 +4,18 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :line_items, :allow_destroy => true
   
   
-  before_save :total_price
+  before_save :total_price, :assign_own_price
   before_validation :assign_client
   after_save :plus_amount_to_monthly, :plus_price_to_client, :discount_stock, :daily_box
   
   
   attr_accessor :auto_client
   
+  def assign_own_price
+    self.line_items.each do |li|
+      li.price = li.product.price
+    end
+  end
   
   def assign_client
     if self.auto_client.present?

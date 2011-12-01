@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130003749) do
+ActiveRecord::Schema.define(:version => 20111201150310) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20111130003749) do
     t.datetime "updated_at"
     t.integer  "quantity",   :default => 1
     t.integer  "order_id"
+    t.decimal  "price"
   end
 
   create_table "monthlies", :force => true do |t|
