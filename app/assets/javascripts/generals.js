@@ -26,9 +26,7 @@ jQuery(function(){
                 
         });
         
-        // Render partial products
-        $('#add_button').live('click',function(){
-           $(this).parent('tr').html("<%=j render 'products' %>");
-        });
+        //render notifier
+        
     
 });

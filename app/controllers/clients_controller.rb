@@ -44,7 +44,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to(@client, :notice => 'Client was successfully created.') }
+        format.html { redirect_to(@client, :notice => t('client.create')) }
         format.xml  { render :xml => @client, :status => :created, :location => @client }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        format.html { redirect_to(@client, :notice => 'Client was successfully updated.') }
+        format.html { redirect_to(@client, :notice => t('client.updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class ClientsController < ApplicationController
     @client.destroy
 
     respond_to do |format|
-      format.html { redirect_to(clients_url, notice: 'Delete great ^^') }
+      format.html { redirect_to(clients_url, notice: t('client.destroyed')) }
       format.xml  { head :ok }
     end
   end

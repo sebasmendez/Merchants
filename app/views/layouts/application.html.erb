@@ -9,8 +9,14 @@
 <body>
   <div class="top_menu"><%= render 'menus/menu' %></div>
  
-<%= yield %>
+<%= yield %> 
   
 
 </body>
+<% if notice %>
+<div class="notifier">
+  <%= link_to_function notice,"jQuery(.notifier).slideUp()" %>
+</div>
+
+<% end %>
 </html>

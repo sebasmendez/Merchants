@@ -122,9 +122,20 @@
     next_label: 'Siguiente &raquo'
   product:
     save: 'Guardar'
+  client:
+    create: 'Cliente creado'
+    updated: 'Cliente actualizado'
+    destroyed: 'Cliente eliminado'
   cart:
-    emply: 'Vaciar'
+    empty: 'Vaciar'
     buy: 'Comprar'
+    invalid: "Carrito invalido"
+    create: 'Carrito Creado'
+    emptied: 'Vaciado'
+  order:
+    created: 'Orden Creada'
+    updated: 'Orden actualizada'
+    destroyed: 'Orden Eliminada'
   titles:
     order: 'Ordenes'
     cart: 'Carrito'

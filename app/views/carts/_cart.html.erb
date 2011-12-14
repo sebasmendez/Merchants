@@ -19,7 +19,7 @@
 
 </table>
 <%= button_to t('cart.buy'), new_order_path, method: :get %>
-<%= button_to t('cart.emply'), @cart, method: :delete, confirm: 'Sure?' %>
+<%= button_to t('cart.empty'), @cart, method: :delete, confirm: t('label.sure') %>
 </div>
 
-<%#= will_paginate @cart.line_items %>
+

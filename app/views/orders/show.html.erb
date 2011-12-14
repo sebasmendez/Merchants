@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p><% if @order.client %>
   <b><%= Client.human_attribute_name(:client) %>:</b> <%= link_to (@order.client.name.split.first + ' ' + @order.client.last_name.split.first), client_path(@order.client) %> <%# ARREGLAR  %>
@@ -25,6 +25,5 @@
   <tr><td colspan="4">Total: <%= number_to_currency(@order.price) %></td></tr>
   
 </table>
-<%#= @order.created_at.year %>
 <%= link_to t('label.edit'), edit_order_path(@order) %> |
 <%= link_to t('label.back'), orders_path %>

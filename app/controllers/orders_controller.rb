@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def new
     @cart = current_cart
       if @cart.line_items.empty?
-        redirect_to store_url, notice: 'Cart emply'
+        redirect_to store_url, notice: t('cart.emplied')
         return
       end
     
@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to "/orders/#{@order.id}", notice: 'Order Save' }
+        format.html { redirect_to "/orders/#{@order.id}", notice: t('order.created') }
         format.json { render json: @order, status: :created, location: @order }
       else
         @cart = current_cart
@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: t('order.updated') }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -85,7 +85,7 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to orders_url }
+      format.html { redirect_to orders_url, notice: t('order.destroyed') }
       format.json { head :ok }
     end
   end
