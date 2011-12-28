@@ -37,7 +37,7 @@
     Precio <%= f.text_field :pricedist, id: "pricedist", size: 4 %>
     Iva <%= f.text_field :iva, id: "iva", size: 1, value: 21 %>
     Ganancia <%= f.text_field :earn, id: "earn", size: 1, value: 30 %>
-    $<%= f.text_field :price, id: "price", size: 4 %>
+    =>  $<%= f.text_field :price, id: "price", size: 4 %>
     <br />
   </div><br />
   <div class="field">
@@ -47,10 +47,11 @@
   </div><br />
 <div class="field">
   <%= f.label :stock %>
-  <%= f.number_field :stock, id: 'stock', size: 3 %>
-
+  <%= f.text_field :stock, id: 'stock', size: 3 %>
+  <% if params[:action] == 'edit' %>
   <%= t('new.stock') %>
-  <%= f.number_field :newstock, id: 'newstock', size: 3 %>
+  <%= f.text_field :newstock, id: 'newstock', size: 3 %>
+  <% end %>
 </div>
   <div class="actions">
     <%= f.submit t('product.save') %>

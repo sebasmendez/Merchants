@@ -1,12 +1,12 @@
 <tr class="producto">
   <td><h3><%= link_to product.name,edit_product_path(product) if params[:controller] == 'products' %>
   <%=  product.name if params[:controller] == 'store' %></h3></td>
-  <td><%= product.mark %></td>
-  <td><%= product.fragance %></td>
-  <td><%= product.category %></td>
-  <td><%= product.count %><%= product.uni %></td>
-  <td><%= number_to_currency(product.price) %></td>
-  <td><%= product.stock %></td>
+  <td> <%= product.mark %> </td>
+  <td> <%= product.fragance %> </td>
+  <td> <%= product.category %> </td>
+  <td> <%= product.count %><%= product.uni %> </td>
+  <td> <%= number_to_currency(product.price) %> </td>
+  <td> <%= product.stock %> </td>
   <% if params[:controller] == 'store' %>
   <td>
     <% if product_exist_in_line_item(product.id) == true %>

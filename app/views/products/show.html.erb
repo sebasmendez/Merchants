@@ -19,6 +19,10 @@
   <b><%= Product.human_attribute_name(:fragance) %></b>
   <%= @product.fragance %>
 </p>
+<p>
+  <b><%= Product.human_attribute_name(:category) %></b>
+  <%= @product.category %>
+</p>
 
 <p>
   <b><%= Product.human_attribute_name(:price) %></b>
@@ -29,6 +33,10 @@
   <b><%= Product.human_attribute_name(:count) %></b>
   <%= @product.count %>
   <%= @product.uni %>
+</p>
+<p>
+  <b>Stock</b>
+  <%= @product.stock %>
 </p>
 
 

@@ -69,9 +69,7 @@ class Order < ActiveRecord::Base
   def daily_box
     @order = Order.order('id DESC').first
     @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
-    @order.line_items.each do |li|
-      @daybox.count += li.quantity
-    end
+    @daybox.count = ((@daybox.count += 1) || 0)
     @daybox.total += @order.price
     @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
   end
