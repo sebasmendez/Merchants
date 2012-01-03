@@ -44,7 +44,7 @@ test:
 production:
   adapter: mysql2
   encoding: unicode
-  database: merchants_production
+  database: merchant_production
   pool: 5
-  username: adrian
-  password: carmoncho
+  username: sebas
+  password: malbec214
