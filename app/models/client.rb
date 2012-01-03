@@ -13,8 +13,8 @@ class Client < ActiveRecord::Base
   has_many :bills
   has_many :orders
   
-  scope :with_client, lambda { |search| where('LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?',
-      "#{search}%".downcase, "#{search}%".downcase, "#{search}%")}
+  scope :with_client, lambda { |search| where('LOWER(name) OR LOWER(last_name) LIKE ? OR document LIKE ?',
+      "#{search}%".downcase, "#{search}%")}
   
   attr_accessor :to_amount
   
@@ -30,7 +30,7 @@ class Client < ActiveRecord::Base
   
   def self.search(search)
      if search
-      where('LOWER(name) || LOWER(last_name) || document LIKE ?', "%#{search}%".downcase)
+      where('LOWER(name) OR LOWER(last_name) OR document LIKE ?', "%#{search}%".downcase)
     else
       scoped
     end
