@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
   
   def assign_own_price
     self.line_items.each do |li|
-      li.price = li.product.price
+      li.price = li.product.price.to_d
     end
   end
   

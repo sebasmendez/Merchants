@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
     self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0) + 1
   end
   
-  default_scope :order => 'name'
+  #default_scope :order => 'name'
 
   def not_referenced
     if line_items.empty?

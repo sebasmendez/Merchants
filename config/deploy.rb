@@ -13,9 +13,9 @@ set :deploy_via, :remote_cache
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :branch, 'master'
-role :web, "192.168.0.38"                          # Your HTTP server, Apache/etc
-role :app, "192.168.0.38"                          # This may be the same as your `Web` server
-role :db,  "192.168.0.38", :primary => true 
+role :web, "http://merchant-seba.no-ip.org/"                          # Your HTTP server, Apache/etc
+role :app, "http://merchant-seba.no-ip.org/"                          # This may be the same as your `Web` server
+role :db,  "http://merchant-seba.no-ip.org/", :primary => true 
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
