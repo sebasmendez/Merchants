@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   #validates
   has_many :line_items
   has_many :orders, through: :line_items
+  belongs_to :category
   
   validates :barcode, :name, :count, :presence => true
   validates :barcode, :uniqueness => true
@@ -37,7 +38,7 @@ class Product < ActiveRecord::Base
   
   def self.search(search)
     if search
-      where('LOWER(name) || LOWER(mark) || barcode || LOWER(category) LIKE ?', "%#{search}%".downcase)
+      where('LOWER(name) || LOWER(mark) || barcode || LOWER(fragance) LIKE ?', "%#{search}%".downcase)
     else
       scoped
     end

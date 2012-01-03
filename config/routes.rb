@@ -1,4 +1,6 @@
 Merchants::Application.routes.draw do
+  resources :categories
+
   resources :boxes
 
   resources :orders, :line_items, :carts,:bills, :products

@@ -3,7 +3,7 @@ class CreateClients < ActiveRecord::Migration
     create_table :clients do |t|
       t.string :name,:null => false
       t.string :last_name,:null => false
-      t.integer :document,:null => false
+      t.string :document,:null => false
       t.string :adress
       t.string :email
       t.string :location
@@ -18,6 +18,7 @@ class CreateClients < ActiveRecord::Migration
     end
     
     add_index :clients, :document, :unique => true
+    add_index :clients, :last_name
   end
 
   def self.down

@@ -30,7 +30,8 @@
   </div>
   <div class="field">
     <%= f.label :category %>
-    <%= f.select :category, category_select, include_blank: true %>
+    <%= f.select :category_id , Category.all.map {
+  |r| [r.categoria, r.id]}, include_blank: true %>
   </div>
   <br />
   <div class="field">

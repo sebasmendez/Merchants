@@ -13,6 +13,7 @@ class CreateProducts < ActiveRecord::Migration
     end
     
     add_index :products, :barcode, :unique => true
+    add_index :products, :name
   end
 
   def self.down

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228193132) do
+ActiveRecord::Schema.define(:version => 20120103162804) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -41,24 +41,33 @@ ActiveRecord::Schema.define(:version => 20111228193132) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "categoria"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["categoria"], :name => "index_categories_on_categoria", :unique => true
+
   create_table "clients", :force => true do |t|
-    t.string   "name",                         :null => false
-    t.string   "last_name",                    :null => false
-    t.string   "document",                     :null => false
+    t.string   "name",                                                        :null => false
+    t.string   "last_name",                                                   :null => false
+    t.string   "document",                                                    :null => false
     t.string   "adress"
     t.string   "email"
     t.string   "location"
     t.integer  "phone"
     t.string   "cellphone"
-    t.string   "client_kind",                  :null => false
+    t.string   "client_kind",                                                 :null => false
     t.string   "bill_kind"
-    t.decimal  "amount",      :default => 0.0
-    t.decimal  "spend",       :default => 0.0
+    t.decimal  "amount",      :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "spend",       :precision => 15, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "clients", ["document"], :name => "index_clients_on_document", :unique => true
+  add_index "clients", ["last_name"], :name => "index_clients_on_last_name"
 
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
@@ -86,26 +95,29 @@ ActiveRecord::Schema.define(:version => 20111228193132) do
     t.string   "bill_kind"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price"
-    t.boolean  "to_amount",  :default => false
+    t.decimal  "price",      :precision => 15, :scale => 2
+    t.boolean  "to_amount",                                 :default => false
   end
 
+  add_index "orders", ["client_id"], :name => "index_orders_on_client_id"
+
   create_table "products", :force => true do |t|
-    t.integer  "barcode",                     :null => false
-    t.string   "name",                        :null => false
+    t.integer  "barcode",                                                     :null => false
+    t.string   "name",                                                        :null => false
     t.string   "mark"
     t.string   "fragance"
-    t.decimal  "price",                       :null => false
-    t.decimal  "count",                       :null => false
+    t.decimal  "price",       :precision => 15, :scale => 2,                  :null => false
+    t.decimal  "count",       :precision => 15, :scale => 2,                  :null => false
     t.string   "uni"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "stock",      :default => 0.0
+    t.decimal  "stock",                                      :default => 0.0
     t.decimal  "iva"
     t.decimal  "pricedist"
-    t.string   "category"
+    t.integer  "category_id"
   end
 
   add_index "products", ["barcode"], :name => "index_products_on_barcode", :unique => true
+  add_index "products", ["name"], :name => "index_products_on_name"
 
 end

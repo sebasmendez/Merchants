@@ -1,0 +1,11 @@
+
+
+<p>
+  <b>Categoria:</b>
+  <%= @category.categoria %>
+</p>
+
+
+<%= link_to 'Editar', edit_category_path(@category) %> |
+<%= link_to 'Borrar', @category, confirm: 'Seguro??', method: :delete %> | 
+<%= link_to 'Volver', categories_path %>
