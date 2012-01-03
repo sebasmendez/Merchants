@@ -42,18 +42,18 @@ ActiveRecord::Schema.define(:version => 20111228193132) do
   end
 
   create_table "clients", :force => true do |t|
-    t.string   "name",                                                        :null => false
-    t.string   "last_name",                                                   :null => false
-    t.string   "document",                                                    :null => false
+    t.string   "name",                         :null => false
+    t.string   "last_name",                    :null => false
+    t.string   "document",                     :null => false
     t.string   "adress"
     t.string   "email"
     t.string   "location"
     t.integer  "phone"
     t.string   "cellphone"
-    t.string   "client_kind",                                                 :null => false
+    t.string   "client_kind",                  :null => false
     t.string   "bill_kind"
-    t.decimal  "amount",      :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "spend",       :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount",      :default => 0.0
+    t.decimal  "spend",       :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,21 +86,21 @@ ActiveRecord::Schema.define(:version => 20111228193132) do
     t.string   "bill_kind"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price",      :precision => 15, :scale => 2
-    t.boolean  "to_amount",                                 :default => false
+    t.decimal  "price"
+    t.boolean  "to_amount",  :default => false
   end
 
   create_table "products", :force => true do |t|
-    t.integer  "barcode",                                                    :null => false
-    t.string   "name",                                                       :null => false
+    t.integer  "barcode",                     :null => false
+    t.string   "name",                        :null => false
     t.string   "mark"
     t.string   "fragance"
-    t.decimal  "price",      :precision => 15, :scale => 2,                  :null => false
-    t.decimal  "count",      :precision => 15, :scale => 2,                  :null => false
+    t.decimal  "price",                       :null => false
+    t.decimal  "count",                       :null => false
     t.string   "uni"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "stock",                                     :default => 0.0
+    t.decimal  "stock",      :default => 0.0
     t.decimal  "iva"
     t.decimal  "pricedist"
     t.string   "category"

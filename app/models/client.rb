@@ -2,11 +2,13 @@ class Client < ActiveRecord::Base
   before_save :up_name
  
   #validates
-  validates :name, :last_name, :document, :client_kind, :presence => {
+  validates :name, :last_name, :document, :presence => {
     :message => 'must be present'
   }
   validates :document, :uniqueness => { :message => 'must be unique'}, 
     :numericality => { :message => 'must be number'}
+  
+  validates :amount, :to_amount, :spend, :phone, allow_nil: true, allow_blank: true, numericality: true
   
   has_many :bills
   has_many :orders

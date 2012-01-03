@@ -5,7 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'validates_timeliness'
-gem 'pg'
+gem 'sqlite3'
 gem 'will_paginate'
 gem 'jquery-rails'
 

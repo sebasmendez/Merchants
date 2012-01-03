@@ -31,7 +31,7 @@
   </div>
   <div class="field">
     <%= f.label :phone %>
-    <%= f.number_field :phone, placeholder: 'Only Numbers', size: 8 %>
+    <%= f.text_field :phone, placeholder: 'Only Numbers', size: 8 %>
     <%= f.label :cellphone %>
     <%= f.text_field :cellphone, placeholder: '055-5555555', size: 8 %>
   </div>
@@ -44,11 +44,11 @@
   </div>
   <div class="field">
     <%= f.label :amount %>
-    $<%= f.number_field :amount, placeholder: '0.00', id: 'amount', size: 8 %>
+    $<%= f.text_field :amount, placeholder: '0.00', id: 'amount', size: 8 %>
    <%= f.label :to_amount, t('others.to_amount'), id: 'notice_to_amount', hidden: true %> <%= f.text_field :to_amount, id: 'to_amount', hidden: true, size: 3 %>
   
     <%= f.label :spend %>
-    $<%= f.number_field :spend, placeholder: '0.00', size: 8 %>
+    $<%= f.text_field :spend, placeholder: '0.00', size: 8 %>
   </div><br /><br />
   <div class="actions">
     <%= f.submit %>

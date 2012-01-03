@@ -8,13 +8,12 @@
 #   gem install pg
 #       Choose the win32 build.
 #       Install PostgreSQL and put its /bin directory on your path.
+
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: merchants_development
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-  username: merchants
-  password: merch
+  timeout: 5000
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

@@ -4,6 +4,7 @@
   <tr>
     <th><%= Client.human_attribute_name(:client) %></th>
     <th>Día</th>
+    <th>Precio</th>
   </tr>
 
 <% @orders.each do |order| %>
@@ -11,6 +12,7 @@
     <td><%= link_to (order.client ? order.client.name.split.first + ' ' + order.client.last_name.split.first : 
  t('others.without_client')), order%></td>
   <td> <%= l order.created_at, format: :little %> </td>
+  <td> <%= number_to_currency(order.price) %> </td>
   </tr>
 <% end %>
 </table>
