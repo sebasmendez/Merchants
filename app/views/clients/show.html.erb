@@ -39,15 +39,7 @@
   <%= raw ("<b>" + Client.human_attribute_name(:cellphone) + "</b>" + @client.cellphone) if @client.cellphone.present? %>
 </p>
 
-<p>
-  <b><%= Client.human_attribute_name(:client_kind) %> </b>
-  <%= @client.client_kind %>
-</p>
 
-<p>
-  <b><%= Client.human_attribute_name(:bill_kind) %> </b>
-  <%= @client.bill_kind %>
-</p>
 
 <p>
   <b><%= Client.human_attribute_name(:amount) %> </b>
