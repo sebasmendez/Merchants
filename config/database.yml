@@ -43,8 +43,10 @@ test:
 
 production:
   adapter: mysql2
-  encoding: unicode
+  encoding: utf8
+  reconnect: false
   database: merchant_production
   pool: 5
   username: sebas
   password: malbec214
+  host: localhost
