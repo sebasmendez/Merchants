@@ -17,7 +17,7 @@ Merchants::Application.configure do
   
   # Enable assets fingerprinting
  	config.assets.digest = true
-
+  config.assets.compile = true
   # Defaults to Rails.root.join("public/assets")
   config.assets.manifest = 'app/assets'
   
