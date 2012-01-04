@@ -38,7 +38,8 @@ class Product < ActiveRecord::Base
   
   def self.search(search)
     if search
-      where('LOWER(name) OR LOWER(mark) OR barcode OR LOWER(fragance) LIKE ?', "#{search}%".downcase)
+      where("LOWER(name) LIKE ? OR LOWER(mark) LIKE ? OR barcode LIKE ? OR LOWER(fragance) LIKE ?",
+        "#{search}%".downcase, "#{search}%".downcase, "#{search}%", "#{search}%".downcase)
     else
       scoped
     end

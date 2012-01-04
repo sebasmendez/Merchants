@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  before_save :up_name
+  before_save :up_name, :down_bill
  
   #validates
   validates :name, :last_name, :document, :presence => {
@@ -13,8 +13,8 @@ class Client < ActiveRecord::Base
   has_many :bills
   has_many :orders
   
-  scope :with_client, lambda { |search| where('LOWER(name) OR LOWER(last_name) LIKE ? OR document LIKE ?',
-      "#{search}%".downcase, "#{search}%")}
+  scope :with_client, lambda { |search| where("LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?",
+      "#{search}%".downcase, "#{search}%".downcase, "#{search}%")}
   
   attr_accessor :to_amount
   
@@ -29,11 +29,16 @@ class Client < ActiveRecord::Base
   end
   
   def self.search(search)
-     if search
-      where("LOWER(name) OR LOWER(last_name) OR document LIKE ?", "#{search}%".downcase)
+    if search
+      where("LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?",
+        "#{search}%".downcase, "#{search}%".downcase, "#{search}%")
     else
       scoped
     end
+  end
+  
+  def down_bill
+    self.client_kind = '-'
   end
   
 end
