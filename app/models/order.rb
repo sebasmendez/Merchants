@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  
+  
   has_many :line_items, dependent: :destroy
   belongs_to :client
   accepts_nested_attributes_for :line_items, :allow_destroy => true

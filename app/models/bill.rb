@@ -10,7 +10,6 @@ class Bill < ActiveRecord::Base
   validates_date :date, :on => :create, :on => :today
   
   #relations
-  
   belongs_to :client
   
   #Methods

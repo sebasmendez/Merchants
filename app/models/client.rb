@@ -3,10 +3,10 @@ class Client < ActiveRecord::Base
  
   #validates
   validates :name, :last_name, :document, :presence => {
-    :message => 'must be present'
-  }
+    :message => 'must be present'  }
+  
   validates :document, :uniqueness => { :message => 'must be unique'}, 
-    :numericality => { :message => 'must be number'}
+    :numericality => { :message => 'must be number' }
   
   validates :amount, :to_amount, :spend, :phone, allow_nil: true, allow_blank: true, numericality: true
   

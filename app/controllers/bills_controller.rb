@@ -77,7 +77,6 @@ class BillsController < ApplicationController
   end
  
   def edit
-
    @bill = Bill.find(params[:id])
  end
 end

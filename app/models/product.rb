@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  
+  
   #before_destroy :not_referenced
   before_save :up_product
   #validates
