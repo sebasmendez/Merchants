@@ -46,7 +46,7 @@ production:
   encoding: utf8
   database: merchant
   username: rotsen
-  password: 12452
+  password: '12452'
   host: localhost
   pool: 5
   reconnect: false

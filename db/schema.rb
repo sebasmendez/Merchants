@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120103162804) do
+ActiveRecord::Schema.define(:version => 20120106162429) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                   :null => false
@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(:version => 20120103162804) do
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.decimal  "quantity",   :default => 1.0
     t.integer  "order_id"
     t.decimal  "price"
+    t.decimal  "quantity",   :default => 1.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "monthlies", :force => true do |t|
@@ -93,28 +93,28 @@ ActiveRecord::Schema.define(:version => 20120103162804) do
   create_table "orders", :force => true do |t|
     t.integer  "client_id"
     t.string   "bill_kind"
+    t.boolean  "to_amount",                                 :default => false
+    t.decimal  "price",      :precision => 15, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price",      :precision => 15, :scale => 2
-    t.boolean  "to_amount",                                 :default => false
   end
 
   add_index "orders", ["client_id"], :name => "index_orders_on_client_id"
 
   create_table "products", :force => true do |t|
-    t.integer  "barcode",                                                     :null => false
-    t.string   "name",                                                        :null => false
+    t.integer  "barcode",                      :null => false
+    t.string   "name",                         :null => false
     t.string   "mark"
     t.string   "fragance"
-    t.decimal  "price",       :precision => 15, :scale => 2,                  :null => false
-    t.decimal  "count",       :precision => 15, :scale => 2,                  :null => false
+    t.decimal  "price",                        :null => false
+    t.decimal  "count",                        :null => false
     t.string   "uni"
+    t.decimal  "stock",       :default => 0.0
+    t.decimal  "pricedist"
+    t.decimal  "iva"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "stock",                                      :default => 0.0
-    t.decimal  "iva"
-    t.decimal  "pricedist"
-    t.integer  "category_id"
   end
 
   add_index "products", ["barcode"], :name => "index_products_on_barcode", :unique => true
