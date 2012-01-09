@@ -7,11 +7,12 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= link_to category.categoria, category %></td>
+    <td><%= link_to category.categoria, edit_category_path(category) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+<%= will_paginate @categories %>
 
 <%= link_to t('label.new'), new_category_path %>
