@@ -46,11 +46,6 @@
   <%= number_to_currency(@client.amount) %>
 </p>
 
-<p>
-  <b><%= Client.human_attribute_name(:spend) %> </b>
-  <%= number_to_currency(@client.spend) %>
-</p>
-
 
 <%= link_to t('label.edit'), edit_client_path(@client) %> |
 <%= link_to t('label.destroy'), @client, :confirm => t('label.sure'), :method => :delete %> |

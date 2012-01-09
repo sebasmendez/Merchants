@@ -45,10 +45,11 @@
   <div class="field">
     <%= f.label :amount %>
     $<%= f.text_field :amount, placeholder: '0.00', id: 'amount', size: 8 %>
-   <%= f.label :to_amount, t('others.to_amount'), id: 'notice_to_amount', hidden: true %> <%= f.text_field :to_amount, id: 'to_amount', hidden: true, size: 3 %>
+   <%= f.label :to_amount, t('others.to_amount') if params[:action] == 'edit' %>
+   <%= f.text_field :to_amount, size: 3, id: 'to_amount' if params[:action] == 'edit' %>
   
-    <%= f.label :spend %>
-    $<%= f.text_field :spend, placeholder: '0.00', size: 8 %>
+    <%#= f.label :spend %>
+    <%#= f.text_field :spend, placeholder: '0.00', size: 8 %>
   </div><br /><br />
   <div class="actions">
     <%= f.submit %>

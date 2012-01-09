@@ -22,11 +22,10 @@ jQuery(function(){
             }else {
                 stock += parseFloat( $('#newstock').val() )
                 $('#stock').attr('value', stock); 
-                stock = original; }
+                stock = original;}
                 
         });
         
-        //render notifier
         
     
 });
