@@ -34,15 +34,16 @@
           <th><%= Cart.human_attribute_name(:quantity) %></th>
         </tr>
 
-      <%= f.fields_for :line_items do |li_f| %>
+      <%= f.fields_for :line_items, id: 'order_form' do |li_f| %>
         <tr>
           <td><h3><%= li_f.object.product.name %></h3></td>
           <td><%= li_f.object.product.mark %></td>
           <td><%= li_f.object.product.fragance %></td>
           <td><%= li_f.object.product.category %></td>
           <td><%= li_f.object.product.count %><%= li_f.object.product.uni %></td>
-          <td><%= number_to_currency(li_f.object.product.price) %></td>
-          <td><%= li_f.text_field :quantity, size: 1 %></td> 
+          <%#= number_to_currency(li_f.object.product.price) %>
+          <td>$<%= li_f.text_field :price, value: li_f.object.product.price, disabled: true, size: 3 %></td>
+          <td><%= li_f.text_field :quantity, size: 1, class: 'order_quantity' %></td> 
           <%= li_f.hidden_field :product_id %>
           <%= li_f.hidden_field :id %>
           
@@ -51,7 +52,8 @@
           
   </table>
     <% @cart = current_cart %>
-Total parcial: <%= number_to_currency(@cart.total_price) %>
+    
+    Total: <span id="order_total_price"> <%= number_to_currency(@cart.total_price) %> </span>
   </div>
   <br />
   <div class="actions">

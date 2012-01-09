@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :line_items
   belongs_to :category
   
-  validates :barcode, :name, :count, :presence => true
+  validates :barcode, :name, :count, :price, :presence => true
   validates :barcode, :uniqueness => true
   validates :barcode, :count, :numericality => true
   

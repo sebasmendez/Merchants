@@ -20,5 +20,24 @@ jQuery(function($){
                 
         });
         
+        // Calcule the total price in new order
+
+            var count = $('.order_quantity').length;
+            $('.order_quantity').live('change', function() {
+            var i = 0;
+            var total = 0;
+            for (i=0; i< count; i++){
+                var price = "#order_line_items_attributes_" + i + "_price";
+                var quantity = "#order_line_items_attributes_" + i + "_quantity";
+                price = parseFloat($(price).val());
+                quantity = parseFloat($(quantity).val());
+                parcial = parseFloat(price * quantity);
+                total = parseFloat(total + parcial);
+            }
+             total = (Math.round(total*100) /100).toFixed(2);
+             total = total.replace('.', ',');
+             $('#order_total_price').text('$' + total);
+        });
+        
         
 });
