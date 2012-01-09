@@ -3,19 +3,21 @@ default_run_options[:pty] = true
 
 set :application, "merchants"
 set :repository,  "git@github.com:Shelvak/Merchants.git"
-set :deploy_to, '/home/rotsen/ruby/www/merchant/'
+#set :deploy_to, '/home/rotsen/ruby/www/merchant/'
+set :deploy_to, '/home/eltonel/ruby/'
 set :scm, :git
-set :port, 26
-set :user, 'rotsen'
+#set :port, 26
+set :user, 'eltonel'
+#set :user, 'rotsen'
 set :deploy_via, :remote_cache
 #set :rails_env, :production
 #set :use_sudo, false
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :branch, 'master'
-role :web, "rotsenweb.no-ip.org"                          # Your HTTP server, Apache/etc
-role :app, "rotsenweb.no-ip.org"                          # This may be the same as your `Web` server
-role :db,  "rotsenweb.no-ip.org", :primary => true 
+role :web, "merchant-seba.no-ip.org"                          # Your HTTP server, Apache/etc
+role :app, "merchant-seba.no-ip.org"                          # This may be the same as your `Web` server
+role :db,  "merchant-seba.no-ip.org", :primary => true 
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
