@@ -8,9 +8,9 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :price, :null => false, :precision => 15, :scale => 2
       t.decimal :count,:null => false, :precision => 15, :scale => 2
       t.string :uni
-      t.decimal :stock, default: 0.0
-      t.decimal :pricedist
-      t.decimal :iva
+      t.decimal :stock, :precision => 15, :scale => 2, default: 0.0
+      t.decimal :pricedist, :precision => 15, :scale => 2
+      t.decimal :iva, :precision => 15, :scale => 2
       t.integer :category_id
 
       t.timestamps
