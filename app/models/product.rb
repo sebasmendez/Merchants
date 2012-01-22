@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   
   
-  #before_destroy :not_referenced
+  before_destroy :not_referenced
   before_save :up_product
   #validates
   has_many :line_items
@@ -21,8 +21,6 @@ class Product < ActiveRecord::Base
     self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0) + 1
   end
   
-  #default_scope :order => 'name'
-
   def not_referenced
     if line_items.empty?
       return true
@@ -40,8 +38,8 @@ class Product < ActiveRecord::Base
   
   def self.search(search)
     if search
-      where("LOWER(name) LIKE :q OR LOWER(mark) LIKE :q OR barcode LIKE :q OR LOWER(fragance) LIKE :q OR category_id LIKE :t",
-        q: "#{search}%".downcase, t: Category.where("LOWER(categoria) LIKE :c", c: "#{search}%".downcase).first )
+      where("LOWER(name) LIKE :q OR LOWER(mark) LIKE :q OR barcode LIKE :q OR LOWER(fragance) LIKE :q OR category_id = :t",
+        q: "#{search}%".downcase, t: Category.where("LOWER(categoria) LIKE :c", c: "#{search}%".downcase).first.try(:id) )
     else
       scoped
     end
