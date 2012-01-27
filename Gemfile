@@ -8,6 +8,7 @@ gem 'validates_timeliness'
 gem 'sqlite3'
 gem 'will_paginate'
 gem 'jquery-rails'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass'
