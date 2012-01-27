@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
   
   validates :barcode, :name, :count, :price, :presence => true
   validates :barcode, :uniqueness => true
-  validates :barcode, :count, :numericality => true
+  validates :count, :numericality => true
   
   attr_accessor :earn, :newstock
   
@@ -18,8 +18,10 @@ class Product < ActiveRecord::Base
   
   def initialize (attributes = nil, options = {})
     super(attributes, options)
-    self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0) + 1
+    self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0).to_i + 1
   end
+  
+ 
   
   def not_referenced
     if line_items.empty?
