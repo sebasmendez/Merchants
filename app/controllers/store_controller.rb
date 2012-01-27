@@ -12,7 +12,7 @@ class StoreController < ApplicationController
         format.js {render js: @products}
         format.html
       end
-     
+      
   end
   
 end
