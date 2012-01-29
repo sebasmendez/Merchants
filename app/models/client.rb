@@ -3,19 +3,19 @@ class Client < ActiveRecord::Base
   after_save :plus_to_boxes
  
   #validates
-  validates :name, :last_name, :document, :presence => {
-    :message => 'must be present'  }
+  validates :name, :last_name, :document, :presence => true
   
-  validates :document, :uniqueness => { :message => 'must be unique'}, 
-    :numericality => { :message => 'must be number' }
+  validates :document, :uniqueness => true, 
+              :numericality => true
   
-  validates :amount, :to_amount, :spend, :phone, allow_nil: true, allow_blank: true, numericality: true
+  validates :amount, :to_amount, :spend, :phone, allow_nil: true,
+              allow_blank: true, numericality: true
   
   has_many :bills
   has_many :orders
   
-  scope :with_client, lambda { |search| where("LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?",
-      "#{search}%".downcase, "#{search}%".downcase, "#{search}%")}
+  scope :with_client, lambda { |search| where("LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
+      q: "#{search}%".downcase)}
   
   attr_accessor :to_amount
   
@@ -31,8 +31,8 @@ class Client < ActiveRecord::Base
   
   def self.search(search)
     if search
-      where("LOWER(name) LIKE ? OR LOWER(last_name) LIKE ? OR document LIKE ?",
-        "#{search}%".downcase, "#{search}%".downcase, "#{search}%")
+      where("LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
+        q: "#{search}%".downcase)
     else
       scoped
     end
