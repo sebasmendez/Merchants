@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
   before_save :up_name, :down_bill
+  after_save :plus_to_boxes
  
   #validates
   validates :name, :last_name, :document, :presence => {
@@ -40,5 +41,19 @@ class Client < ActiveRecord::Base
   def down_bill
     self.client_kind = '-'
   end
-  
+  def plus_to_boxes
+    @to_amount = self.to_amount
+    if @to_amount.present?
+      @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
+      @daybox.count = ((@daybox.count += 1) || 0)
+      @daybox.total += @to_amount.to_d
+      @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
+      if @to_amount.to_d > 0
+      @monthly = Monthly.find_or_create_by_month_and_year(Date.today.month, Date.today.year)
+      @monthly.sold ||= 0
+      @monthly.sold += @to_amount.to_d
+      @monthly.update_attributes(sold: @monthly.sold)
+      end
+    end
+  end
 end

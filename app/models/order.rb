@@ -31,6 +31,7 @@ class Order < ActiveRecord::Base
       line_items.build(item.attributes.merge(id: nil))
     end
   end
+
   
   def total_price
     self.price = self.line_items.to_a.sum { |item| item.total_price}
@@ -69,11 +70,13 @@ class Order < ActiveRecord::Base
   end
   
   def daily_box
-    @order = Order.order('id DESC').first
-    @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
-    @daybox.count = ((@daybox.count += 1) || 0)
-    @daybox.total += @order.price
-    @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
+    unless self.to_amount
+      @order = Order.order('id DESC').first
+      @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
+      @daybox.count = ((@daybox.count += 1) || 0)
+      @daybox.total += @order.price
+      @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
+    end
   end
 
   
