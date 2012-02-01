@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  require 'cups'
   
   
   has_many :line_items, dependent: :destroy

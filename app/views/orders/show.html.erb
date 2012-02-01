@@ -7,7 +7,7 @@
 <p>
   <%#= Bill.human_attribute_name(:bill_kind) %> <%#= @order.bill_kind %>
 </p>
-<table>
+<table class="printable">
   <tr>
   <th><%= Product.human_attribute_name(:name) %> </th>
   <th><%= Product.human_attribute_name(:mark) %> </th>
@@ -25,5 +25,7 @@
   <tr><td colspan="4">Total: <%= number_to_currency(@order.price) %></td></tr>
   
 </table>
+<%#= link_to_function 'Imprimir', "javascript:window.print('.printable')" %>
+<%= link_to 'Imprimir', '#', id: 'impri' %>
 <%= link_to t('label.edit'), edit_order_path(@order) %> |
 <%= link_to t('label.back'), orders_path %>

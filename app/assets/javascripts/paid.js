@@ -4,7 +4,9 @@ jQuery(function($){
             $(this).parents('tr:first').replaceWith(data);
         });
         
-      
+        $('#impri').live('click', function(){
+            javascript:window.print($('.printable'));
+        });
         // sum to amount
         var amount = parseFloat($('#amount').val());
         var original = parseFloat($('#amount').val());

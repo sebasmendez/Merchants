@@ -46,6 +46,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    cups (0.0.7)
     daemon_controller (0.2.6)
     erubis (2.7.0)
     execjs (1.2.13)
@@ -139,6 +140,7 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   coffee-rails
+  cups
   jquery-rails
   mysql2
   passenger
