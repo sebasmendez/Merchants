@@ -14,9 +14,8 @@ module ProductsHelper
     end
   end
   
-  def category_select
-    ['Gaseosas', 'Fiambres', 'Galletas', 'Cigarrillos']
-  end
+ 
+  
   
   
 end

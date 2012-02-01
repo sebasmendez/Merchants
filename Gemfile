@@ -8,7 +8,11 @@ gem 'validates_timeliness'
 gem 'sqlite3'
 gem 'will_paginate'
 gem 'jquery-rails'
+<<<<<<< .merge_file_e63JMT
 gem 'cups'
+=======
+gem 'newrelic_rpm'
+>>>>>>> .merge_file_obXoUV
 
 group :assets do
   gem 'sass'

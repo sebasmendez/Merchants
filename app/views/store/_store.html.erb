@@ -1,7 +1,7 @@
 <h1><%= t 'titles.store'%></h1>
 
   <%= form_tag "/store", method: :get do %>
-    <%= text_field_tag :search, params[:search], autofocus: true %>
+    <%= text_field_tag :search, params[:search], autofocus: true, class: 'search' %>
     <%= submit_tag t "label.search" %>
   <% end %>
 <br />

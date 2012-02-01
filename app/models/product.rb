@@ -3,6 +3,8 @@ class Product < ActiveRecord::Base
   
   before_destroy :not_referenced
   before_save :up_product
+
+  
   #validates
   has_many :line_items
   has_many :orders, through: :line_items
@@ -10,7 +12,7 @@ class Product < ActiveRecord::Base
   
   validates :barcode, :name, :count, :price, :presence => true
   validates :barcode, :uniqueness => true
-  validates :barcode, :count, :numericality => true
+  validates :count, :numericality => true
   
   attr_accessor :earn, :newstock
   
@@ -18,8 +20,10 @@ class Product < ActiveRecord::Base
   
   def initialize (attributes = nil, options = {})
     super(attributes, options)
-    self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0) + 1
+    self.barcode ||= (Product.order('barcode DESC').first.try(:barcode) || 0).to_i + 1
   end
+  
+ 
   
   def not_referenced
     if line_items.empty?
@@ -37,9 +41,17 @@ class Product < ActiveRecord::Base
   end
   
   def self.search(search)
-    if search
-      where("LOWER(name) LIKE :q OR LOWER(mark) LIKE :q OR barcode LIKE :q OR LOWER(fragance) LIKE :q OR category_id = :t",
-        q: "#{search}%".downcase, t: Category.where("LOWER(categoria) LIKE :c", c: "#{search}%".downcase).first.try(:id) )
+    if search.present? # Mucho mejor, si search es " " (un espacio), da true, de esta forma no =)
+      includes(:category).where(
+        [
+          "LOWER(#{table_name}.name) LIKE :q",
+          "LOWER(#{table_name}.mark) LIKE :q",
+          "#{table_name}.barcode LIKE :q",
+          "LOWER(#{table_name}.fragance) LIKE :q",
+          "LOWER(#{Category.table_name}.categoria) LIKE :q"
+        ].join(' OR '),
+        q: "#{search}%".downcase
+      )
     else
       scoped
     end

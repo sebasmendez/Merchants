@@ -16,12 +16,11 @@
 
 <p>
   
-  <%= raw ("<b>" + Client.human_attribute_name(:adress) + "</b>" + @client.adress) if @client.adress.present? %>
+  <%= raw ("<b>" + Client.human_attribute_name(:adress) + "</b> " + @client.adress) if @client.adress.present? %>
 </p>
 
 <p>
-  <b><%= Client.human_attribute_name(:email) %> </b>
-  <%= @client.email %>
+  <%= raw '<b>' + Client.human_attribute_name(:email) + '</b>' + @client.email if @client.email.present? %>
 </p>
 
 <p>

@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   
   before_save :total_price, :assign_own_price
   before_validation :assign_client
-  after_save :plus_amount_to_monthly, :plus_price_to_client, :discount_stock, :daily_box
+  after_save :plus_price_to_client, :discount_stock, :daily_box
   
   
   attr_accessor :auto_client
@@ -32,17 +32,10 @@ class Order < ActiveRecord::Base
       line_items.build(item.attributes.merge(id: nil))
     end
   end
+
   
   def total_price
     self.price = self.line_items.to_a.sum { |item| item.total_price}
-  end
-  
-  def plus_amount_to_monthly
-    @order = Order.order('id DESC').first
-    @monthly = Monthly.find_or_create_by_month_and_year(@order.created_at.month, @order.created_at.year)
-    @monthly.sold ||= 0
-    @monthly.sold += @order.price
-    @monthly.update_attributes(sold: @monthly.sold)
   end
   
   def plus_price_to_client
@@ -70,11 +63,17 @@ class Order < ActiveRecord::Base
   end
   
   def daily_box
-    @order = Order.order('id DESC').first
-    @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
-    @daybox.count = ((@daybox.count += 1) || 0)
-    @daybox.total += @order.price
-    @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
+    unless self.to_amount
+      @order = Order.order('id DESC').first
+      @daybox = Box.find_or_create_by_day_and_month_and_year(Date.today.day, Date.today.month, Date.today.year)
+      @daybox.count = ((@daybox.count += 1) || 0)
+      @daybox.total += @order.price
+      @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
+      @monthly = Monthly.find_or_create_by_month_and_year(@order.created_at.month, @order.created_at.year)
+      @monthly.sold ||= 0
+      @monthly.sold += @order.price
+      @monthly.update_attributes(sold: @monthly.sold)
+    end
   end
 
   

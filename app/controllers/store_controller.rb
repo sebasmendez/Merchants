@@ -13,6 +13,7 @@ class StoreController < ApplicationController
         format.html
       end
      
+#     @cart.add_product(@products.first.id) if @products.size == 1
   end
   
 end

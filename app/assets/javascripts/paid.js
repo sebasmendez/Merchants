@@ -4,9 +4,21 @@ jQuery(function($){
             $(this).parents('tr:first').replaceWith(data);
         });
         
+<<<<<<< .merge_file_cp34D7
         $('#impri').live('click', function(){
             javascript:window.print($('.printable'));
         });
+=======
+        // Add to cart when search is barcode
+        var count = $('.add_button').length;
+        if (count == 1){ $('#add_button').submit(); 
+            location.reload();
+        }
+        
+        // Clean and focus search
+         $('.search').attr('value', null).focus();
+      
+>>>>>>> .merge_file_EZ0HO6
         // sum to amount
         var amount = parseFloat($('#amount').val());
         var original = parseFloat($('#amount').val());
