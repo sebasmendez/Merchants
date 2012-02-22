@@ -48,8 +48,8 @@ production:
 #  database: merchant
   username: eltonel
   password: 'malbec214'
-  username: rotsen
-  password: '12452'
+#  username: rotsen
+#  password: '12452'
   host: localhost
   pool: 5
   reconnect: false
