@@ -32,7 +32,7 @@ class LineItemsController < ApplicationController
   end
 
   def create
-    @cart = current_cart
+    @cart ||= current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
     
@@ -63,7 +63,7 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-    @cart = current_cart
+    @cart ||= current_cart
     @line_item = LineItem.find_by_product_id(params[:id])
     @line_item.destroy
 

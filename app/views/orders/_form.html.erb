@@ -51,7 +51,7 @@
         <% end %>
           
   </table>
-    <% @cart = current_cart %>
+    <% @cart ||= current_cart %>
     
     Total: <span id="order_total_price"> <%= number_to_currency(@cart.total_price) %> </span>
   </div>

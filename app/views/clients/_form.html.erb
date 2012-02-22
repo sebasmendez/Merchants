@@ -1,7 +1,10 @@
 <%= form_for(@client) do |f| %>
   <% if @client.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+      <h2><%= raw 'Fueron encontrados ' +  @client.errors.count.to_s + 
+              ' errores :' if @client.errors.count > 1%>
+            <%= raw 'Fue encontrado 1 error :' if @client.errors.count == 1%>
+      </h2>
 
       <ul>
       <% @client.errors.full_messages.each do |msg| %>

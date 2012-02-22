@@ -1,11 +1,11 @@
 
 
 <p>
-  <b>Categoria:</b>
+  <b>Categoría:</b>
   <%= @category.categoria %>
 </p>
 
 
-<%= link_to 'Editar', edit_category_path(@category) %> |
-<%= link_to 'Borrar', @category, confirm: 'Seguro??', method: :delete %> | 
-<%= link_to 'Volver', categories_path %>
+<%= link_to I18n.t('label.edit'), edit_category_path(@category) %> |
+<%= link_to I18n.t('label.delete'), @category, confirm: I18n.t('label.sure'), method: :delete %> | 
+<%= link_to I18n.t('label.back'), categories_path %>

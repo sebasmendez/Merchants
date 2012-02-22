@@ -30,12 +30,12 @@
 
 <p>
   
-  <%= raw ("<b>" + Client.human_attribute_name(:phone) + "</b>" + @client.phone) if @client.phone.present? %>
+  <%= raw ("<b>" + Client.human_attribute_name(:phone) + "</b>" + @client.phone.to_s) if @client.phone.present? %>
 </p>
 
 <p>
   
-  <%= raw ("<b>" + Client.human_attribute_name(:cellphone) + "</b>" + @client.cellphone) if @client.cellphone.present? %>
+  <%= raw ("<b>" + Client.human_attribute_name(:cellphone) + "</b>" + @client.cellphone.to_s) if @client.cellphone.present? %>
 </p>
 
 

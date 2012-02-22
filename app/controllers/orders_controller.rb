@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @cart = current_cart
+    @cart ||= current_cart
       if @cart.line_items.empty?
         redirect_to store_url, notice: t('cart.emplied')
         return
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to "/orders/#{@order.id}", notice: t('order.created') }
         format.json { render json: @order, status: :created, location: @order }
       else
-        @cart = current_cart
+        @cart ||= current_cart
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

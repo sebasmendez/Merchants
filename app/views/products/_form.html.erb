@@ -1,7 +1,10 @@
 <%= form_for(@product) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= raw 'Fueron encontrados ' +  @product.errors.count.to_s + 
+              ' errores :' if @product.errors.count > 1%>
+            <%= raw 'Fue encontrado 1 error :' if @product.errors.count == 1%>
+      </h2>
 
       <ul>
       <% @product.errors.full_messages.each do |msg| %>
@@ -54,6 +57,6 @@
   <% end %>
 </div>
   <div class="actions">
-    <%= f.submit t('product.save') %>
+    <%= f.submit %>
   </div>
 <% end %>

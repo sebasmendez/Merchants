@@ -1,53 +1,12 @@
 'es':
-  models:
-    order:
-      order: "Orden"
-      orders: "Ordenes"
-    client:
-      client: 'Cliente'
-      clients: 'Clientes'
-      new: 'Nuevo Cliente'
-      name: 'Nombre'
-      last_name: 'Apellido'
-      document: 'Documento'
-      phone: 'Teléfono'
-      cellphone: 'Celular'
-      adress: 'Dirección'
-      location: 'Departamento'
-      client_kind: 'Tipo Cliente'
-      bill_kind: 'Factura'
-      amount: 'Monto'
-      spend: 'Gastado'
-    product:
-        new: 'Nuevo Producto'
-        products: "Productos"
-        product: 'Producto'
-        barcode: 'Código de barra'
-        mark: 'Marca'
-        name: 'Nombre'
-        fragance: 'Fragancia'
-        price: 'Precio'
-        count: 'Cantidad'
-        uni: 'Unidad'
-        save: 'Guardar Producto'
-    monthly:
-        monthlies: "Mensualidad"
-        months: "Mensualidades"
-        month: 'Mes'
-        year: 'Año'
-        sold: 'Vendido'
-        bought: 'Comprado'
-        to_pay: 'A pagar'
-        paid: 'Pagado?'
-    bill:
-        bill: "Factura"
-        bills: "Facturas"
-        barcode: "Nº"
-        date: "Día"
-        amount: "Monto"
-        client: "Cliente"
-        bill_kind: "Tipo de factura"
   activerecord:
+    models:
+      category: 'Categoría'
+      bill: 'Factura'
+      monthly: 'Mensualidad'
+      product: 'Producto'
+      client: 'Cliente'
+      order: 'Orden'
     attributes:
       order:
         order: "Orden"
@@ -97,6 +56,8 @@
         count: 'Cantidad'
         uni: 'Unidad'
         category: "Categoría"
+      category:
+        category: 'Categoría'
   label:
     back: 'Volver'
     cancel: 'Cancelar'
@@ -130,9 +91,7 @@
   cart:
     empty: 'Vaciar'
     buy: 'Comprar'
-    invalid: "Carrito invalido"
-    create: 'Carrito Creado'
-    emptied: 'Vaciado'
+    emptied: 'Carrito vaciado'
   order:
     created: 'Orden Creada'
     updated: 'Orden actualizada'
