@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'newrelic_rpm'
+gem 'wicked_pdf'
 
 group :assets do
   gem 'sass'

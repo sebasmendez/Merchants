@@ -132,6 +132,7 @@ GEM
       multi_json (>= 1.0.2)
     validates_timeliness (3.0.8)
       timeliness (~> 0.3.4)
+    wicked_pdf (0.7.2)
     will_paginate (3.0.2)
 
 PLATFORMS
@@ -151,4 +152,5 @@ DEPENDENCIES
   therubyracer
   uglifier
   validates_timeliness
+  wicked_pdf
   will_paginate

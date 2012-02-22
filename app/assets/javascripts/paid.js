@@ -4,11 +4,11 @@ jQuery(function($){
             $(this).parents('tr:first').replaceWith(data);
         });
         
-        // Add to cart when search is barcode
-        var count = $('.add_button').length;
-        if (count == 1){ $('#add_button').submit(); 
-            location.reload();
-        }
+//        // Add to cart when search is barcode
+//        var count = $('.add_button').length;
+//        if (count == 1){ $('#add_button').submit(); 
+//            location.reload();
+//        }
         
         // Clean and focus search
          $('.search').attr('value', null).focus();

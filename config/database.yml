@@ -44,10 +44,10 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-#  database: merchant_production
-  database: merchant
-#  username: eltonel
-#  password: 'malbec214'
+  database: merchant_production
+#  database: merchant
+  username: eltonel
+  password: 'malbec214'
   username: rotsen
   password: '12452'
   host: localhost

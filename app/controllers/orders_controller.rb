@@ -18,6 +18,9 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @order }
+      format.pdf do
+        render pdf: 'orden', layout: 'pdf', wkhtmltopdf: '/usr/local/bin/wkhtmltopdf'
+      end
     end
   end
 
