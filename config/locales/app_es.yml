@@ -92,6 +92,7 @@
     empty: 'Vaciar'
     buy: 'Comprar'
     emptied: 'Carrito vaciado'
+    total: 'Sub Total: '
   order:
     created: 'Orden Creada'
     updated: 'Orden actualizada'

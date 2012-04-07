@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
 
   def index
-    @line_items = LineItem.order('name ASC').paginate(page: params[:page], per_page: 10)
+    @line_items = LineItem.order('name ASC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -71,6 +71,4 @@ class LineItemsController < ApplicationController
       format.js
     end
   end
-  
-  
 end

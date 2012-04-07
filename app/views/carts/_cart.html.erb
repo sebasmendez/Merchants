@@ -1,27 +1,27 @@
-
-  <% if @cart.line_items.size > 0 %>
+<% if @cart.line_items.size > 0 %>
   <h1><%= t('titles.cart') %></h1>
   <table>
-  
-<tr>
-  <th><%= Product.human_attribute_name(:name) %></th> 
-  <th><%= Product.human_attribute_name(:mark) %></th> 
-  <th><%= Product.human_attribute_name(:price) %></th>
-</tr>
-
-<% @cart.line_items.each do |item|  %>
-
-<tr>
-  <td><%= item.product.name %></td>
-  <td><%= item.product.mark %></td>
-  <td><%= number_to_currency(item.product.price)  %></td>
-  <% end %>
-</tr>
-
-</table>
-<%= button_to t('cart.buy'), new_order_path, method: :get %>
-<%= button_to t('cart.empty'), @cart, method: :delete, confirm: t('label.sure') %>
-<%#= will_paginate @cart %>
+    <tr>
+      <th><%= Product.human_attribute_name(:name) %></th> 
+      <th><%= Product.human_attribute_name(:mark) %></th> 
+      <th><%= Product.human_attribute_name(:price) %></th>
+    </tr>
+    <% @cart.line_items.each do |item|  %>
+      <tr>
+        <td><%= truncate item.product.name, length: 15 %></td>
+        <td><%= truncate item.product.mark, length: 15 %></td>
+        <td><%= number_to_currency item.product.price  %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td colspan="3">
+          <%= t('cart.total') %>
+          <%= number_to_currency @cart.total_price %>
+        </td>
+      </tr>
+  </table>
+  <%= button_to t('cart.buy'), new_order_path, method: :get %>
+  <%= button_to t('cart.empty'), @cart, method: :delete, confirm: t('label.sure') %>
 <% end %>
 
 

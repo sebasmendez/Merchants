@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.xml
-  
+
   proc {|c| c.request.xhr? ? false : 'application'}
   
+  # GET /products
+  # GET /products.xml
   def index
     @products = Product.search(params[:search]).order('name ASC').paginate(page: params[:page], per_page: 15)
 
@@ -83,5 +83,4 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
 end

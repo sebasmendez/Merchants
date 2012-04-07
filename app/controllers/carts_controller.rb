@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @cart = Cart.order('name ASC').paginate(page: params[:page], per_page: 10)
+    @cart = Cart.order('name ASC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,5 +82,4 @@ class CartsController < ApplicationController
       format.json { head :ok }
     end
   end
- 
 end
