@@ -44,7 +44,7 @@
   <b><%= Client.human_attribute_name(:amount) %> </b>
   <%= number_to_currency(@client.amount) %>
 </p>
-
+<%= render 'client_orders' if @client.orders.count > 0 %>
 
 <%= link_to t('label.edit'), edit_client_path(@client) %> |
 <%= link_to t('label.destroy'), @client, :confirm => t('label.sure'), :method => :delete %> |
