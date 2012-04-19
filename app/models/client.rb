@@ -58,7 +58,7 @@ class Client < ActiveRecord::Base
   end
 
   def add_deposit
-    if self.to_amount
+    if self.to_amount.present? && self.to_amount.to_d != 0
       Payment.create(client_id: self.id, deposit: self.to_amount)
     end
   end
