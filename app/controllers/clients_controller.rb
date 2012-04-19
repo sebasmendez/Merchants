@@ -16,6 +16,7 @@ class ClientsController < ApplicationController
   def show
     @client = Client.find(params[:id])
     @client_orders = @client.orders.order('created_at DESC').paginate(page: params[:page], per_page: 5)
+    @client_payments = @client.payments.order('created_at DESC').paginate(page: params[:page], per_page: 5)
 
     respond_to do |format|
       format.html # show.html.erb

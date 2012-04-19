@@ -1,5 +1,15 @@
 table.orders_for_client {
-  margin: auto auto ;
+  position: fixed;
+  top: 5em;
+  left: 25em;   
+  td {
+    border: 1.5px solid grey;
+  }
+}
+table.payments_for_client {
+  position: fixed;
+  top: 5em;
+  left: 50em;   
   td {
     border: 1.5px solid grey;
   }

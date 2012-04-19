@@ -1,0 +1,43 @@
+<div id="for_client_tables">
+	<% if @client_orders.present? %>
+		<table class="orders_for_client">
+			<tr><th colspan="3"> Órdenes </th></tr>
+			<tr>
+				<th>Orden</th>
+				<th>Fecha</th>
+				<th>Monto</th>
+				<th>Lo Pago?</th>
+			</tr>
+			<% @client_orders.each do |order| %>
+				<tr>
+					<td><%= link_to order.id, order_path(order.id) %></td>
+					<td><%= l order.created_at, format: :little %></td>
+					<td><%= number_to_currency order.price %></td>
+					<td><%= order.to_amount ? 'Si' : 'No' %></td>
+				</tr>
+			<% end %>
+			<% if @client_orders.count > 5 %>
+				<tr><td colspan="3"><%= will_paginate(@client_orders) %></td></tr>
+			<% end %>
+		</table>
+	<% end %>
+
+	<% if @client_payments.present? %>
+		<table class="payments_for_client">
+			<tr><th colspan="3"> Pagos </th></tr>
+			<tr>
+				<th>Fecha</th>
+				<th>Monto</th>
+			</tr>
+			<% @client_payments.each do |payments| %>
+				<tr>
+					<td><%= l payments.created_at, format: :little %></td>
+					<td><%= number_to_currency payments.deposit %></td>
+				</tr>
+			<% end %>
+			<% if @client_payments.count > 5 %>
+				<tr><td colspan="3"><%= will_paginate(@client_payments) %></td></tr>
+			<% end %>
+		</table>
+	<% end %>
+</div>

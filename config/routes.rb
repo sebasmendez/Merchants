@@ -1,4 +1,6 @@
 Merchants::Application.routes.draw do
+  resources :payments
+
   resources :categories
 
   resources :boxes

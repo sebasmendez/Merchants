@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   before_save :up_name, :down_bill
-  after_save :plus_to_boxes
+  after_save :plus_to_boxes, :add_deposit
  
   #validates
   validates :name, :last_name, :document, :presence => true
@@ -13,6 +13,7 @@ class Client < ActiveRecord::Base
   
   has_many :bills
   has_many :orders
+  has_many :payments
   
   scope :with_client, lambda { |search| where("LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
       q: "#{search}%".downcase)}
@@ -53,6 +54,12 @@ class Client < ActiveRecord::Base
       @monthly.sold ||= 0
       @monthly.sold += @to_amount.to_d
       @monthly.update_attributes(sold: @monthly.sold)
+    end
+  end
+
+  def add_deposit
+    if self.to_amount
+      Payment.create(client_id: self.id, deposit: self.to_amount)
     end
   end
 end
