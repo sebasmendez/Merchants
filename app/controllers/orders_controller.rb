@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  
+  layout ->(c) {c.request.xhr? ? false : 'application'}
+  
   # GET /orders
   # GET /orders.json
   def index
@@ -93,4 +96,11 @@ class OrdersController < ApplicationController
     end
   end
   
+  def autocomplete_for_client
+    @clients = Client.with_client(params[:q])
+       
+    respond_to do |format|
+      format.json { render json: @clients }
+    end
+  end
 end

@@ -6,6 +6,13 @@ table.orders_for_client {
     border: 1.5px solid grey;
   }
 }
+.ui-autocomplete {
+  small {
+    display: block;
+    font-size: .75em;
+    color: #999999;
+  }
+}
 table.payments_for_client {
   position: fixed;
   top: 5em;

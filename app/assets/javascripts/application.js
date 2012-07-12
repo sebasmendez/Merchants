@@ -10,3 +10,4 @@
 //= require paid
 //= require cart
 //= require generals
+//= require autocomplete

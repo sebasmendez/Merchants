@@ -1,15 +1,13 @@
 class Order < ActiveRecord::Base
   
-  
-  has_many :line_items, dependent: :destroy
   belongs_to :client
+  has_many :line_items, dependent: :destroy
   accepts_nested_attributes_for :line_items, :allow_destroy => true
   
   
   before_save :total_price, :assign_own_price
   before_validation :assign_client
   after_save :plus_price_to_client, :discount_stock, :daily_box, :create_bill
-  
   
   attr_accessor :auto_client, :send_print, :discount
   

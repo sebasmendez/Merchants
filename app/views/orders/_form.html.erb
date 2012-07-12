@@ -13,7 +13,13 @@
 <%#<div class="order_form">%>
   <div class="field">
     <%= Client.human_attribute_name(:client) %>  
-    <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>
+    <%= f.text_field :auto_client, class: 'autocomplete-field', 
+        autocomplete: 'off', value: @order.client,
+        data: { 
+          'autocomplete-id-target' => '#order_client_id',
+          'autocomplete-url' => autocomplete_for_client_clients_path(format: :json)
+        } %>
+    <%= f.hidden_field :client_id, class: 'autocomplete-id' %>
     <%= f.select :bill_kind, bill_for_select, 
       selected: (@order.try(:client_id).try(:bill_kind) || 'B') %>
   </div>

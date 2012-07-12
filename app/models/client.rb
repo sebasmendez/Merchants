@@ -1,7 +1,4 @@
-class Client < ActiveRecord::Base
-  
-  find_by_autocomplete :name, limit: 4
-  
+class Client < ActiveRecord::Base  
   before_save :up_name, :down_bill
   after_save :plus_to_boxes, :add_deposit
  
@@ -18,20 +15,25 @@ class Client < ActiveRecord::Base
   has_many :orders
   has_many :payments
   
-  scope :with_client, lambda { |search| where("LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
-      q: "#{search}%".downcase)}
+  scope :with_client, ->(search) { where(
+      "LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
+      q: "#{search}%".downcase
+    ) }
   
   attr_accessor :to_amount
-  alias_method :label, :to_s
+  
+  
   #methods
   def to_s
     self.name + ' ' + self.last_name
   end
   
+  alias_method :label, :to_s
+  
   def as_json(options= nil)
     default_options = {
       only: [:id],
-      methods: [:label, :informal, :free_credit]
+      methods: [:label, :document, :bill_kind]
     }
     
     super(default_options.merge(options || {}))

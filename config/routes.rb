@@ -1,21 +1,21 @@
 Merchants::Application.routes.draw do
-  resources :payments, :categories, :boxes, :orders, 
-    :line_items, :carts, :products
+  resources :payments, :categories, :boxes,
+    :line_items, :carts, :products, :orders
   
   resources :bills, except: [:edit, :destroy]
-  #get "store/index"
+  
   match 'store' => 'store#index', :via => 'get' 
   
   resources :monthlies do
     get :paid, on: :member
   end
   
-  resources :clients do
-    get :autocomplete, on: :collection
-  end
+#  resources :clients do
+#    get :autocomplete_for_client_name, on: :collection
+#  end
   
-  resources :orders do
-    get :autocomplete_for_client_name, on: :collection
+  resources :clients do
+    get :autocomplete_for_client, on: :collection
   end
 
   # The priority is based upon order of creation:

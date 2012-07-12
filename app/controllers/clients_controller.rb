@@ -1,18 +1,20 @@
 class ClientsController < ApplicationController
  
+  layout ->(c) {c.request.xhr? ? false : 'application'}
+  
   # GET /clients
-  # GET /clients.xml
+  # GET /clients.json
   def index
     @clients = Client.search(params[:search]).order('last_name ASC, name ASC').paginate(page: params[:page], per_page: 15)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render json: @clients }
+      format.json  { render json: @clients }
     end
   end
 
   # GET /clients/1
-  # GET /clients/1.xml
+  # GET /clients/1.json
   def show
     @client = Client.find(params[:id])
     @client_orders = @client.orders.order('created_at DESC').paginate(page: params[:page], per_page: 5)
@@ -20,18 +22,18 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render json: @client }
+      format.json  { render json: @client }
     end
   end
 
   # GET /clients/new
-  # GET /clients/new.xml
+  # GET /clients/new.json
   def new
     @client = Client.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render json: @client }
+      format.json  { render json: @client }
     end
   end
 
@@ -41,54 +43,54 @@ class ClientsController < ApplicationController
   end
 
   # POST /clients
-  # POST /clients.xml
+  # POST /clients.json
   def create
     @client = Client.new(params[:client])
 
     respond_to do |format|
       if @client.save
         format.html { redirect_to(@client, :notice => t('client.create')) }
-        format.xml  { render json: @client, :status => :created, :location => @client }
+        format.json  { render json: @client, :status => :created, :location => @client }
       else
         format.html { render :action => "new" }
-        format.xml  { render json: @client.errors, :status => :unprocessable_entity }
+        format.json  { render json: @client.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # PUT /clients/1
-  # PUT /clients/1.xml
+  # PUT /clients/1.json
   def update
     @client = Client.find(params[:id])
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
         format.html { redirect_to(@client, :notice => t('client.updated')) }
-        format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render json: @client.errors, :status => :unprocessable_entity }
+        format.json  { render json: @client.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /clients/1
-  # DELETE /clients/1.xml
+  # DELETE /clients/1.json
   def destroy
     @client = Client.find(params[:id])
     @client.destroy
 
     respond_to do |format|
       format.html { redirect_to(clients_url, notice: t('client.destroyed')) }
-      format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
   
-  def autocomplete
-    @clients = Client.with_client(params[:term]).limit(7)
+  def autocomplete_for_client
+    @clients = Client.with_client(params[:q])
        
     respond_to do |format|
-      format.js { render text: @clients.map(&:to_s) }
+      format.json { render json: @clients }
     end
   end
 end

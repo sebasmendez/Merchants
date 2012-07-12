@@ -9,12 +9,10 @@ gem 'jquery-rails'
 gem 'newrelic_rpm'
 gem 'capistrano'
 gem 'passenger'
-gem 'simple_autocomplete'
 gem 'simple_form'
 
 
 group :assets do
-  gem 'sass'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'therubyracer', :require => false
