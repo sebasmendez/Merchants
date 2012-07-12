@@ -7,7 +7,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @clients }
+      format.xml  { render json: @clients }
     end
   end
 
@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @client }
+      format.xml  { render json: @client }
     end
   end
 
@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @client }
+      format.xml  { render json: @client }
     end
   end
 
@@ -48,10 +48,10 @@ class ClientsController < ApplicationController
     respond_to do |format|
       if @client.save
         format.html { redirect_to(@client, :notice => t('client.create')) }
-        format.xml  { render :xml => @client, :status => :created, :location => @client }
+        format.xml  { render json: @client, :status => :created, :location => @client }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }
+        format.xml  { render json: @client.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -67,7 +67,7 @@ class ClientsController < ApplicationController
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }
+        format.xml  { render json: @client.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -85,13 +85,10 @@ class ClientsController < ApplicationController
   end
   
   def autocomplete
-    
     @clients = Client.with_client(params[:term]).limit(7)
        
     respond_to do |format|
       format.js { render text: @clients.map(&:to_s) }
     end
   end
-  
-  
 end

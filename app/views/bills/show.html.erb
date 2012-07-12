@@ -1,28 +1,29 @@
 <p>
-  <b><%= t('bill.barcode') %> :</b>
+  <b><%= Bill.human_attribute_name 'barcode' %> :</b>
   <%= @bill.barcode %>
 </p>
 
 <p>
-  <b><%= t('bill.date') %> :</b>
-  <%= l @bill.created_at %>
+  <b><%= Bill.human_attribute_name 'created_at' %> :</b>
+  <%= l @bill.created_at, format: :short %>
 </p>
 <p>
-  <b><%= t('bill.client') %> :</b>
+  <b><%= Bill.human_attribute_name 'client' %> :</b>
   <%= @bill.client_id %>
 </p>
 <p>
-  <b><%= t('bill.bill_kind') %> :</b>
+  <b><%= Bill.human_attribute_name 'bill_kind' %> :</b>
   <%= @bill.bill_kind %>
 </p>
 <p>
-  <b><%= t('bill.items') %> :</b>
+  <b><%= Bill.human_attribute_name 'items' %> :</b>
   <%= simple_format @bill.items %>
 </p>
 <p>
-  <b><%= t('bill.amount') %> :</b>
-  $<%= @bill.amount %>
+  <b><%= Bill.human_attribute_name 'amount' %> :</b><br />
+  <b>Total:</b> <%= number_to_currency @bill.amount %><br />
+  <b>Descuento:</b> <%= @bill.discount.to_s + '%' %> => <%= number_to_currency(@bill.amount * (@bill.discount/100)) %><br />
+  <b>A pagar por el cliente: </b><%= number_to_currency(@bill.amount * (1 - @bill.discount/100)) %>
 </p>
 
-<%= link_to t('label.destroy'), @bill, :confirm => t('label.sure'), :method => :delete %> |
 <%= link_to t('label.back'), bills_path %>

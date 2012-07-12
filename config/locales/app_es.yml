@@ -1,4 +1,4 @@
-'es':
+es:
   activerecord:
     models:
       category: 'Categoría'
@@ -8,6 +8,8 @@
       client: 'Cliente'
       order: 'Orden'
     attributes:
+      created_at: 'Creado el'
+      updated_at: 'Actualizado el'
       order:
         order: "Orden"
         orders: "Ordenes"
@@ -20,7 +22,8 @@
         date: "Día"
         amount: "Monto"
         client: "Cliente"
-        bill_kind: "Tipo de factura"  
+        bill_kind: "Tipo de factura"
+        created_at: 'Creado el'
       monthly:
         monthlies: "Mensualidad"
         months: "Mensualidades"

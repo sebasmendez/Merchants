@@ -1,13 +1,12 @@
 class Bill < ActiveRecord::Base
-   after_save :plus_amount_to_monthly, :plus_to_client_spend
+   after_save :plus_amount_to_monthly, :plus_to_client_spend, :send_to_print
   
   #validates
   
   validates :barcode, :uniqueness => true
-  validates :barcode, :amount, :items, :presence => true
+  validates :barcode, :amount, :presence => true
   
-  validates :amount, :barcode, :numericality => {:greater_than => 0 }
-  validates_date :date, :on => :create, :on => :today
+  validates :amount, :numericality => {:greater_than => 0 }
   
   #relations
   belongs_to :client
@@ -39,4 +38,7 @@ class Bill < ActiveRecord::Base
     end
   end
   
+  def send_to_print
+    p 'Aca va el megametodo para mandar a imprimir =)'
+  end
 end

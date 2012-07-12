@@ -1,4 +1,7 @@
 class Client < ActiveRecord::Base
+  
+  find_by_autocomplete :name, limit: 4
+  
   before_save :up_name, :down_bill
   after_save :plus_to_boxes, :add_deposit
  
@@ -19,10 +22,19 @@ class Client < ActiveRecord::Base
       q: "#{search}%".downcase)}
   
   attr_accessor :to_amount
-  
+  alias_method :label, :to_s
   #methods
   def to_s
-    self.name + ' ' + self.last_name + ' ' + self.document
+    self.name + ' ' + self.last_name
+  end
+  
+  def as_json(options= nil)
+    default_options = {
+      only: [:id],
+      methods: [:label, :informal, :free_credit]
+    }
+    
+    super(default_options.merge(options || {}))
   end
   
   def up_name

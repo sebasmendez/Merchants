@@ -1,11 +1,8 @@
 Merchants::Application.routes.draw do
-  resources :payments
-
-  resources :categories
-
-  resources :boxes
-
-  resources :orders, :line_items, :carts,:bills, :products
+  resources :payments, :categories, :boxes, :orders, 
+    :line_items, :carts, :products
+  
+  resources :bills, except: [:edit, :destroy]
   #get "store/index"
   match 'store' => 'store#index', :via => 'get' 
   
@@ -15,6 +12,10 @@ Merchants::Application.routes.draw do
   
   resources :clients do
     get :autocomplete, on: :collection
+  end
+  
+  resources :orders do
+    get :autocomplete_for_client_name, on: :collection
   end
 
   # The priority is based upon order of creation:

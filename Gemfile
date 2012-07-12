@@ -9,6 +9,9 @@ gem 'jquery-rails'
 gem 'newrelic_rpm'
 gem 'capistrano'
 gem 'passenger'
+gem 'simple_autocomplete'
+gem 'simple_form'
+
 
 group :assets do
   gem 'sass'
@@ -22,6 +25,6 @@ group :development do
   gem 'thin'
 end
 
-#group :production do
-#  gem 'mysql2'
-#end
+group :production do
+  gem 'mysql2'
+end
