@@ -8,10 +8,10 @@ class Order < ActiveRecord::Base
   
   before_save :total_price, :assign_own_price
   before_validation :assign_client
-  after_save :plus_price_to_client, :discount_stock, :daily_box
+  after_save :plus_price_to_client, :discount_stock, :daily_box, :print_bill
   
   
-  attr_accessor :auto_client
+  attr_accessor :auto_client, :send_print, :discount
   
   def assign_own_price
     self.line_items.each do |li|
@@ -75,5 +75,15 @@ class Order < ActiveRecord::Base
     end
   end
 
-  
+  def print_bill
+    if self.send_print == '1'
+      items = []
+      self.line_items.map {|r| items << "#{r.product.name} x#{r.quantity} 
+        $#{r.product.price.to_s} => $#{(r.quantity*r.product.price).to_s}"}
+      items = items.join("\n")
+      Bill.create!(client_id: self.client, amount: self.price, items: items, 
+        bill_kind: self.bill_kind, product_count: self.line_items.count, 
+        discount: self.discount)
+    end
+  end
 end

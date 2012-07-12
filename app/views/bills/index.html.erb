@@ -13,12 +13,12 @@
 <% @bills.each do |bill| %>
   <tr>
     <td><%= link_to bill.barcode, bill %></td>
-    <td><%= l bill.date %></td>
+    <td><%= l bill.created_at %></td>
     <td><%= bill.client ? bill.client : '--' %></td>
     <td><%= bill.bill_kind %></td>
     <td>CANT ITEMs</td>
     <td>$<%= bill.amount %></td>
-    </tr>
+  </tr>
 <% end %>
 </table>
 

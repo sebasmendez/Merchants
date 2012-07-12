@@ -12,14 +12,20 @@
   <% end %>
 <%#<div class="order_form">%>
   <div class="field">
-    <%= Client.human_attribute_name(:client) %>  <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>
+    <%= Client.human_attribute_name(:client) %>  
+    <%= f.text_field :auto_client, value: @order.try(:client_id), id: 'order_auto_client' %>
+    <%= f.select :bill_kind, bill_for_select, 
+      selected: (@order.try(:client_id).try(:bill_kind) || 'B') %>
   </div>
   <div class="field">
        <%# = Bill.human_attribute_name(:bill_kind) %>  <%#= f.text_field :bill_kind, size: 1 %>
       
   </div>
   <div class="field">
-     A la cuenta?? <%= f.check_box :to_amount %>
+    A la cuenta?? <%= f.check_box :to_amount %>
+    Imprimir factura? 
+    <%= f.check_box :send_print, checked: true %>
+    <%#= f.select :send_print, yes_or_not_select %>
   </div>
   Items:
   <div>    
@@ -41,9 +47,8 @@
           <td><%= li_f.object.product.fragance %></td>
           <td><%= li_f.object.product.category %></td>
           <td><%= li_f.object.product.count %><%= li_f.object.product.uni %></td>
-          <%#= number_to_currency(li_f.object.product.price) %>
           <td>$<%= li_f.text_field :price, value: li_f.object.product.price, disabled: true, size: 3 %></td>
-          <td><%= li_f.text_field :quantity, size: 1, class: 'order_quantity' %></td> 
+          <td><%= li_f.text_field :quantity, size: 1, class: 'price-modifier order-quantity' %></td> 
           <%= li_f.hidden_field :product_id %>
           <%= li_f.hidden_field :id %>
           
@@ -54,10 +59,13 @@
     <% @cart ||= current_cart %>
     
     Total: <span id="order_total_price"> <%= number_to_currency(@cart.total_price) %> </span>
+    <% 20.times do %>
+      &nbsp;
+    <% end %>
+    Descuento: <%= f.text_field :discount, size: 3, class: 'price-modifier' %>
   </div>
   <br />
   <div class="actions">
     <%= f.submit %>
   </div>
-<%#</div> %>
 <% end %>

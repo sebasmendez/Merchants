@@ -14,8 +14,11 @@
   <%= @client.document %>
 </p>
 
-<p>
-  
+<p>  
+  <%= raw ("<b>" + Client.human_attribute_name(:bill_kind) + " </b> " + @client.bill_kind) if @client.bill_kind.present? %>
+</p>
+
+<p>  
   <%= raw ("<b>" + Client.human_attribute_name(:adress) + " </b> " + @client.adress) if @client.adress.present? %>
 </p>
 

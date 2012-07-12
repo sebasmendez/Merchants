@@ -3,12 +3,7 @@ jQuery(function($){
         $('a.paid').live('ajax:success',function(xhr,data){
             $(this).parents('tr:first').replaceWith(data);
         });
-        
-//        // Add to cart when search is barcode
-//        var count = $('.add_button').length;
-//        if (count == 1){ $('#add_button').submit(); 
-//            location.reload();
-//        }
+
         
         // Clean and focus search
          $('.search').attr('value', null).focus();
@@ -29,22 +24,30 @@ jQuery(function($){
         });
         
         // Calcule the total price in new order
-
-            var count = $('.order_quantity').length;
-            $('.order_quantity').live('change', function() {
-            var i = 0;
-            var total = 0;
+            var count = $('.order-quantity').length;
+            var original_total = parseFloat(
+                $('#order_total_price').text().replace('$','').replace(',','.')
+            );
+            var new_total = original_total;
+            $('.price-modifier').live('change', function() {
+            new_total = 0;
             for (i=0; i< count; i++){
-                var price = "#order_line_items_attributes_" + i + "_price";
-                var quantity = "#order_line_items_attributes_" + i + "_quantity";
+                price = "#order_line_items_attributes_" + i + "_price";
+                quantity = "#order_line_items_attributes_" + i + "_quantity";
                 price = parseFloat($(price).val());
                 quantity = parseFloat($(quantity).val());
                 parcial = parseFloat(price * quantity);
-                total = parseFloat(total + parcial);
+                new_total = parseFloat(new_total + parcial);
             }
-             total = (Math.round(total*100) /100).toFixed(2);
-             total = total.replace('.', ',');
-             $('#order_total_price').text('$' + total);
+            
+            discount_element = $("#order_discount");
+            if(discount_element.val() >= 0 && discount_element.val() <= 100){
+                discount = parseFloat(1 - discount_element.val()/100);
+                new_total = parseFloat(new_total * discount);
+            }
+             new_total = new_total.toFixed(2);
+             new_total = new_total.replace('.', ',');
+             $('#order_total_price').text('$' + new_total);
         });
         
         
