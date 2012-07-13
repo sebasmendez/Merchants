@@ -16,8 +16,8 @@
     <td><%= l bill.created_at %></td>
     <td><%= bill.client ? bill.client : '--' %></td>
     <td><%= bill.bill_kind %></td>
-    <td>CANT ITEMs</td>
-    <td>$<%= bill.amount %></td>
+    <td><%= bill.prod_count %></td>
+    <td><%= number_to_currency bill.amount %></td>
   </tr>
 <% end %>
 </table>

@@ -30,11 +30,14 @@ jQuery ($)->
         input.val(selected.value)
         input.data('item', selected.item)
         $(input.data('autocompleteIdTarget')).val(selected.item.id)
+        if selected.item.bill_kind
+          $(input.data('autocomplete-bill-kind-target')).val(
+            selected.item.bill_kind).attr('selected', true)
 
         input.trigger 'autocomplete:update', input
 
         false
-      open: -> $('.ui-menu').css('width', input.width())
+    open: -> $('.ui-menu').css('width', input.width())
 
     input.data('autocomplete')._renderItem = (ul, item)->
       $('<li></li>').data('item.autocomplete', item).append(

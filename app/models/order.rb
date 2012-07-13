@@ -6,7 +6,6 @@ class Order < ActiveRecord::Base
   
   
   before_save :total_price, :assign_own_price
-  before_validation :assign_client
   after_save :plus_price_to_client, :discount_stock, :daily_box, :create_bill
   
   attr_accessor :auto_client, :send_print, :discount
@@ -16,14 +15,7 @@ class Order < ActiveRecord::Base
       li.price = li.product.price.to_d
     end
   end
-  
-  def assign_client
-    if self.auto_client.present?
-      client = self.auto_client.split.last
-      self.client = Client.find_by_document(client)
-    end
-  end
-  
+    
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|
       line_items.build(item.attributes.merge(id: nil))
@@ -77,11 +69,12 @@ class Order < ActiveRecord::Base
     if self.send_print == '1'
       items = []
       self.line_items.map {|r| items << "#{r.product.name} x#{r.quantity} 
-        $#{r.product.price.to_s} => $#{(r.quantity*r.product.price).to_s}"}
+        $#{r.product.price.to_s} => $#{(r.quantity * r.product.price).to_s}"}
+      
       items = items.join("\n")
       Bill.create!(client_id: self.client, amount: self.price, items: items, 
         bill_kind: self.bill_kind, prod_count: self.line_items.count, 
-        discount: self.discount)
+        discount: self.discount.to_d)
     end
   end
 end

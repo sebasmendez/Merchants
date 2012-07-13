@@ -16,9 +16,16 @@ class Client < ActiveRecord::Base
   has_many :payments
   
   scope :with_client, ->(search) { where(
-      "LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
-      q: "#{search}%".downcase
-    ) }
+      [
+        "LOWER(#{Client.table_name}.name) LIKE :q",
+        "LOWER(#{Client.table_name}.last_name) LIKE :q",
+        "#{Client.table_name}.document LIKE :q",
+        "LOWER(#{Client.table_name}.name) LIKE :n AND LOWER(#{Client.table_name}.last_name) LIKE :l"
+      ].join(' OR '),
+      q: "%#{search}%".downcase, n: "%#{search.split.first}%".downcase, 
+      l: "%#{search.split.last}%".downcase
+    )
+  }
   
   attr_accessor :to_amount
   

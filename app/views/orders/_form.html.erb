@@ -17,21 +17,18 @@
         autocomplete: 'off', value: @order.client,
         data: { 
           'autocomplete-id-target' => '#order_client_id',
+          'autocomplete-bill-kind-target' => '#order_bill_kind',
           'autocomplete-url' => autocomplete_for_client_clients_path(format: :json)
         } %>
     <%= f.hidden_field :client_id, class: 'autocomplete-id' %>
     <%= f.select :bill_kind, bill_for_select, 
-      selected: (@order.try(:client_id).try(:bill_kind) || 'B') %>
+      selected: @order.bill_kind || 'B' %>
   </div>
-  <div class="field">
-       <%# = Bill.human_attribute_name(:bill_kind) %>  <%#= f.text_field :bill_kind, size: 1 %>
-      
-  </div>
+
   <div class="field">
     A la cuenta?? <%= f.check_box :to_amount %>
     Imprimir factura? 
     <%= f.check_box :send_print, checked: true %>
-    <%#= f.select :send_print, yes_or_not_select %>
   </div>
   Items:
   <div>    
