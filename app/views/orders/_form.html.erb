@@ -18,11 +18,20 @@
         data: { 
           'autocomplete-id-target' => '#order_client_id',
           'autocomplete-bill-kind-target' => '#order_bill_kind',
+          'autocomplete-client-kind-target' => '#order_client_kind',
+          'autocomplete-uic-target' => '#order_uic',
+          'autocomplete-uic-type-target' => '#order_uic_type',
           'autocomplete-url' => autocomplete_for_client_clients_path(format: :json)
         } %>
     <%= f.hidden_field :client_id, class: 'autocomplete-id' %>
     <%= f.select :bill_kind, bill_for_select, 
       selected: @order.bill_kind || 'B' %>
+  </div>
+  <div class='field'>
+    <%= f.select :client_kind, client_kind_for_client, 
+      selected: @order.client_kind || 'F', size: 8 %>
+    <%= f.text_field :uic_type, size: 4, value: @order.uic_type, readonly: 'readonly' %>
+    <%= f.text_field :uic, size: 12, value: @order.uic, readonly: 'readonly' %>
   </div>
 
   <div class="field">

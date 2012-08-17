@@ -2,13 +2,15 @@ class Order < ActiveRecord::Base
   
   belongs_to :client
   has_many :line_items, dependent: :destroy
+  has_one :bill, dependent: :destroy
   accepts_nested_attributes_for :line_items, :allow_destroy => true
   
   
   before_save :total_price, :assign_own_price
   after_save :plus_price_to_client, :discount_stock, :daily_box, :create_bill
   
-  attr_accessor :auto_client, :send_print, :discount
+  attr_accessor :auto_client, :send_print, :discount, :uic, :uic_type, 
+    :client_kind
   
   def assign_own_price
     self.line_items.each do |li|
@@ -72,9 +74,12 @@ class Order < ActiveRecord::Base
         $#{r.product.price.to_s} => $#{(r.quantity * r.product.price).to_s}"}
       
       items = items.join("\n")
-      Bill.create!(client_id: self.client, amount: self.price, items: items, 
+      Bill.create!(
+        client_id: self.client, amount: self.price, items: items, 
         bill_kind: self.bill_kind, prod_count: self.line_items.count, 
-        discount: self.discount.to_d)
+        discount: self.discount.to_d, order_id: self.id,
+        uic: self.uic, uic_type: self.uic_type, client_kind: self.client_kind
+      )
     end
   end
 end

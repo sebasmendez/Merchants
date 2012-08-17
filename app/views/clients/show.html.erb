@@ -1,54 +1,84 @@
+<% @client.tap do |c|%>
+  <p>
+    <b><%= Client.human_attribute_name(:name) %> </b>
+    <%= c.name %>
+  </p>
 
-<p>
-  <b><%= Client.human_attribute_name(:name) %> </b>
-  <%= @client.name %>
-</p>
+  <p>
+    <b><%= Client.human_attribute_name(:last_name) %> </b>
+    <%= c.last_name %>
+  </p>
 
-<p>
-  <b><%= Client.human_attribute_name(:last_name) %> </b>
-  <%= @client.last_name %>
-</p>
+  <p>
+    <b><%= Client.human_attribute_name(:document) %> </b>
+    <%= c.document %>
+  </p>
 
-<p>
-  <b><%= Client.human_attribute_name(:document) %> </b>
-  <%= @client.document %>
-</p>
+  <p>  
+    <%= raw(
+      "<b> #{Client.human_attribute_name(:bill_kind)} </b> #{c.bill_kind}"
+    ) if c.bill_kind.present? %>
+  </p>
 
-<p>  
-  <%= raw ("<b>" + Client.human_attribute_name(:bill_kind) + " </b> " + @client.bill_kind) if @client.bill_kind.present? %>
-</p>
+  <p>  
+    <%= raw(
+      "<b> #{Client.human_attribute_name(:address)} </b> #{c.address}"
+    ) if c.address.present? %>
+  </p>
 
-<p>  
-  <%= raw ("<b>" + Client.human_attribute_name(:adress) + " </b> " + @client.adress) if @client.adress.present? %>
-</p>
+  <p>
+    <%= raw(
+      "<b> #{Client.human_attribute_name(:email)} </b> #{c.email}"
+    ) if c.email.present? %>
+  </p>
 
-<p>
-  <%= raw '<b>' + Client.human_attribute_name(:email) + ' </b>' + @client.email if @client.email.present? %>
-</p>
+  <p>
+    <%= raw(
+      "<b> #{Client.human_attribute_name(:location)} </b> #{c.location}"
+    ) if c.location.present?%>
+  </p>
 
-<p>
-  
-  <%= raw ("<b>" + Client.human_attribute_name(:location) + " </b>" + @client.location) if @client.location.present?%>
-</p>
+  <p>
+    <%= raw(
+      "<b> #{Client.human_attribute_name(:phone)} </b> #{c.phone.to_s}"
+    ) if c.phone.present? %>
+  </p>
 
-<p>
-  
-  <%= raw ("<b>" + Client.human_attribute_name(:phone) + " </b>" + @client.phone.to_s) if @client.phone.present? %>
-</p>
+  <p>
+    <%= raw(
+      "<b> #{Client.human_attribute_name(:cellphone)} </b> #{c.cellphone}"
+    ) if c.cellphone.present? %>
+  </p>
+  <% if c.client_kind.present? %>
+    <% client_kind = Client::CLIENT_KINDS.invert[c.client_kind] %>
+    <p>
+      <%= raw(
+        "<b> #{Client.human_attribute_name(:client_kind)} </b>" +
+        t("view.clients.client_kind.#{client_kind}")
+      )  %>
+    </p>
+  <% end %>
+  <% if c.uic_type.present? %>
+    <p>
+      <%= raw(
+        "<b> #{c.uic_type} </b>" + ' ' +
+        "<b> #{Client.human_attribute_name(:uic)} </b> #{c.uic}"
+      )  %>
+    </p>
+  <% end %>
 
-<p>
-  
-  <%= raw ("<b>" + Client.human_attribute_name(:cellphone) + " </b>" + @client.cellphone.to_s) if @client.cellphone.present? %>
-</p>
 
 
+  <p>
+    <b><%= Client.human_attribute_name(:amount) %> </b>
+    <%= number_to_currency(c.amount) %>
+  </p>
+  <%= render 'client_historials' if c.orders.count > 0 || c.payments.count > 0  %>
 
-<p>
-  <b><%= Client.human_attribute_name(:amount) %> </b>
-  <%= number_to_currency(@client.amount) %>
-</p>
-<%= render 'client_historials' if @client.orders.count > 0 || @client.payments.count > 0  %>
+  <%= link_to t('label.edit'), edit_client_path(c) %> |
+  <%= link_to(
+    t('label.destroy'), c, confirm: t('label.sure'), method: :delete
+  ) %> |
+  <%= link_to t('label.back'), clients_path %>
 
-<%= link_to t('label.edit'), edit_client_path(@client) %> |
-<%= link_to t('label.destroy'), @client, :confirm => t('label.sure'), :method => :delete %> |
-<%= link_to t('label.back'), clients_path %>
+<% end %>

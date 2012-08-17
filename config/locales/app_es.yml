@@ -42,12 +42,14 @@ es:
         document: 'Documento'
         phone: 'Teléfono'
         cellphone: 'Celular'
-        adress: 'Dirección'
-        location: 'Departamento'
+        address: 'Dirección'
+        location: 'Localidad'
         client_kind: 'Tipo Cliente'
         bill_kind: 'Factura'
         amount: 'Cuenta'
         spend: 'Gastado'
+        uic: 'Número'
+        uic_type: 'CUI'
       product:
         products: "Productos"
         product: 'Producto'
@@ -107,3 +109,16 @@ es:
   others:
     without_client: 'Sin Cliente'
     to_amount: 'A la cuenta $'
+  view:
+    clients:
+      client_kind:
+        iva_resp_insc: 'IVA RESPONSABLE INSCRIPTO'
+        iva_resp_not_insc: 'IVA RESPONSABLE NO INSCRIPTO'
+        not_resp: 'NO RESPONSABLE'
+        exempt_iva: 'IVA EXENTO'
+        resp_monot: 'RESPONSABLE MONOTRIBUTO'
+        final_consumer: 'CONSUMIDOR FINAL'
+        not_categoriced: 'SUJETO NO CATEGORIZADO'
+        social_monot: 'MONOTRIBUTISTA SOCIAL'
+        small_event_contributor: 'PEQUEÑO CONTRIBUYENTE EVENTUAL'
+        social_small_event_contributor: 'PEQUEÑO CONTRIBUYENTE EVENTUAL SOCIAL'

@@ -33,6 +33,19 @@ jQuery ($)->
         if selected.item.bill_kind
           $(input.data('autocomplete-bill-kind-target')).val(
             selected.item.bill_kind).attr('selected', true)
+        console.log(selected.item.client_kind)
+        if selected.item.client_kind
+          $(
+            input.data('autocomplete-client-kind-target')
+          ).val(selected.item.client_kind)
+
+        if selected.item.uic
+          $(input.data('autocomplete-uic-target')).val(selected.item.uic)
+
+        if selected.item.uic_type
+          $(
+            input.data('autocomplete-uic-type-target')
+          ).val(selected.item.uic_type)
 
         input.trigger 'autocomplete:update', input
 

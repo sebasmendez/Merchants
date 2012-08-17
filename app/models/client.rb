@@ -1,12 +1,26 @@
-class Client < ActiveRecord::Base  
-  before_save :up_name, :down_bill
+class Client < ActiveRecord::Base
+  
+  CLIENT_KINDS = {
+    iva_resp_insc: 'I',
+    iva_resp_not_insc: 'R',
+    not_resp: 'N',
+    exempt_iva: 'E',
+    resp_monot: 'M',
+    final_consumer: 'F',
+    not_categoriced: 'S',
+    social_monot: 'T',
+    small_event_contributor: 'C',
+    social_small_event_contributor: 'V'
+  }.with_indifferent_access.freeze
+
+  # Callbacks
+  before_save :up_name
   after_save :plus_to_boxes, :add_deposit
  
-  #validates
+  # Validations
   validates :name, :last_name, :document, :presence => true
   
-  validates :document, :uniqueness => true, 
-              :numericality => true
+  validates :document, :uniqueness => true, :numericality => true
   
   validates :amount, :to_amount, :spend, :phone, allow_nil: true,
               allow_blank: true, numericality: true
@@ -16,16 +30,15 @@ class Client < ActiveRecord::Base
   has_many :payments
   
   scope :with_client, ->(search) { where(
-      [
-        "LOWER(#{Client.table_name}.name) LIKE :q",
-        "LOWER(#{Client.table_name}.last_name) LIKE :q",
-        "#{Client.table_name}.document LIKE :q",
-        "LOWER(#{Client.table_name}.name) LIKE :n AND LOWER(#{Client.table_name}.last_name) LIKE :l"
-      ].join(' OR '),
-      q: "%#{search}%".downcase, n: "%#{search.split.first}%".downcase, 
-      l: "%#{search.split.last}%".downcase
-    )
-  }
+    [
+      "LOWER(#{Client.table_name}.name) LIKE :q",
+      "LOWER(#{Client.table_name}.last_name) LIKE :q",
+      "#{Client.table_name}.document LIKE :q",
+      "LOWER(#{Client.table_name}.name) LIKE :n AND LOWER(#{Client.table_name}.last_name) LIKE :l"
+    ].join(' OR '),
+    q: "%#{search}%".downcase, n: "%#{search.split.first}%".downcase, 
+    l: "%#{search.split.last}%".downcase
+  ).limit(5) }
   
   attr_accessor :to_amount
   
@@ -34,13 +47,17 @@ class Client < ActiveRecord::Base
   def to_s
     self.name + ' ' + self.last_name
   end
-  
+
+  def for_bill
+    to_s.first(40)
+  end
+
   alias_method :label, :to_s
   
   def as_json(options= nil)
     default_options = {
-      only: [:id],
-      methods: [:label, :document, :bill_kind]
+      only: [:id, :document, :bill_kind, :uic_type, :uic, :client_kind],
+      methods: [:label]
     }
     
     super(default_options.merge(options || {}))
@@ -49,6 +66,10 @@ class Client < ActiveRecord::Base
   def up_name
     self.name = self.name.split.map(&:camelize).join(' ')
     self.last_name = self.last_name.split.map(&:camelize).join(' ')
+  end
+
+  def cuit_cuil_for_bill
+    self.match(/\-+/) ? self.delete('-') : self
   end
   
   def self.search(search)
@@ -59,11 +80,7 @@ class Client < ActiveRecord::Base
       scoped
     end
   end
-  
-  def down_bill
-    self.client_kind = '-'
-  end
-  
+    
   def plus_to_boxes
     @to_amount = self.to_amount
     if @to_amount.present? && @to_amount.to_d > 0

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712154653) do
+ActiveRecord::Schema.define(:version => 20120817013727) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",                                                    :null => false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120712154653) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "discount",   :precision => 15, :scale => 2, :default => 0.0
+    t.integer  "order_id"
   end
 
   add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20120712154653) do
     t.string   "name",                                                        :null => false
     t.string   "last_name",                                                   :null => false
     t.string   "document",                                                    :null => false
-    t.string   "adress"
+    t.string   "address"
     t.string   "email"
     t.string   "location"
     t.integer  "phone"
@@ -65,6 +66,8 @@ ActiveRecord::Schema.define(:version => 20120712154653) do
     t.decimal  "spend",       :precision => 15, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uic"
+    t.string   "uic_type"
   end
 
   add_index "clients", ["document"], :name => "index_clients_on_document", :unique => true
