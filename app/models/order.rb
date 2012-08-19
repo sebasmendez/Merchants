@@ -71,9 +71,10 @@ class Order < ActiveRecord::Base
     if self.send_print == '1'
       items = []
       self.line_items.map {|r| items << "#{r.product.name} x#{r.quantity} 
-        $#{r.product.price.to_s} => $#{(r.quantity * r.product.price).to_s}"}
+        $#{r.product.price.to_s}  => $#{(r.quantity * r.product.price).to_s}"}
       
       items = items.join("\n")
+      p self
       Bill.create!(
         client_id: self.client, amount: self.price, items: items, 
         bill_kind: self.bill_kind, prod_count: self.line_items.count, 

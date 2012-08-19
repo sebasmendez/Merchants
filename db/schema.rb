@@ -11,19 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817013727) do
+ActiveRecord::Schema.define(:version => 20120819005743) do
 
   create_table "bills", :force => true do |t|
-    t.integer  "barcode",                                                    :null => false
+    t.integer  "barcode",                                                                  :null => false
     t.integer  "prod_count"
-    t.decimal  "amount",     :precision => 15, :scale => 2
-    t.string   "bill_kind",                                                  :null => false
+    t.decimal  "amount",                   :precision => 15, :scale => 2
+    t.string   "bill_kind",                                                                :null => false
     t.integer  "client_id"
-    t.text     "items",                                                      :null => false
+    t.text     "items",                                                                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "discount",   :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "discount",                 :precision => 15, :scale => 2, :default => 0.0
     t.integer  "order_id"
+    t.string   "client_kind", :limit => 1
   end
 
   add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true

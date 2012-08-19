@@ -18,7 +18,7 @@ class Client < ActiveRecord::Base
   after_save :plus_to_boxes, :add_deposit
  
   # Validations
-  validates :name, :last_name, :document, :presence => true
+  validates :name, :last_name, :document, :address, :presence => true
   
   validates :document, :uniqueness => true, :numericality => true
   

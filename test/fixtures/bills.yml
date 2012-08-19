@@ -1,16 +1,39 @@
+a_type:
+  barcode: 1111
+  bill_kind: A
+  client: Luke Skywalker
+  prod_count: 2
+  items: product1 product2
+  amount: 20
+  discount: 0
+  order: order_with_a_type
 
-one:
-  barcode: 1
-  date: 2011-09-08
-  mount: 9.99
-  bill_kind: MyString
-  client_id: 1
-  items: MyText
+b_type:
+  barcode:
+  bill_kind:
+  client:
+  prod_count:
+  items:
+  amount:
+  discount:
+  order:
 
-two:
-  barcode: 1
-  date: 2011-09-08
-  mount: 9.99
-  bill_kind: MyString
-  client_id: 1
-  items: MyText
+b_type_with_client:
+  barcode:
+  bill_kind:
+  client:
+  prod_count:
+  items:
+  amount:
+  discount:
+  order:
+
+c_type:
+  barcode:
+  bill_kind:
+  client:
+  prod_count:
+  items:
+  amount:
+  discount:
+  order:

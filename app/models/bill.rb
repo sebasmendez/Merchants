@@ -13,6 +13,7 @@ class Bill < ActiveRecord::Base
   belongs_to :order
 
   attr_accessor :uic, :uic_type, :client_kind
+
   #Methods
   def initialize (attributes = nil, options = {})
     super(attributes, options)
@@ -22,19 +23,22 @@ class Bill < ActiveRecord::Base
   
   def plus_amount_to_monthly
     
-    @bill = Bill.order('id DESC').first
-    @monthly = Monthly.find_or_create_by_month_and_year(@bill.created_at.month, @bill.created_at.year)
-    @monthly.sold ||= 0
-    @monthly.sold += @bill.amount
-    @monthly.update_attributes(sold: @monthly.sold)
+    bill = Bill.order('id DESC').first
+    monthly = Monthly.find_or_create_by_month_and_year(
+      bill.created_at.month, bill.created_at.year
+    )
+    monthly.sold ||= 0
+    monthly.sold += bill.amount
+    monthly.update_attributes(sold: monthly.sold)
   end
   
   def plus_to_client_spend
-    @bill = Bill.order('id DESC').first
-    if @bill.client_id
-    @client = Client.find(@bill.client_id) 
-    @client.spend += @bill.amount
-    @client.update_attributes(spend: @client.spend)
+    bill = Bill.order('id DESC').first
+
+    if bill.client_id
+      client = Client.find(bill.client_id) 
+      client.spend += bill.amount
+      client.update_attributes(spend: client.spend)
     end
   end
 
@@ -42,39 +46,40 @@ class Bill < ActiveRecord::Base
     @@seq = rand(32..127)
 
     self.order.tap do |o|
-      if o.client_id.present?
-        o.client.tap do |c|
-          if o.bill_kind.upcase == 'B'
+      self.client_kind.tap do |c_k| # A-B-C-X
+
+        if o.client_id.present?
+          o.client.tap do |c|
+            arrrr = [
+                'T', 'C', self.bill_kind, '1', 'P', '17','I', c_k,
+                c.name, c.last_name,
+                (c_k != 'F' && c.uic_type ? c.uic_type : 'DNI'), 
+                (c_k != 'F' && c.uic_type ? c.uic.delete('-') : c.document),
+                'N', c.address.first(40), c.address[40..80].to_s,
+                c.location.first(40),
+                (c_k != 'F' ? "Orden Nro: #{self.order_id}" : '')
+              ].compact
+            p arrrr
             send_package(
-              0x60, [
-                'T', 'C', 'B', '1', 'P', '17','I', 'F',
-                c.name, c.last_name, 'DNI', c.document, 'N', 
-                c.address.first(40), c.location.first(40), c.location[40..-1] , 'C'
-              ]
+              0x60, arrrr 
             )
-            o.line_items.each do |li|
-              send_package(0x62, line_item_for_bill(li))
-              sleep 1
-            end
-            send_package(0x63, ['P'])
             sleep 2
-            send_package(0x64, ['Su pago', o.price.to_f.round, 'T'])
-            sleep 2
-            send_package(0x65, ['T', 'B', 'Pago'])
           end
+        else
+          send_package(
+            0x60, ['T', 'C', 'B', '1', 'P', '17','I', 'F']
+          ) # Open TF - B
+          sleep 1
         end
-      else
-        send_package(0x40, []) # Open fiscal bill
-        sleep 1
 
         o.line_items.each do |li|
-          send_package( 0x42, line_item_for_bill(li)) # Add each item
+          send_package(0x62, line_item_for_bill(li, o.bill_kind)) # Add each item
         end
 
-        send_package(0x44, ['Su pago', o.price.to_f.round, 'T']) # Send paid
+        send_package(0x64, ['Su pago', o.price.to_f.round, 'T']) # Send paid
         sleep 1
 
-        send_package(0x45, ['T']) # Finish bill
+        send_package(0x65, ['T', self.bill_kind]) # Finish bill
       end
     end
   end
@@ -91,14 +96,12 @@ class Bill < ActiveRecord::Base
     
     if parameters.present?
       parameters.each do |e| # Add the 0x1c separator between elements
-        # if e.present?
-          separated_params << 0x1c
-          if e.to_s.length == 1
-            separated_params << e.ord
-          elsif e.to_s.length > 1
-            e.to_s.split(//).each { |l| separated_params << l.ord }
-          end
-        # end
+        separated_params << 0x1c
+        if e.to_s.length == 1
+          separated_params << e.ord
+        elsif e.to_s.length > 1
+          e.to_s.split(//).each { |l| separated_params << l.ord }
+        end
       end
     end
     
@@ -113,11 +116,13 @@ class Bill < ActiveRecord::Base
     increase_sequence
   end
 
-  def line_item_for_bill(li)
+  def line_item_for_bill(li, type)
+    price = (type == 'A' ? li.price - li.product.iva : li.price).to_f.round(2)
+    iva = (li.product.iva * 100).to_i.to_s
     [
       li.product.name.first(26),
       (li.quantity * 1000).to_f.round,
-      li.price.to_f.round(2), '2100', 'M', '1', '0', '0'
+      price, iva, 'M', '1', '0', '', '', ''
     ]
   end
 end

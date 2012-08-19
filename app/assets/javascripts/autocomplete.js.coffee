@@ -33,7 +33,7 @@ jQuery ($)->
         if selected.item.bill_kind
           $(input.data('autocomplete-bill-kind-target')).val(
             selected.item.bill_kind).attr('selected', true)
-        console.log(selected.item.client_kind)
+        
         if selected.item.client_kind
           $(
             input.data('autocomplete-client-kind-target')
