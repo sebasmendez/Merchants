@@ -1,6 +1,6 @@
 class Bill < ActiveRecord::Base
   require 'serialport'
-  
+  @@seq = rand(32..127)
   after_save :plus_amount_to_monthly, :plus_to_client_spend, :send_to_print
   #validates
   
@@ -12,7 +12,7 @@ class Bill < ActiveRecord::Base
   belongs_to :client
   belongs_to :order
 
-  attr_accessor :uic, :uic_type, :client_kind
+  attr_accessor :uic, :uic_type
 
   #Methods
   def initialize (attributes = nil, options = {})
@@ -43,14 +43,13 @@ class Bill < ActiveRecord::Base
   end
 
   def send_to_print
-    @@seq = rand(32..127)
-
     self.order.tap do |o|
       self.client_kind.tap do |c_k| # A-B-C-X
 
         if o.client_id.present?
           o.client.tap do |c|
-            arrrr = [
+            send_package(
+              0x60, [
                 'T', 'C', self.bill_kind, '1', 'P', '17','I', c_k,
                 c.name, c.last_name,
                 (c_k != 'F' && c.uic_type ? c.uic_type : 'DNI'), 
@@ -58,17 +57,14 @@ class Bill < ActiveRecord::Base
                 'N', c.address.first(40), c.address[40..80].to_s,
                 c.location.first(40),
                 (c_k != 'F' ? "Orden Nro: #{self.order_id}" : '')
-              ].compact
-            p arrrr
-            send_package(
-              0x60, arrrr 
+              ]
             )
             sleep 2
           end
         else
           send_package(
             0x60, ['T', 'C', 'B', '1', 'P', '17','I', 'F']
-          ) # Open TF - B
+          ) # Open TF - B 3 segundos
           sleep 1
         end
 
@@ -76,9 +72,18 @@ class Bill < ActiveRecord::Base
           send_package(0x62, line_item_for_bill(li, o.bill_kind)) # Add each item
         end
 
-        send_package(0x64, ['Su pago', o.price.to_f.round, 'T']) # Send paid
-        sleep 1
+        if self.discount > 0
+          pay_discount = (o.price * self.discount).round.to_i
+          to_pay = ((o.price - pay_discount / 100).round(2) * 100).to_i
 
+          descuento = ['Descuento', pay_discount, 'D']
+          pago = ['Su pago', to_pay, 'T']
+          send_package(0x64, descuento)
+          send_package(0x64, pago)
+        else
+          send_package(0x64, ['Su pago', o.price.to_f.round, 'T']) # Send paid
+          sleep 1
+        end
         send_package(0x65, ['T', self.bill_kind]) # Finish bill
       end
     end
@@ -109,7 +114,7 @@ class Bill < ActiveRecord::Base
     hex_sum = '%04x' % package.flatten!.inject(0) { |t, b| t + b.ord } # Calc Checksum
 
     hex_sum.bytes { |b| package << b } # Add Checksum
-    p package
+
     package.each { |b| port.putc b } # Send to print
     sleep 2
 

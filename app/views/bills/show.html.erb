@@ -9,7 +9,7 @@
 </p>
 <p>
   <b><%= Bill.human_attribute_name 'client' %> :</b>
-  <%= @bill.client_id %>
+  <%= @bill.client %>
 </p>
 <p>
   <b><%= Bill.human_attribute_name 'bill_kind' %> :</b>
@@ -27,3 +27,5 @@
 </p>
 
 <%= link_to t('label.back'), bills_path %>
+
+<%= link_to 'Re-Imprimir', print_bill_path(@bill) %>

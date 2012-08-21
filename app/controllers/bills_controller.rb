@@ -48,4 +48,10 @@ class BillsController < ApplicationController
       end
     end
   end
+  def print
+    @bill = Bill.find(params[:id])
+    @print = @bill.send_to_print
+
+    redirect_to @bill, notice: 'Re-enviado a imprimir...'
+  end
 end

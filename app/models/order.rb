@@ -74,9 +74,9 @@ class Order < ActiveRecord::Base
         $#{r.product.price.to_s}  => $#{(r.quantity * r.product.price).to_s}"}
       
       items = items.join("\n")
-      p self
+
       Bill.create!(
-        client_id: self.client, amount: self.price, items: items, 
+        client_id: self.client_id, amount: self.price, items: items, 
         bill_kind: self.bill_kind, prod_count: self.line_items.count, 
         discount: self.discount.to_d, order_id: self.id,
         uic: self.uic, uic_type: self.uic_type, client_kind: self.client_kind

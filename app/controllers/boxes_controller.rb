@@ -81,4 +81,12 @@ class BoxesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def print_close
+    close = params[:close]
+    bill = Bill.new
+    @close = bill.send_package(0x39, [close, 'P'])
+
+    redirect_to boxes_url, notice: "Enviado a imprimir cierre #{close}"
+  end
 end
