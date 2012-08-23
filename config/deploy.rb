@@ -15,9 +15,9 @@ set :deploy_via, :remote_cache
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :branch, 'master'
-role :web, "merchant-seba.no-ip.org"                          # Your HTTP server, Apache/etc
-role :app, "merchant-seba.no-ip.org"                          # This may be the same as your `Web` server
-role :db,  "merchant-seba.no-ip.org", :primary => true 
+role :web, "merchant-rotsenweb.no-ip.org"                          # Your HTTP server, Apache/etc
+role :app, "merchant-rotsenweb.no-ip.org"                          # This may be the same as your `Web` server
+role :db,  "merchant-rotsenweb.no-ip.org", :primary => true 
 # role :web, "rotsenweb.no-ip.org"                          # Your HTTP server, Apache/etc
 # role :app, "rotsenweb.no-ip.org"                          # This may be the same as your `Web` server
 # role :db,  "rotsenweb.no-ip.org", :primary => true 
