@@ -81,8 +81,9 @@ class Bill < ActiveRecord::Base
           send_package(0x62, [
                 'DESCUENTO',
                 1000,
-                pay_discount, iva, 'R', '1', '0', '', '', ''
+                pay_discount, '2100', 'R', '1', '0', '', '', ''
               ])
+          sleep 1
           send_pack(0x64, ['Su pago', to_pay, 'T'])
           sleep 1
         else
