@@ -100,9 +100,11 @@ class Bill < ActiveRecord::Base
   end
   
   def send_package(code, parameters)
-    port = SerialPort.open(
-      '/dev/ttyUSB0', baud: 9600, data_bits: 8, stop_bits: 1, parity: 0
-    )
+    port = SerialPort.open('/dev/ttyUSB0')
+    port.baud = 9600
+    port.stop_bits = 1
+    port.data_bits = 8
+    port.parity = 0
 
     separated_params = []
     
