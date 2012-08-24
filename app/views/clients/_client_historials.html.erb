@@ -22,22 +22,6 @@
 		</table>
 	<% end %>
 
-	<% if @client_payments.present? %>
-		<table class="payments_for_client">
-			<tr><th colspan="2"> Pagos </th></tr>
-			<tr>
-				<th>Fecha</th>
-				<th>Monto</th>
-			</tr>
-			<% @client_payments.each do |payments| %>
-				<tr>
-					<td><%= l payments.created_at, format: :little %></td>
-					<td><%= number_to_currency payments.deposit %></td>
-				</tr>
-			<% end %>
-			<% if @client_payments.count > 5 %>
-				<tr><td colspan="2"><%= will_paginate(@client_payments) %></td></tr>
-			<% end %>
-		</table>
-	<% end %>
+  <%= render partial: 'payments' if @client_payments %>
+
 </div>
