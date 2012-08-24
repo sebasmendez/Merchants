@@ -1,6 +1,7 @@
 class Bill < ActiveRecord::Base
   require 'serialport'
-  @@seq = rand(32..127)
+  @@seq = rand(95) + 32
+  
   after_save :plus_amount_to_monthly, :plus_to_client_spend, :send_to_print
   #validates
   
@@ -22,11 +23,12 @@ class Bill < ActiveRecord::Base
   end
   
   def plus_amount_to_monthly
-    
     bill = Bill.order('id DESC').first
+
     monthly = Monthly.find_or_create_by_month_and_year(
       bill.created_at.month, bill.created_at.year
     )
+
     monthly.sold ||= 0
     monthly.sold += bill.amount
     monthly.update_attributes(sold: monthly.sold)
@@ -75,11 +77,14 @@ class Bill < ActiveRecord::Base
         if self.discount > 0
           pay_discount = (o.price * self.discount).round.to_i
           to_pay = ((o.price - pay_discount / 100).round(2) * 100).to_i
-
-          descuento = ['Descuento', pay_discount, 'D']
-          pago = ['Su pago', to_pay, 'T']
-          send_package(0x64, descuento)
-          send_package(0x64, pago)
+          
+          send_package(0x62, [
+                'DESCUENTO',
+                1000,
+                pay_discount, iva, 'R', '1', '0', '', '', ''
+              ])
+          send_pack(0x64, ['Su pago', to_pay, 'T'])
+          sleep 1
         else
           send_package(0x64, ['Su pago', o.price.to_f.round, 'T']) # Send paid
           sleep 1
@@ -95,7 +100,9 @@ class Bill < ActiveRecord::Base
   end
   
   def send_package(code, parameters)
-    port = SerialPort.open('/dev/ttyUSB0')
+    port = SerialPort.open(
+      '/dev/ttyUSB0', baud: 9600, data_bits: 8, stop_bits: 1, parity: 0
+    )
 
     separated_params = []
     
