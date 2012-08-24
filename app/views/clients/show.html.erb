@@ -54,9 +54,7 @@
     <p>
       <%= raw(
         "<b> #{Client.human_attribute_name(:client_kind)} </b>" +
-        t("view.clients.client_kind.#{
-          get_client_kind_symbol_from_value(c.client_kind)
-        }")
+        t("view.clients.client_kind.#{client_kind}")
       )  %>
     </p>
   <% end %>

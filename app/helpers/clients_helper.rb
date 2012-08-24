@@ -11,8 +11,4 @@ module ClientsHelper
   def uic_type_for_client
     ['CUIT', 'CUIL']
   end
-  
-  def get_client_kind_symbol_from_value(value)
-    Client::CLIENT_KINDS.invert[value]
-  end
 end
