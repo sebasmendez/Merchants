@@ -84,7 +84,7 @@ class Bill < ActiveRecord::Base
                 pay_discount, '2100', 'R', '1', '0', '', '', ''
               ])
           sleep 1
-          send_pack(0x64, ['Su pago', to_pay, 'T'])
+          send_package(0x64, ['Su pago', to_pay, 'T'])
           sleep 1
         else
           send_package(0x64, ['Su pago', o.price.to_f.round, 'T']) # Send paid
