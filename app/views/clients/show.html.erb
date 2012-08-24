@@ -73,7 +73,14 @@
     <b><%= Client.human_attribute_name(:amount) %> </b>
     <%= number_to_currency(c.amount) %>
   </p>
-  <%= render 'client_historials' if c.orders.count > 0 || c.payments.count > 0  %>
+  <div class='tables_for_client'>
+    <table>
+      <tr>
+        <td><%= render 'client_historials' if c.orders.count > 0 %></td>
+        <td><%= render 'payments' if c.payments.count > 0 %></td>
+      </tr>
+    </table>
+  </div>
 
   <%= link_to t('label.edit'), edit_client_path(c) %> |
   <%= link_to(

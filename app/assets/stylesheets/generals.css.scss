@@ -1,5 +1,5 @@
-table.orders_for_client {
-  position: fixed;
+.tables_for_client {
+  position: absolute;
   top: 5em;
   left: 35em;   
   td {
@@ -11,14 +11,6 @@ table.orders_for_client {
     display: block;
     font-size: .75em;
     color: #999999;
-  }
-}
-table.payments_for_client {
-  position: fixed;
-  top: 5em;
-  left: 65em;   
-  td {
-    border: 1.5px solid grey;
   }
 }
 .top_menu {
