@@ -13,6 +13,10 @@
     </tr>
   <% end %>
   <% if @client_payments.count > 5 %>
-    <tr><td colspan="3"><%= will_paginate(@client_payments) %></td></tr>
+    <tr>
+      <td colspan="3">
+        <%= will_paginate @client_payments, param_name: 'pay_page' %>
+      </td>
+    </tr>
   <% end %>
 </table>
