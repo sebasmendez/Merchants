@@ -71,7 +71,7 @@ class Bill < ActiveRecord::Base
         end
 
         o.line_items.each do |li|
-          send_package(0x62, line_item_for_bill(li, o.bill_kind)) # Add each item
+          send_package(0x62, line_item_for_bill(li, self.bill_kind)) # Add each item
         end
 
         if self.discount > 0
@@ -132,12 +132,12 @@ class Bill < ActiveRecord::Base
   end
 
   def line_item_for_bill(li, type)
-    price = (type == 'A' ? li.price - li.product.iva : li.price).to_f.round(2)
+    price = (type == 'A' ? li.price * (1 - (li.product.iva / 100)) : li.price).to_f.round(2)
     iva = (li.product.iva * 100).to_i.to_s
     [
       li.product.name.first(26),
-      (li.quantity * 1000).to_f.round,
-      price, iva, 'M', '1', '0', '', '', ''
+      (li.quantity * 1000).to_i,
+      price, iva, 'M', '1', '0', '', '', '', ''
     ]
   end
 end
