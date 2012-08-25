@@ -132,7 +132,7 @@ class Bill < ActiveRecord::Base
   end
 
   def line_item_for_bill(li, type)
-    price = (type == 'A' ? li.price * (1 - (li.product.iva / 100)) : li.price).to_f.round(2)
+    price = (type == 'A' ? li.price / (1 + (li.product.iva / 100)) : li.price).to_f.round(2)
     iva = (li.product.iva * 100).to_i.to_s
     [
       li.product.name.first(26),
