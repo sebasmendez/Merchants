@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-  
+  has_paper_trail
+
   belongs_to :client
   has_many :line_items, dependent: :destroy
   has_one :bill, dependent: :destroy

@@ -11,6 +11,7 @@ gem 'capistrano'
 gem 'passenger'
 gem 'simple_form'
 gem 'serialport'
+gem 'paper_trail'
 
 group :assets do
   gem 'sass-rails'

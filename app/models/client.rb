@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+  has_paper_trail
   
   CLIENT_KINDS = {
     iva_resp_insc: 'I',
