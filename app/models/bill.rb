@@ -135,7 +135,6 @@ class Bill < ActiveRecord::Base
     price = (type == 'A' ? li.price / (1 + (li.product.iva / 100)) : li.price).to_f.round(2)
     iva = (li.product.iva * 100).to_i.to_s
     name = li.product.name
-    p name
     [
       name.first(17),
       (li.quantity * 1000).to_i,
