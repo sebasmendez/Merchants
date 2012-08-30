@@ -136,7 +136,7 @@ class Bill < ActiveRecord::Base
     iva = (li.product.iva * 100).to_i.to_s
     name = li.product.name
     [
-      name.first(17),
+      name[0..17],
       (li.quantity * 1000).to_i,
       price, iva, 'M', '1', '0',
       name[17..33] || '', name[33..50] || '', 
