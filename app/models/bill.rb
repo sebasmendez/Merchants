@@ -135,12 +135,27 @@ class Bill < ActiveRecord::Base
     price = (type == 'A' ? li.price / (1 + (li.product.iva / 100)) : li.price).to_f.round(2)
     iva = (li.product.iva * 100).to_i.to_s
     name = li.product.name
-    [
-      name[0..17],
-      (li.quantity * 1000).to_i,
-      price, iva, 'M', '1', '0',
-      name[17..33] || '', name[33..50] || '', 
-      '', ''
-    ]
+    if name.length <= 18
+      [
+        name,
+        (li.quantity * 1000).to_i,
+        price, iva, 'M', '1', '0',
+        '', '', '', ''
+      ]
+    elsif name.length <= 35
+      [
+        name[18..35],
+        (li.quantity * 1000).to_i,
+        price, iva, 'M', '1', '0',
+        name[0..17], '', '', ''
+      ]
+    elsif name.length <= 52
+      [
+        name[35..52],
+        (li.quantity * 1000).to_i,
+        price, iva, 'M', '1', '0',
+        name[0..17], name[18..34], '', ''
+      ]
+    end
   end
 end
