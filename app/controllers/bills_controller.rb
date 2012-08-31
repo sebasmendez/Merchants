@@ -4,10 +4,11 @@ class BillsController < ApplicationController
   # GET /bills.xml
   def index
     @bills = Bill.order('barcode DESC').paginate(page: params[:page], per_page: 15)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bills }
+      format.csv  { send_data bills_scoped.to_csv }
     end
   end
 
@@ -48,10 +49,26 @@ class BillsController < ApplicationController
       end
     end
   end
+
   def print
     @bill = Bill.find(params[:id])
     @print = @bill.send_to_print
 
     redirect_to @bill, notice: 'Re-enviado a imprimir...'
+  end
+
+  private
+
+  def bills_scoped
+    if params[:month]&& params[:year]
+      date = Date.new(params[:year].to_i, params[:month].to_i)
+      bills = Bill.between(
+        date.beginning_of_month, date.end_of_month.end_of_day
+       )
+    else
+      bills = Bill.order
+    end
+      
+    bills.order('barcode DESC')
   end
 end

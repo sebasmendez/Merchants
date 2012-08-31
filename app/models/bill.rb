@@ -1,8 +1,16 @@
+# encoding: UTF-8
+
 class Bill < ActiveRecord::Base
   require 'serialport'
   @@seq = rand(95) + 32
   
   after_save :plus_amount_to_monthly, :plus_to_client_spend, :send_to_print
+
+  scope :between, ->(start, finish) { where(
+    "#{table_name}.created_at BETWEEN :s AND :f",
+    s: start, f: finish
+  )}
+
   #validates
   
   validates :barcode, :uniqueness => true
@@ -158,4 +166,33 @@ class Bill < ActiveRecord::Base
       ]
     end
   end
+
+ def self.to_csv
+    CSV.generate do |csv|
+      csv << ['Nº', 'Fecha', 'Cliente', 'Documento/Cuit', 'Tipo', 'Monto']
+      all.each do |bill|
+        if bill.client_id
+          bill.client.tap do |c|
+            csv <<  [
+              bill.barcode, 
+              I18n.l(bill.created_at, format: :smart),
+              c,
+              c.uic_type.present? ? c.uic : c.document,
+              bill.bill_kind,
+              bill.amount.round(2)
+            ]
+          end
+        else
+          csv <<  [
+            bill.barcode,
+            I18n.l(bill.created_at, format: :smart),
+            '',
+            '',
+            bill.bill_kind,
+            bill.amount.round(2)
+          ]
+        end
+      end
+    end
+  end 
 end

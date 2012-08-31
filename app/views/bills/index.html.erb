@@ -25,3 +25,9 @@
 <br />
 
 <%= will_paginate @bills %>
+<br />
+<br />
+<br />
+<br />
+<%= link_to "Excel con todas", bills_path(format: "csv") %>
+<%= link_to "Excel con mes", '#', id: 'excel_with_month' %>

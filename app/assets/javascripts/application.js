@@ -11,3 +11,4 @@
 //= require cart
 //= require generals
 //= require autocomplete
+//= require bills

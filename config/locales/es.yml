@@ -106,6 +106,7 @@ es:
       default: "%a, %d de %b de %Y a las %H:%M"
       long: "%A, %d de %B de %Y a las %I:%M %p"
       little: "%d de %B"
+      smart: "%d/%m/%Y - %H:%M"
     am: "am"
     pm: "pm"
 
