@@ -7,8 +7,7 @@ class BillsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @bills }
-      format.csv  { send_data bills_scoped.to_csv }
+      format.csv  { render csv: bills_scoped, filename: "bills #{Date.today}" }
     end
   end
 
