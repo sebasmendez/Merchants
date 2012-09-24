@@ -10,5 +10,7 @@ class User < ActiveRecord::Base
     :remember_me
   # attr_accessible :title, :body
 
-
+  validates :email, :username, :password, :password_confirmation,
+    presence: true, on: [:create, :update]
+  validates :email, :username, uniqueness: true
 end
