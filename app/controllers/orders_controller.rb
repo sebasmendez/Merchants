@@ -21,9 +21,6 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @order }
-      format.pdf do
-        render pdf: 'orden', layout: 'pdf', wkhtmltopdf: '/usr/local/bin/wkhtmltopdf'
-      end
     end
   end
 
@@ -31,10 +28,10 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @cart ||= current_cart
-      if @cart.line_items.empty?
-        redirect_to store_url, notice: t('cart.emplied')
-        return
-      end
+    if @cart.line_items.empty?
+      redirect_to store_url, notice: t('cart.emplied')
+      return
+    end
     
     @order = Order.new
     @order.add_line_items_from_cart(current_cart)
@@ -58,7 +55,7 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to "/orders/#{@order.id}", notice: t('order.created') }
+        format.html { redirect_to store_url, notice: t('order.created') }
         format.json { render json: @order, status: :created, location: @order }
       else
         @cart ||= current_cart
