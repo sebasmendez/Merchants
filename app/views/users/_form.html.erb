@@ -1,0 +1,20 @@
+<%= simple_form_for(@user, defaults: { input_html: { class: 'span5' } }) do |f| %>
+
+  <div class="row">
+    <div class="span12">
+      <div class="form-inputs">
+        <%= f.input :username, input_html: { autofocus: true, maxlength: 255 } %>
+        <%= f.input :email, required: true, input_html: { maxlength: 255 } %>
+
+        <% if ['new', 'create'].include?(action_name) %>
+          <%= f.input :password, required: true, input_html: { maxlength: 255 } %>
+          <%= f.input :password_confirmation, input_html: { maxlength: 255 } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
