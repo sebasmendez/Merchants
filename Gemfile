@@ -12,6 +12,7 @@ gem 'passenger'
 gem 'simple_form'
 gem 'serialport'
 gem 'paper_trail'
+gem 'devise'
 
 group :assets do
   gem 'sass-rails'

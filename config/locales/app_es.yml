@@ -63,6 +63,9 @@ es:
         category: "Categoría"
       category:
         category: 'Categoría'
+      user:
+        username: 'Usuario'
+        remember_me: 'Recordarme'
   label:
     back: 'Volver'
     cancel: 'Cancelar'

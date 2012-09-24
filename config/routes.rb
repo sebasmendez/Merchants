@@ -1,6 +1,8 @@
 Merchants::Application.routes.draw do
+  devise_for :users
+
   resources :payments, :categories,
-    :line_items, :carts, :products, :orders
+    :line_items, :carts, :products, :orders, :users
   
   resources :bills, except: [:edit, :destroy] do
     get :print, on: :member
