@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924004756) do
+ActiveRecord::Schema.define(:version => 20121101155940) do
 
   create_table "bills", :force => true do |t|
-    t.integer  "barcode",                                                                  :null => false
+    t.integer  "barcode",     :limit => 8,                                                 :null => false
     t.integer  "prod_count"
     t.decimal  "amount",                   :precision => 15, :scale => 2
     t.string   "bill_kind",                                                                :null => false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20120924004756) do
     t.integer  "product_id"
     t.integer  "cart_id"
     t.integer  "order_id"
-    t.decimal  "price",      :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "price",      :precision => 15, :scale => 2
     t.decimal  "quantity",   :precision => 15, :scale => 2, :default => 1.0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(:version => 20120924004756) do
   end
 
   create_table "products", :force => true do |t|
-    t.string   "barcode",                                                      :null => false
+    t.string   "barcode"
     t.string   "name",                                                         :null => false
     t.string   "mark"
     t.string   "fragance"
