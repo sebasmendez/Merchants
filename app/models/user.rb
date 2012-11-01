@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   validates :email, :username, :password, :password_confirmation,
-    presence: true, on: :create
+    presence: true
   validates :email, :username, uniqueness: true
 end

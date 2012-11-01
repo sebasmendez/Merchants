@@ -4,7 +4,7 @@ Merchants::Application.routes.draw do
   resources :payments, :categories,
     :line_items, :carts, :products, :orders, :users
   
-  resources :bills, except: [:edit, :destroy] do
+  resources :bills, except: [:destroy] do
     get :print, on: :member
   end
   

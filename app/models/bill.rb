@@ -4,7 +4,8 @@ class Bill < ActiveRecord::Base
   require 'serialport'
   @@seq = rand(95) + 32
   
-  after_save :plus_amount_to_monthly, :plus_to_client_spend, :send_to_print
+  after_save :plus_amount_to_monthly, :plus_to_client_spend, :send_to_print,
+    on: :create
 
   scope :between, ->(start, finish) { where(
     "#{table_name}.created_at BETWEEN :s AND :f",

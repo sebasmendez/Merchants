@@ -30,8 +30,8 @@ class Product < ActiveRecord::Base
   
   def up_product
     self.name = self.name.split.map(&:camelize).join(' ')
-    self.mark = self.mark.split.map(&:camelize).join(' ')
-    self.fragance = self.fragance.split.map(&:camelize).join(' ')
+    self.mark = self.mark.split.map(&:camelize).join(' ') if self.mark
+    self.fragance = self.fragance.split.map(&:camelize).join(' ') if self.fragance
   end
   
   def self.search(search)
