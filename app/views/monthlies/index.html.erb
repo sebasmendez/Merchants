@@ -1,23 +1,17 @@
-<h1>Mensualidades</h1>
+<h1>Mensualidades del último año</h1>
 
 <table>
   <tr>
     <th>Mes</th>
     <th>año</th>
     <th>vendido</th>
-   <%# <th>comprado</th>
-    <th>apagar</th>
-    <th>Pagado??</th>%>
   </tr>
   <% @monthlies.each do |monthly| %>
     <tr>
-    <td><%= monthly.month %></td>
-    <td><%= monthly.year %></td>
-    <td><%= number_to_currency(monthly.sold) %></td>
-    <%#*<td><%= number_to_currency(monthly.bought) %></td>
-    <%#*<td><%= number_to_currency(monthly.to_pay) %></td>
-    <%#*<td><%= monthly.paid ? t('monthly.paid') : link_to(t('monthly.unpaid'), paid_monthly_path(monthly), :remote => true, :class => 'paid', 'data-type' => 'html' ) </td>%>
-  </tr>
-  
-<% end %>
+      <td><%= monthly.month %></td>
+      <td><%= monthly.year %></td>
+      <td><%= number_to_currency(monthly.sold) %></td>
+    </tr>
+  <% end %>
 </table>
+

@@ -61,10 +61,6 @@ class Order < ActiveRecord::Base
       @daybox.count = ((@daybox.count += 1) || 0)
       @daybox.total += @order.price
       @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
-      @monthly = Monthly.find_or_create_by_month_and_year(@order.created_at.month, @order.created_at.year)
-      @monthly.sold ||= 0
-      @monthly.sold += @order.price
-      @monthly.update_attributes(sold: @monthly.sold)
     end
   end
 

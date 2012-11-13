@@ -9,10 +9,7 @@ Merchants::Application.routes.draw do
   end
   
   match 'store' => 'store#index', :via => 'get' 
-  
-  resources :monthlies do
-    get :paid, on: :member
-  end
+  match 'monthlies' => 'monthlies#index', via: 'get'
   
   resources :clients do
     get :autocomplete_for_client, on: :collection

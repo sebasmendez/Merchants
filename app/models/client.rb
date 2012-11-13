@@ -89,10 +89,6 @@ class Client < ActiveRecord::Base
       @daybox.count = ((@daybox.count += 1) || 0)
       @daybox.total += @to_amount.to_d
       @daybox.update_attributes(total: @daybox.total, count: @daybox.count)
-      @monthly = Monthly.find_or_create_by_month_and_year(Date.today.month, Date.today.year)
-      @monthly.sold ||= 0
-      @monthly.sold += @to_amount.to_d
-      @monthly.update_attributes(sold: @monthly.sold)
     end
   end
 

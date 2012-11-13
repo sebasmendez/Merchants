@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101155940) do
+ActiveRecord::Schema.define(:version => 20121113224439) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",     :limit => 8,                                                 :null => false
@@ -80,17 +80,6 @@ ActiveRecord::Schema.define(:version => 20121101155940) do
     t.integer  "order_id"
     t.decimal  "price",      :precision => 15, :scale => 2
     t.decimal  "quantity",   :precision => 15, :scale => 2, :default => 1.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "monthlies", :force => true do |t|
-    t.integer  "month"
-    t.integer  "year"
-    t.decimal  "sold",       :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "bought",     :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "to_pay",     :precision => 15, :scale => 2, :default => 0.0
-    t.boolean  "paid",                                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
