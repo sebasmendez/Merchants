@@ -5,6 +5,10 @@ class Box < ActiveRecord::Base
     start: _start, end: _end
   ) }
 
+  def to_s
+    [self.day, self.month, self.year].join('-')
+  end
+
   def self.by_months
     months = []
     
@@ -19,5 +23,21 @@ class Box < ActiveRecord::Base
     end
 
     months
+  end
+
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << [
+        'Fecha', 'Ventas', 'Montos'
+      ]
+      scoped.each do |day|
+        csv << [
+          day,
+          day.count,
+          day.total
+        ]
+      end
+    end
   end
 end

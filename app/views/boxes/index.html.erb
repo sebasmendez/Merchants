@@ -25,4 +25,6 @@
 <%= will_paginate @boxes %>
 
 <%= link_to 'Cierre X', print_close_boxes_path(close: 'X') %> |
-<%= link_to 'Cierre Z', print_close_boxes_path(close: 'Z') %>
+<%= link_to 'Cierre Z', print_close_boxes_path(close: 'Z') %> | 
+<%= link_to "A Excel", boxes_path(format: 'csv') %> | 
+<%= link_to "A Excel por mes", '#', class: 'excel_with_month' %>

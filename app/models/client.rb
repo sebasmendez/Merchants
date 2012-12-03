@@ -30,6 +30,10 @@ class Client < ActiveRecord::Base
   has_many :orders
   has_many :payments
   
+  scope :between, ->(start, finish) { where(
+    "#{table_name}.created_at BETWEEN :s AND :f",
+    s: start, f: finish
+  )}
   scope :with_client, ->(search) { where(
     [
       "LOWER(#{Client.table_name}.name) LIKE :q",
@@ -99,5 +103,28 @@ class Client < ActiveRecord::Base
         client_id: self.id, deposit: self.to_amount, debt_rest: debt
       )
     end
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << [
+        'Nombre y apellido', 'Documento', 'Factura', 'Direccion',
+        'Telefono', 'Tipo cliente', 'CuiX'
+      ]
+      scoped.each do |client|
+        client_kind = I18n.t(
+          "view.clients.client_kind.#{CLIENT_KINDS.invert[client.client_kind]}"
+        )
+        csv <<  [
+          client, 
+          client.document,
+          client.bill_kind,
+          [client.address, client.location].join(' - '),
+          [client.phone, client.cellphone].join('---'),
+          client_kind,
+          [client.uic_type, client.uic].join(' ')
+        ]
+      end
+    end 
   end
 end

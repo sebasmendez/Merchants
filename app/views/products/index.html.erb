@@ -23,6 +23,9 @@
 
 <br />
 
-<%= link_to t('new.product'), new_product_path %> <br />
-
+<%= link_to t('new.product'), new_product_path %> | 
+<%= link_to 'A Excel', products_path(format: 'csv') %>
+<br />
 <%= will_paginate @products %>
+
+

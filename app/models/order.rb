@@ -88,7 +88,7 @@ class Order < ActiveRecord::Base
   def self.to_csv
     CSV.generate do |csv|
       csv << ['Nro', 'Fecha', 'Cliente', 'Monto']
-      scoped.each do |order|
+      select('id, created_at, client_id, price').each do |order|
         csv <<  [
           order.id, 
           I18n.l(order.created_at, format: :smart),

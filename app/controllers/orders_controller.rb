@@ -111,7 +111,7 @@ class OrdersController < ApplicationController
         date.beginning_of_month, date.end_of_month.end_of_day
        )
     else
-      orders = Order.order
+      orders = Order.scoped
     end
       
     orders.order('id DESC')

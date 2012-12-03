@@ -8,6 +8,7 @@ class BoxesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @boxes }
+      format.csv  { render csv: boxes_scoped, filename: "Cajas #{Date.today}" }
     end
   end
 
@@ -88,5 +89,20 @@ class BoxesController < ApplicationController
     @close = bill.send_package(0x39, [close, 'P'])
 
     redirect_to boxes_url, notice: "Enviado a imprimir cierre #{close}"
+  end
+
+
+  private
+  def boxes_scoped
+    if params[:month] && params[:year]
+      date = Date.new(params[:year].to_i, params[:month].to_i)
+      boxes = Box.between(
+        date.beginning_of_month, date.end_of_month.end_of_day
+       )
+    else
+      boxes = Box.scoped
+    end
+      
+    boxes.order('id DESC')
   end
 end

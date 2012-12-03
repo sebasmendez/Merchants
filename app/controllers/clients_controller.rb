@@ -9,7 +9,8 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json  { render json: @clients }
+      format.json { render json: @clients }
+      format.csv  { render csv: Client.order(:last_name), filename: "Clientes #{Date.today}" }
     end
   end
 

@@ -5,11 +5,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.search(params[:search]).order('name ASC').paginate(page: params[:page], per_page: 15)
+    @products = Product.search(params[:search]).order('name ASC').paginate(page: params[:page], per_page: 8)
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
+      format.csv  { render csv: Product.order(:name), filename: "Productos #{Date.today}" }
     end
   end
 

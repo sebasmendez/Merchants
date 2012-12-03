@@ -83,7 +83,7 @@ class BillsController < ApplicationController
         date.beginning_of_month, date.end_of_month.end_of_day
        )
     else
-      bills = Bill.order
+      bills = Bill.scoped
     end
       
     bills.order('barcode DESC')

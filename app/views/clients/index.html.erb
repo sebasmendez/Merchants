@@ -25,3 +25,6 @@
 
 <%= link_to I18n.t('label.new'), new_client_path %> <br />
 <%= will_paginate @clients %>
+
+
+<%= link_to "Excel con todas", clients_path(format: "csv") %>

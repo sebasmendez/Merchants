@@ -50,4 +50,24 @@ class Product < ActiveRecord::Base
       scoped
     end
   end
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << [
+        'Codigo de barra', 'Nombre', 'Marca', 'Caracteristica',
+        'Categoria', 'Precio C-S iva', 'Cantidad', 'Stock'
+      ]
+      scoped.each do |prod|
+        csv << [
+          prod.barcode,
+          prod.name,
+          prod.mark,
+          prod.fragance,
+          prod.category,
+          [prod.pricedist, prod.price].join(' - '),
+          [prod.count, prod.uni].join(' '),
+          prod.stock
+        ]
+      end
+    end
+  end
 end
