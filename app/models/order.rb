@@ -6,6 +6,10 @@ class Order < ActiveRecord::Base
   has_one :bill, dependent: :destroy
   accepts_nested_attributes_for :line_items, :allow_destroy => true
   
+  scope :between, ->(start, finish) { where(
+    "#{table_name}.created_at BETWEEN :s AND :f",
+    s: start, f: finish
+  )}
   
   before_save :total_price, :assign_own_price
   after_save :plus_price_to_client, :discount_stock, :daily_box, :create_bill
@@ -79,5 +83,19 @@ class Order < ActiveRecord::Base
         uic: self.uic, uic_type: self.uic_type, client_kind: self.client_kind
       )
     end
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << ['Nro', 'Fecha', 'Cliente', 'Monto']
+      scoped.each do |order|
+        csv <<  [
+          order.id, 
+          I18n.l(order.created_at, format: :smart),
+          (order.client_id ? order.client : '-'),
+          order.price.round(2)
+        ]
+      end
+    end 
   end
 end

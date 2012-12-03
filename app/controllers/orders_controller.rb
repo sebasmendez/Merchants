@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @orders }
+      format.csv  { render csv: orders_scoped, filename: "Ordenes #{Date.today}" }
     end
   end
 
@@ -99,5 +100,20 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.json { render json: @clients }
     end
+  end
+
+  private
+
+  def orders_scoped
+    if params[:month] && params[:year]
+      date = Date.new(params[:year].to_i, params[:month].to_i)
+      orders = Order.between(
+        date.beginning_of_month, date.end_of_month.end_of_day
+       )
+    else
+      orders = Order.order
+    end
+      
+    orders.order('id DESC')
   end
 end

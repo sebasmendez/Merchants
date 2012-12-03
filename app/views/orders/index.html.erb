@@ -22,3 +22,5 @@
 <%= will_paginate @orders %>
 
 
+<%= link_to "Excel con todas", orders_path(format: "csv") %>
+<%= link_to "Excel con mes", '#', class: 'excel_with_month' %>

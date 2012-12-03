@@ -159,7 +159,7 @@ class Bill < ActiveRecord::Base
  def self.to_csv
     CSV.generate do |csv|
       csv << ['Nº', 'Fecha', 'Cliente', 'Documento/Cuit', 'Tipo', 'Monto']
-      all.each do |bill|
+      scoped.each do |bill|
         if bill.client_id
           bill.client.tap do |c|
             csv <<  [
