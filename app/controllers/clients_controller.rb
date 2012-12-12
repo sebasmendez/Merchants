@@ -27,7 +27,8 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json  { render json: @client }
+      format.json   { render json: @client }
+      format.csv    { render csv: @client, filename: "Cliente #{@client}"}
     end
   end
 

@@ -86,6 +86,7 @@
   <%= link_to(
     t('label.destroy'), c, confirm: t('label.sure'), method: :delete
   ) %> |
-  <%= link_to t('label.back'), clients_path %>
+  <%= link_to t('label.back'), clients_path %> | 
+  <%= link_to 'Exportar a CSV', client_path(@client, format: 'csv') %>
 
 <% end %>

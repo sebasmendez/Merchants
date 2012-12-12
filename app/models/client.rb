@@ -127,4 +127,43 @@ class Client < ActiveRecord::Base
       end
     end 
   end
+  
+  def to_csv
+    CSV.generate do |csv|
+      csv << [
+        'Nombre y apellido', 'Documento', 'Factura', 'Direccion',
+        'Telefono', 'Tipo cliente', 'CuiX', 'Deuda'
+      ]
+      client = self
+      client_kind = I18n.t(
+        "view.clients.client_kind.#{CLIENT_KINDS.invert[client.client_kind]}"
+      )
+      csv <<  [
+        client, 
+        client.document,
+        client.bill_kind,
+        [client.address, client.location].join(' - '),
+        [client.phone, client.cellphone].join('---'),
+        client_kind,
+        [client.uic_type, client.uic].join(' '),
+        client.amount
+      ]
+
+      2.times { csv << [] }
+      csv << [ 'Orden Nro', 'Fecha', 'Precio', 'Fiado?' ]
+      client.orders.each do |order|
+        csv << [
+          order.id, I18n.l(order.created_at, format: :long),
+          order.price, (order.to_amount ? 'SI' : 'NO')
+        ]
+      end
+
+      csv << []
+      csv << ['PAGOS']
+      csv << ['Fecha','Cant pagada', 'Deuda']
+      client.payments.each do |pay|
+        csv << [I18n.l(pay.created_at), pay.deposit, pay.debt_rest]
+      end
+    end
+  end
 end
