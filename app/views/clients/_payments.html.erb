@@ -7,7 +7,7 @@
   </tr>
   <% @client_payments.each do |payments| %>
     <tr>
-      <td><%= l payments.created_at, format: :little %></td>
+      <td><%= l payments.created_at, format: :smart %></td>
       <td><%= number_to_currency payments.deposit %></td>
       <td><%= number_to_currency payments.debt_rest %></td>
     </tr>
