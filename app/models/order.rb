@@ -93,7 +93,7 @@ class Order < ActiveRecord::Base
           order.id, 
           I18n.l(order.created_at, format: :smart),
           (order.client_id ? order.client : '-'),
-          order.price.round(2)
+          ('%.02f' % order.price)
         ]
       end
     end 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.11'
 
 gem 'validates_timeliness'
 gem 'sqlite3'
@@ -17,7 +17,6 @@ gem 'devise'
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'therubyracer', require: false
   gem 'uglifier'
 end
 

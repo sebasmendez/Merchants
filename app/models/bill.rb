@@ -168,7 +168,7 @@ class Bill < ActiveRecord::Base
               c,
               c.uic_type.present? ? c.uic : c.document,
               bill.bill_kind,
-              bill.amount.to_f.round(2)
+              ('%.02f' % bill.amount)
             ]
           end
         else
@@ -178,7 +178,7 @@ class Bill < ActiveRecord::Base
             '',
             '',
             bill.bill_kind,
-            bill.amount.to_f.round(2)
+            ('%.02f' % bill.amount)
           ]
         end
       end
