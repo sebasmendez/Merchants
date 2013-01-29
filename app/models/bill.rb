@@ -4,6 +4,7 @@ class Bill < ActiveRecord::Base
   require 'serialport'
   @@seq = rand(95) + 32
   
+  before_save :assign_barcode_to_bill
   after_save :plus_to_client_spend, :send_to_print,
     on: :create
 
@@ -27,8 +28,15 @@ class Bill < ActiveRecord::Base
   #Methods
   def initialize (attributes = nil, options = {})
     super(attributes, options)
-    self.barcode ||= (Bill.order('barcode DESC').first.try(:barcode) || 0) + 1
     self.bill_kind ||= 'B'
+  end
+
+  def assign_barcode_to_bill
+    if self.bill_kind == 'A'
+      (Bill.where(bill_kind: 'A').order(:barcode).last.try(:barcode) || 0) + 1
+    else
+      (Bill.where("bill_kind != 'A'").order(:barcode).last.try(:barcode) || 0) + 1
+    end
   end
   
   def plus_to_client_spend
@@ -55,7 +63,7 @@ class Bill < ActiveRecord::Base
                 (c_k != 'F' && c.uic_type ? c.uic.delete('-') : c.document),
                 'N', c.address.first(40), c.address[40..80].to_s,
                 c.location.first(40),
-                (c_k != 'F' ? "Orden Nro: #{self.order_id}" : '')
+                self.barcode
               ]
             )
             sleep 2

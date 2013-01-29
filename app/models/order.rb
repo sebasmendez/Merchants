@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
     "#{table_name}.created_at BETWEEN :s AND :f",
     s: start, f: finish
   )}
-  
+ 
   before_save :total_price, :assign_own_price
   after_save :plus_price_to_client, :discount_stock, :daily_box, :create_bill
   
@@ -69,7 +69,7 @@ class Order < ActiveRecord::Base
   end
 
   def create_bill
-    if self.send_print == '1'
+    if self.send_print == '1' || self.send_print == true
       items = []
       self.line_items.map {|r| items << "#{r.product.name} x#{r.quantity} 
         $#{r.product.price.to_s}  => $#{(r.quantity * r.product.price).to_s}"}

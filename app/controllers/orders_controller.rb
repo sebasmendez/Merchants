@@ -31,7 +31,6 @@ class OrdersController < ApplicationController
     @cart ||= current_cart
     if @cart.line_items.empty?
       redirect_to store_url, notice: t('cart.emplied')
-      return
     end
     
     @order = Order.new
@@ -51,7 +50,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
-    
+    p @order.valid?
+    p @order.errors
+
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
