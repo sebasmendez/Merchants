@@ -158,6 +158,10 @@ class Bill < ActiveRecord::Base
 
  def self.to_csv
     CSV.generate do |csv|
+      ['A', 'B', 'C'].each do |b|
+        csv << ["Total Fact #{b} =>", ('%.02f' % where(bill_kind: b).sum(&:amount))]
+      end
+      csv << []
       csv << ['Nº', 'Fecha', 'Cliente', 'Documento/Cuit', 'Tipo', 'Monto']
       scoped.each do |bill|
         if bill.client_id

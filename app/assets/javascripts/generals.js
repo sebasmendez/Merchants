@@ -15,7 +15,7 @@ jQuery(function(){
 //      Calcule the new stock
         var stock = parseFloat($('#stock').val());
         var original = parseFloat($('#stock').val());
-        $('#newstock').live('change', function() {
+        $('#newstock').on('change', function() {
        
            if ($('#newstock').val() == "" ){ 
                $('#stock').attr('value', original);
@@ -26,7 +26,7 @@ jQuery(function(){
                 
         });
         
-        $('.excel_with_month').live('click', function() {
+        $('.excel_with_month').on('click', function() {
           month = prompt('Ingrese el numero del mes');
           year = prompt('Ingrese el numero del año YYYY');
           console.log(window.location)

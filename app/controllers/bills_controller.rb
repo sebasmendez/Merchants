@@ -77,7 +77,7 @@ class BillsController < ApplicationController
   private
 
   def bills_scoped
-    if params[:month]&& params[:year]
+    if params[:month] && params[:year]
       date = Date.new(params[:year].to_i, params[:month].to_i)
       bills = Bill.between(
         date.beginning_of_month, date.end_of_month.end_of_day

@@ -1,6 +1,6 @@
 jQuery(function($){
 //    do "Paid" in mounth
-        $('a.paid').live('ajax:success',function(xhr,data){
+        $('a.paid').on('ajax:success',function(xhr,data){
             $(this).parents('tr:first').replaceWith(data);
         });
 
@@ -11,7 +11,7 @@ jQuery(function($){
         // sum to amount
         var amount = parseFloat($('#amount').val());
         var original = parseFloat($('#amount').val());
-        $('#to_amount').live('change', function() {
+        $('#to_amount').on('change', function() {
        
            if ($('#to_amount').val() == "" ){ 
                $('#amount').attr('value', original);
@@ -29,7 +29,7 @@ jQuery(function($){
                 $('#order_total_price').text().replace('$','').replace(',','.')
             );
             var new_total = original_total;
-            $('.price-modifier').live('change', function() {
+            $('.price-modifier').on('change', function() {
             new_total = 0;
             for (i=0; i< count; i++){
                 price = "#order_line_items_attributes_" + i + "_price";
