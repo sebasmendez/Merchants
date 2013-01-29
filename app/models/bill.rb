@@ -5,8 +5,8 @@ class Bill < ActiveRecord::Base
   @@seq = rand(95) + 32
   
   before_validation :assign_barcode_to_bill
-  #after_save :plus_to_client_spend, :send_to_print,
-  #  on: :create
+  after_save :plus_to_client_spend, :send_to_print,
+    on: :create
 
   scope :between, ->(start, finish) { where(
     "#{table_name}.created_at BETWEEN :s AND :f",
