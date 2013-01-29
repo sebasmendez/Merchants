@@ -31,9 +31,9 @@ class Bill < ActiveRecord::Base
 
   def assign_barcode_to_bill
     self.barcode = if self.bill_kind == 'A'
-      (Bill.where(bill_kind: 'A').order(:barcode).last.try(:barcode) || 0) + 1
+      (Bill.where(bill_kind: 'A').order(:id).last.try(:barcode) || 0) + 1
     else
-      (Bill.where("bill_kind != 'A'").order(:barcode).last.try(:barcode) || 0) + 1
+      (Bill.where("bill_kind != 'A'").order(:id).last.try(:barcode) || 0) + 1
     end
   end
   
