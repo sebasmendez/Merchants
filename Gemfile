@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.6'
 
 gem 'validates_timeliness'
 gem 'sqlite3'
@@ -12,7 +12,7 @@ gem 'passenger'
 gem 'simple_form'
 gem 'serialport'
 gem 'paper_trail'
-gem 'devise'
+gem 'devise', '2.1.2'
 
 group :assets do
   gem 'sass-rails'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113224439) do
+ActiveRecord::Schema.define(:version => 20130129215434) do
 
   create_table "bills", :force => true do |t|
     t.integer  "barcode",     :limit => 8,                                                 :null => false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20121113224439) do
     t.string   "client_kind", :limit => 1
   end
 
-  add_index "bills", ["barcode"], :name => "index_bills_on_barcode", :unique => true
+  add_index "bills", ["barcode"], :name => "index_bills_on_barcode"
 
   create_table "boxes", :force => true do |t|
     t.integer  "day"

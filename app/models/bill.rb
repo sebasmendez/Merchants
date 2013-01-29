@@ -4,9 +4,9 @@ class Bill < ActiveRecord::Base
   require 'serialport'
   @@seq = rand(95) + 32
   
-  before_save :assign_barcode_to_bill
-  after_save :plus_to_client_spend, :send_to_print,
-    on: :create
+  before_validation :assign_barcode_to_bill
+  #after_save :plus_to_client_spend, :send_to_print,
+  #  on: :create
 
   scope :between, ->(start, finish) { where(
     "#{table_name}.created_at BETWEEN :s AND :f",
@@ -14,8 +14,6 @@ class Bill < ActiveRecord::Base
   )}
 
   #validates
-  
-  validates :barcode, :uniqueness => true
   validates :barcode, :amount, :presence => true
   validates :amount, :numericality => {:greater_than => 0 }
   
@@ -32,7 +30,7 @@ class Bill < ActiveRecord::Base
   end
 
   def assign_barcode_to_bill
-    if self.bill_kind == 'A'
+    self.barcode = if self.bill_kind == 'A'
       (Bill.where(bill_kind: 'A').order(:barcode).last.try(:barcode) || 0) + 1
     else
       (Bill.where("bill_kind != 'A'").order(:barcode).last.try(:barcode) || 0) + 1
