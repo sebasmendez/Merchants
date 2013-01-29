@@ -6,7 +6,7 @@ gem 'validates_timeliness'
 gem 'sqlite3'
 gem 'will_paginate'
 gem 'jquery-rails'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', "~> 3.5.5.38"
 gem 'capistrano'
 gem 'passenger'
 gem 'simple_form'
