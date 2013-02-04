@@ -93,7 +93,7 @@ class Order < ActiveRecord::Base
           order.id, 
           I18n.l(order.created_at, format: :smart),
           (order.client_id ? order.client : '-'),
-          ('%.02f' % order.price)
+          "#{order.price.round(2).to_s.gsub('.',',')}"
         ]
       end
     end 

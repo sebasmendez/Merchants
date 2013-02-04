@@ -178,7 +178,7 @@ class Bill < ActiveRecord::Base
               c,
               c.uic_type.present? ? c.uic : c.document,
               bill.bill_kind,
-              ('%.02f' % bill.amount)
+              "#{bill.amount.round(2).to_s.gsub('.',',')}"
             ]
           end
         else
@@ -188,7 +188,7 @@ class Bill < ActiveRecord::Base
             '',
             '',
             bill.bill_kind,
-            ('%.02f' % bill.amount)
+            "#{bill.amount.round(2).to_s.gsub('.',',')}"
           ]
         end
       end

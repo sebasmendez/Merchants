@@ -35,7 +35,7 @@ class Box < ActiveRecord::Base
         csv << [
           day,
           day.count,
-          day.total
+          "#{day.total.round(2).to_s.gsub('.',',')}"
         ]
       end
     end
