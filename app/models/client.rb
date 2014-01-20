@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   has_paper_trail
-  
+
   CLIENT_KINDS = {
     iva_resp_insc: 'I',
     iva_resp_not_insc: 'R',
@@ -17,19 +17,19 @@ class Client < ActiveRecord::Base
   # Callbacks
   before_save :up_name
   after_save :plus_to_boxes, :add_deposit
- 
+
   # Validations
   validates :name, :last_name, :document, :address, :presence => true
-  
+
   validates :document, :uniqueness => true, :numericality => true
-  
+
   validates :amount, :to_amount, :spend, :phone, allow_nil: true,
               allow_blank: true, numericality: true
-  
+
   has_many :bills
   has_many :orders
   has_many :payments
-  
+
   scope :between, ->(start, finish) { where(
     "#{table_name}.created_at BETWEEN :s AND :f",
     s: start, f: finish
@@ -41,13 +41,13 @@ class Client < ActiveRecord::Base
       "#{Client.table_name}.document LIKE :q",
       "LOWER(#{Client.table_name}.name) LIKE :n AND LOWER(#{Client.table_name}.last_name) LIKE :l"
     ].join(' OR '),
-    q: "%#{search}%".downcase, n: "%#{search.split.first}%".downcase, 
+    q: "%#{search}%".downcase, n: "%#{search.split.first}%".downcase,
     l: "%#{search.split.last}%".downcase
   ).limit(5) }
-  
+
   attr_accessor :to_amount
-  
-  
+
+
   #methods
   def to_s
     self.name + ' ' + self.last_name
@@ -58,16 +58,16 @@ class Client < ActiveRecord::Base
   end
 
   alias_method :label, :to_s
-  
+
   def as_json(options= nil)
     default_options = {
       only: [:id, :document, :bill_kind, :uic_type, :uic, :client_kind],
       methods: [:label]
     }
-    
+
     super(default_options.merge(options || {}))
   end
-  
+
   def up_name
     self.name = self.name.split.map(&:camelize).join(' ')
     self.last_name = self.last_name.split.map(&:camelize).join(' ')
@@ -76,7 +76,7 @@ class Client < ActiveRecord::Base
   def cuit_cuil_for_bill
     self.match(/\-+/) ? self.delete('-') : self
   end
-  
+
   def self.search(search)
     if search
       where("LOWER(name) LIKE :q OR LOWER(last_name) LIKE :q OR document LIKE :q",
@@ -85,7 +85,7 @@ class Client < ActiveRecord::Base
       scoped
     end
   end
-    
+
   def plus_to_boxes
     @to_amount = self.to_amount
     if @to_amount.present? && @to_amount.to_d > 0
@@ -109,25 +109,31 @@ class Client < ActiveRecord::Base
     CSV.generate do |csv|
       csv << [
         'Nombre y apellido', 'Documento', 'Factura', 'Direccion',
-        'Telefono', 'Tipo cliente', 'CuiX'
+        'Telefono', 'Tipo cliente', 'CuiX', 'Adeudado', 'Ultima Compra', 'Ultimo Pago'
       ]
       scoped.each do |client|
         client_kind = I18n.t(
           "view.clients.client_kind.#{CLIENT_KINDS.invert[client.client_kind]}"
         )
+        last_order = client.orders.order(:created_at).last.try(:created_at)
+        last_pay = client.payments.order(:created_at).last.try(:created_at)
+
         csv <<  [
-          client, 
+          client,
           client.document,
           client.bill_kind,
           [client.address, client.location].join(' - '),
           [client.phone, client.cellphone].join('---'),
           client_kind,
-          [client.uic_type, client.uic].join(' ')
+          [client.uic_type, client.uic].join(' '),
+          client.amount,
+          (last_order ? I18n.l(last_order.to_date) : ''),
+          (last_pay ? I18n.l(last_pay.to_date) : '')
         ]
       end
-    end 
+    end
   end
-  
+
   def to_csv
     CSV.generate do |csv|
       csv << [
@@ -139,7 +145,7 @@ class Client < ActiveRecord::Base
         "view.clients.client_kind.#{CLIENT_KINDS.invert[client.client_kind]}"
       )
       csv <<  [
-        client, 
+        client,
         client.document,
         client.bill_kind,
         [client.address, client.location].join(' - '),

@@ -44,7 +44,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    daemon_controller (1.1.1)
+    daemon_controller (1.1.8)
     daemons (1.1.9)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
@@ -56,7 +56,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fastthread (1.0.7)
-    highline (1.6.15)
+    highline (1.6.20)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -71,14 +71,13 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     mysql2 (0.3.11)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
-    net-ssh (2.6.3)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
-    newrelic_rpm (3.5.5.38)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     orm_adapter (0.4.0)
     paper_trail (2.7.0)
       activerecord (~> 3.0)
@@ -152,14 +151,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capistrano
+  capistrano (= 2.14.1)
   coffee-rails
   devise (= 2.1.2)
   jquery-rails
   mysql2
-  newrelic_rpm (~> 3.5.5.38)
   paper_trail
-  passenger
+  passenger (= 3.0.19)
   rails (= 3.2.6)
   sass-rails
   serialport

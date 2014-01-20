@@ -5,8 +5,6 @@ class UpgradesInProducts < ActiveRecord::Migration
     change_column :products, :price, :decimal, precision: 15, scale: 2
     change_column :products, :count, :decimal, precision: 15, scale: 2
     change_column :products, :pricedist, :decimal, precision: 15, scale: 2
-  end
-  def up
     add_column :products, :earn, :decimal, precision: 15, scale: 2, default: 30
   end
 end
