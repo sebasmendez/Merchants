@@ -13,7 +13,7 @@ set :user, 'deployer'
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
-set :branch, 'master'
+set :branch, 'ale'
 role :web, "192.168.0.100"                          # Your HTTP server, Apache/etc
 role :app, "192.168.0.100"                          # This may be the same as your `Web` server
 role :db,  "192.168.0.100", :primary => true

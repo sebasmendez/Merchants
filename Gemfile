@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 
 gem 'validates_timeliness'
-gem 'sqlite3'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'capistrano', '2.14.1'
@@ -23,6 +22,4 @@ group :development do
   gem 'thin'
 end
 
-group :production do
-  gem 'pg'
-end
+gem 'pg'
