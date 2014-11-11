@@ -46,14 +46,11 @@ test:
   password: '12452'
 
 production:
-  adapter: mysql2
+  adapter: pg
   encoding: utf8
-  database: merchant_production
-  # database: merchant
-  username: eltonel
-  password: 'malbec214'
-  #username: rotsen
-  #password: '12452'
+  database: merchants_production
+  username: merchants
+  password: merchants
   host: localhost
   pool: 5
   reconnect: false
