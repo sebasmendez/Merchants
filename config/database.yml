@@ -46,7 +46,7 @@ test:
   password: '12452'
 
 production:
-  adapter: pg
+  adapter: postgresql
   encoding: utf8
   database: merchants_production
   username: merchants
